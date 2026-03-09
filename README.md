@@ -46,13 +46,13 @@
 ### v7.0 沉浸式呼吸背景与导航栏进化 (Breathing Backgrounds & Nav)
 - **高级色彩流**：为全站所有板块引入 `黑 -> 灰` 接 `灰 -> 黑` 的交替线性渐变，彻底消除生硬的板块分割感。
 - **横屏优化**：加入 `@media (orientation: landscape)`，横屏时收缩首屏绿色光晕范围。
-- **品牌化**：导航栏移除 Emoji 替换为官方 `nvidia-logo.png` 图片，并将底色改为纯黑无边框。
 
 ### v8.0 智能交互增强 (Smart Interaction UX)
 - **滑动监听 (ScrollSpy)**：加入原生 JS 滚动监听，阅读到特定区域时，导航栏对应链接自动变绿（首页顶部保持纯净无高亮）。
 - **智能隐现**：加入判断滚动方向的 JS 逻辑，实现导航栏“下滚隐藏、上滚显示”，提升可视面积。
 - **平滑滚动**：为全局添加 `scroll-behavior: smooth`。
-
+**品牌化**：导航栏移除 Emoji 替换为官方 `nvidia-logo.png` 图片，并将底色改为纯黑无边框。
+  
 ### v9.0 宏大 RTX 生态视界 (RTX Ecosystem Overlay)
 - **新增板块**：插入 "RTX. It's On." 生态板块。
 - **图层堆叠技术**：使用绝对定位将游戏合集大图作为全屏背景铺满，应用 `brightness(0.5)` 压暗处理，将标题、文案和可点击链接高亮悬浮于图片之上。后优化为“上文下大图”的清晰排版。
@@ -68,14 +68,15 @@
 
 ## 📁 资源文件需求 (Assets Required)
 
-运行此 HTML 文件需要在同一目录下准备以下图片资源：
+运行此 V11.HTML 文件需要在同一目录下准备以下图片资源：
 - `nvidia-logo.png` (导航栏 Logo)
 - `geforce-rtx-50-series-architecture-ari.png` (架构芯片图)
 - `image_0.png` 到 `image_5.png` (AI 特性 48x48 图标)
 - `geforce-rtx-5090-perf-chart-outline.png` 等 7 张显卡性能对比图表
 - `geforce-rtx-50-series-games-bm-xl980-d@2x.jpg` (RTX 游戏生态海报)
+（其他版本的html因为资源文件名字问题大概率出错）
 
 ## 🛠️ 如何运行 (How to Run)
 
-本项目无任何第三方库依赖（无 React/Vue/Bootstrap），纯原生手写。
-直接双击打开 `index.html` 即可在现代浏览器中完美预览。
+本项目无任何第三方库依赖（无 React/Vue/Bootstrap），纯AI与人工配合。
+直接双击打开 `v11.html` 即可在现代浏览器中完美预览最终版本。
