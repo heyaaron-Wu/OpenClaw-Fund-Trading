@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "skills": {
+    "searxng": {
+      "version": "1.0.3",
+      "installedAt": 1772692921716
+    },
+    "find-skills": {
+      "version": "0.1.0",
+      "installedAt": 1772701207406
+    },
+    "skill-vetter": {
+      "version": "1.0.0",
+      "installedAt": 1772701213428
+    },
+    "agent-browser": {
+      "version": "0.2.0",
+      "installedAt": 1772701268218
+    },
+    "self-improving-agent": {
+      "version": "1.0.11",
+      "installedAt": 1772701278822
+    },
+    "proactive-agent": {
+      "version": "3.1.0",
+      "installedAt": 1772701443637
+    },
+    "stock-watcher": {
+      "version": "1.0.0",
+      "installedAt": 1772963355662
+    },
+    "news-summary": {
+      "version": "1.0.1",
+      "installedAt": 1772963358472
+    },
+    "finance-lite": {
+      "version": "1.0.1",
+      "installedAt": 1772963361499
+    },
+    "charts": {
+      "version": "1.1.0",
+      "installedAt": 1772963364549
+    },
+    "akshare-finance": {
+      "version": "1.0.0",
+      "installedAt": 1772963401585
+    },
+    "etf-assistant": {
+      "version": "1.0.1",
+      "installedAt": 1772963488975
+    },
+    "akshare-stock": {
+      "version": "1.0.1",
+      "installedAt": 1772963530610
+    },
+    "openclaw-tavily-search": {
+      "version": "0.1.0",
+      "installedAt": 1772988910697
+    },
+    "proactive-agent-lite": {
+      "version": "1.0.0",
+      "installedAt": 1772988999306
+    },
+    "obsidian-ontology-sync": {
+      "version": "1.0.1",
+      "installedAt": 1772989111213
+    }
+  }
+}
