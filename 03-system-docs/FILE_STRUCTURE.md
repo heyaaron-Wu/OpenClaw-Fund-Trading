@@ -14,7 +14,9 @@ workspace/
 ├── 03-system-docs/         # ✅ 可公开 - 系统文档（已清理隐私）
 ├── 04-private-configs/     # 🔒 私有 - 含敏感信息
 ├── 05-scripts/             # ✅ 可公开 - 工具脚本
-└── 06-data/                # 🔒 私有 - 数据文件
+├── 06-data/                # 🔒 私有 - 数据文件
+├── 07-version-updates/     # ✅ 版本更新日志
+└── 08-fund-daily-review/   # ✅ 基金日终复盘
 ```
 
 ---
@@ -109,7 +111,48 @@ workspace/
 
 ---
 
-### 🔒 06-data/ (私有 - 不推送)
+### 📁 06-data/ (私有 - 不推送)
+
+**内容:** 数据文件
+
+**子文件夹:**
+- `health-history.json` - 健康检查历史
+
+**隐私状态:** 🟡 含服务器信息，建议不推送
+
+---
+
+### 📁 07-version-updates/ (可公开)
+
+**内容:** 版本更新日志
+
+**文件列表:**
+- `CHANGELOG.md` - 版本更新历史
+- `UPGRADE_GUIDE.md` - 升级指南
+
+**隐私状态:** ✅ 安全，可公开
+
+---
+
+### 📁 08-fund-daily-review/ (可公开)
+
+**内容:** 基金日终复盘报告和脚本
+
+**子文件夹:**
+- `reviews/` - 复盘报告存档
+- `templates/` - 报告模板
+- `scripts/` - 脚本工具
+
+**文件列表:**
+- `README.md` - 日终复盘说明
+- `daily_review_generator.py` - 复盘报告生成器
+- `daily_review_template.md` - 复盘报告模板
+
+**隐私状态:** ✅ 安全，可公开（已脱敏）
+
+---
+
+### 🔒 04-private-configs/ (私有 - 不推送)
 
 **内容:** 数据文件
 
