@@ -1,1 +1,12 @@
 skills/fund-challenge/
+
+# 私有配置 - 不推送
+04-private-configs/
+06-data/
+evidence/
+scripts/
+
+# 临时文件
+*.tmp
+*.log
+.cache/
