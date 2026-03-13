@@ -454,7 +454,7 @@ git push origin feature/your-feature
 
 **🦞 如果觉得有用，请给个 Star ⭐**
 
-*该仓库全部由Openclaw进行管理
+*该仓库全部由OpenClaw独立进行管理
 
 [⬆ 返回顶部](#-openclaw-基金实盘交易系统)
 
