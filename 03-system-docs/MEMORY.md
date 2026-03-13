@@ -6,7 +6,7 @@
 
 - **消息推送通过飞书群机器人 Webhook** —— 所有定时任务、自动报告、系统通知等消息，统一通过飞书群机器人推送：
   ```
-  https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_FEISHU_WEBHOOK
+  https://open.feishu.cn/open-apis/bot/v2/hook/f1286a3e-4e41-4809-a0bc-fd2bbbbc3f10
   ```
   - **推送方式：使用 curl 命令直接在任务中推送**（不依赖 cron delivery 模式）
   - **支持格式：**
@@ -15,12 +15,12 @@
   - **示例：**
     ```bash
     # 1. 文本通知
-    curl -X POST "https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_FEISHU_WEBHOOK" \
+    curl -X POST "https://open.feishu.cn/open-apis/bot/v2/hook/f1286a3e-4e41-4809-a0bc-fd2bbbbc3f10" \
       -H "Content-Type: application/json" \
       -d '{"msg_type":"text","content":{"text":"🔔 通知内容"}}'
 
     # 2. 富文本卡片（推荐用于报告）
-    curl -X POST "https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_FEISHU_WEBHOOK" \
+    curl -X POST "https://open.feishu.cn/open-apis/bot/v2/hook/f1286a3e-4e41-4809-a0bc-fd2bbbbc3f10" \
       -H "Content-Type: application/json" \
       -d '{
         "msg_type": "interactive",
@@ -39,4 +39,66 @@
 ## Notes
 
 - Created: 2026-03-05
-- Updated: 2026-03-09 - 添加企业微信 Webhook 推送偏好
+- Updated: 2026-03-13:
+  - 删除净值获取功能及相关脚本
+  - 统一推送渠道为飞书（删除钉钉、企业微信相关配置）
+
+## Privacy Guidelines
+
+### GitHub 推送隐私检查清单
+
+**⚠️ 重要:** 推送到 GitHub 前必须审查以下内容，避免泄露隐私和敏感信息。
+
+**❌ 禁止提交:**
+- API tokens / keys (包括飞书、钉钉、企业微信 Webhook)
+- 密码 / 凭证
+- 私钥文件 (*.pem, *.key)
+- 个人身份信息 (身份证、手机号、邮箱)
+- 财务数据 (持仓明细、账户余额、基金代码)
+- `04-private-configs/` 目录全部内容
+- `.openclaw/cron/jobs.json` (含 Webhook URL)
+
+**✅ 可以提交:**
+- 系统配置文档 (03-system-docs/)
+- 技能代码 (02-skill-docs/skills/)
+- 公开文档
+- 脚本文件 (不含敏感配置)
+
+**推送前检查命令:**
+```bash
+# 1. 查看待提交文件
+git status
+
+# 2. 审查改动内容
+git diff --cached
+
+# 3. 确认无敏感信息后再推送
+git push
+```
+
+**.gitignore 建议配置:**
+```
+# 敏感配置
+*.env
+*.key
+*.pem
+*token*
+*secret*
+*.webhook
+
+# 私有配置目录
+04-private-configs/
+05-scripts/setup-github-integration.sh
+
+# OpenClaw 运行时
+.openclaw/
+cron/
+cache/
+*.log
+```
+
+**已删除的敏感内容:**
+- ✅ 净值获取脚本 (net_value_fetcher.py, daily_pnl_updater.py)
+- ✅ 净值缓存文件 (nav_cache.json)
+- ✅ 基金持仓 review 文档
+- ✅ 净值优化文档
