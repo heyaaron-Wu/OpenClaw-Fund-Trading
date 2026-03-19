@@ -19,7 +19,7 @@
 
 
 
-# 基金挑战系统 (Fund Challenge System) （更新中）(https://github.com/heyaaron-Wu/Semi-automatic-artificial-intelligence-system/tree/OpenClaw-Fund-Trading)
+# [基金挑战系统 (Fund Challenge System)（更新中）](https://github.com/heyaaron-Wu/Semi-automatic-artificial-intelligence-system/tree/OpenClaw-Fund-Trading)
 
 ## 专案简介
 本系统是一个集成了信号融合、风险控制与自动化审计的专业级基金投资决策引擎。系统严格遵循「**证据门控**」与「**合规先行**」的核心原则，确保每一笔交易指令皆有据可查，并完全符合市场规则与平台约束。
