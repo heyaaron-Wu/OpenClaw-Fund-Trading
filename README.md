@@ -2,7 +2,7 @@
 > **本综述涵盖了目前开发阶段的两个核心模块：一个专注于次世代硬体视觉呈现的前端项目，以及一个基于证据驱动、具备高度风险控管的金融决策后端系统。**
 
 
-# [NVIDIA GeForce RTX 50 Series 产品网页模拟（完成时间：‎2026‎年‎1‎月‎22‎日）](https://github.com/heyaaron-Wu/Semi-automatic-artificial-intelligence-system/tree/Gemini-compiles-web)
+# NVIDIA GeForce RTX 50 Series 产品网页模拟（完成时间：‎2026‎年‎1‎月‎22‎日）
 
 ## 专案简介
 本专案是一个基于 NVIDIA 品牌美学设计的单页面模拟官网，旨在展示次世代 GeForce RTX 50 系列显示卡的视觉震撼感与强大性能。网页采用深色调极简风格，完美融合了品牌代表性的「NVIDIA Green」。
@@ -15,11 +15,11 @@
 * **视觉特效**：使用 CSS 渐层与 Flexbox 布局，打造高品质的产品展示区块与规格矩阵。
 
 
-## 详细内容查看`Gemini-compiles-web`分支
+## 详细内容查看[`Gemini-compiles-web`](https://github.com/heyaaron-Wu/Semi-automatic-artificial-intelligence-system/tree/Gemini-compiles-web)分支
 
 
 
-# [基金挑战系统 (Fund Challenge System)（更新中）](https://github.com/heyaaron-Wu/Semi-automatic-artificial-intelligence-system/tree/OpenClaw-Fund-Trading)
+# 基金挑战系统 (Fund Challenge System)（更新中）
 
 ## 专案简介
 本系统是一个集成了信号融合、风险控制与自动化审计的专业级基金投资决策引擎。系统严格遵循「**证据门控**」与「**合规先行**」的核心原则，确保每一笔交易指令皆有据可查，并完全符合市场规则与平台约束。
@@ -31,7 +31,7 @@
 * **结构化记忆复盘**：交易后自动进行审计记录并同步至知识图谱，实现决策闭环。
 
 
-## 详细内容查看`OpenClaw-Fund-Trading`分支
+## 详细内容查看[`OpenClaw-Fund-Trading`](https://github.com/heyaaron-Wu/Semi-automatic-artificial-intelligence-system/tree/OpenClaw-Fund-Trading)分支
 
 
 ## *项目声明 (Project Statement)
