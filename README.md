@@ -1,5 +1,9 @@
 # NVIDIA GeForce RTX 50 Series - 模拟产品展示页
 
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![Vanilla JS](https://img.shields.io/badge/Vanilla_JS-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
 本项目是一个基于纯前端技术（HTML / CSS / Vanilla JavaScript）构建的单页面应用（SPA），旨在高度还原并模拟 NVIDIA 官方 RTX 50 系列显卡的产品发布落地页。
 
 项目通过多次迭代，逐步完善了视觉布局、交互动效、数据严谨性以及跨设备响应式体验。
