@@ -4,6 +4,35 @@
 
 ---
 
+## 📅 最新更新
+
+### [v1.0.22] - 2026-03-22 ⭐ 最新
+
+#### 🚀 优化
+- **推送策略调整**: 失败时也推送通知（及时告警）
+- **超时配置优化**: fund-2200-review 600s/3 次重试
+- **定时任务精简**: 移除重复的 system-health-check，保留 fund-daily-check (09:00)
+- **Token 消耗优化**: ~2,400 tokens/月（最优化配置）
+
+#### 📝 文档
+- README.md - 更新定时任务表格（8 个任务）
+- README.md - 补充推送策略说明
+- 新增 SYSTEM_AUDIT_REPORT_20260322.md
+- 新增 PERFORMANCE_OPTIMIZATION_20260322.md
+- 新增 OPTIMIZATION_COMPLETE_20260322.md
+
+#### 🛠️ 脚本更新
+- auto_review_automation.py - 成功/失败都推送
+- 移除进度可视化相关脚本（progress_bar.py, progress_logger.py）
+
+#### 📊 系统状态
+- 定时任务：8 个（已优化）
+- 技能总数：25 个
+- Gateway 服务：运行正常
+- 下次执行：09:00 fund-daily-check
+
+---
+
 ## 📋 更新日志规范
 
 ### 版本号规则
