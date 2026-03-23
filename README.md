@@ -217,8 +217,9 @@ workspace/
 13:35 ──▶ fund-1335-universe       候选池刷新（高评分告警）
 14:00 ──▶ fund-1400-decision       交易决策（HOLD/BUY/SELL）
 14:48 ──▶ fund-1448-exec-gate      执行门控（仅异常推送）
-22:00 ──▶ fund-2200-review         日终复盘（飞书推送 + GitHub 归档）⭐ 已优化
+22:30 ──▶ fund-2230-review         日终复盘（增强版 + GitHub 归档）⭐ 新增
 23:00 ──▶ fund-weekly-report       周报复盘（周五）⭐ 时间优化
+23:30 ──▶ system-version-update    版本更新检查（GitHub 归档）⭐ 新增
 ```
 
 ### 每日任务
@@ -239,7 +240,8 @@ workspace/
 | fund-1400-decision | 14:00 | 交易决策 | 总是推送 |
 | fund-1448-exec-gate | 14:48 | 执行门控 | 仅异常 |
 | fund-weekly-report | 周五 23:00 | 周报复盘 | 总是推送 |
-| fund-2200-review | 22:00 | 日终复盘 + GitHub 归档 | **成功/失败都推送** ⭐ |
+| **fund-2230-review** | **22:30** | **日终复盘（增强版）+ GitHub 归档** | **总是推送** ⭐ |
+| **system-version-update** | **23:30** | **系统版本更新检查 + GitHub 归档** | **总是推送** ⭐ |
 
 ### 每日任务
 
