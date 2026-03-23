@@ -84,10 +84,22 @@ while IFS= read -r line; do
         # 匹配版本号行：### [v1.0.16] - 2026-03-22
         if [[ "$line" =~ ^###\ \[v([0-9]+\.[0-9]+\.[0-9]+)\] ]]; then
             VERSION="${BASH_REMATCH[1]}"
-            # 继续读取下一行，检查是否为空版本
-            read -r next_line || break
-            # 如果下一行不是"（无系统更新）"，则是有效版本
-            if [[ ! "$next_line" =~ ^（无系统更新） ]]; then
+            # 读取后续行，跳过空行，检查是否为空版本
+            IS_EMPTY_VERSION=false
+            while read -r next_line || break; do
+                # 跳过空行
+                if [[ -z "$next_line" || "$next_line" =~ ^[[:space:]]*$ ]]; then
+                    continue
+                fi
+                # 检查是否为"（无系统更新）"
+                if [[ "$next_line" =~ ^（无系统更新） ]]; then
+                    IS_EMPTY_VERSION=true
+                fi
+                break
+            done
+            
+            # 如果不是空版本，则是有效版本
+            if [ "$IS_EMPTY_VERSION" = false ]; then
                 CURRENT_VERSION="$VERSION"
                 break
             fi
