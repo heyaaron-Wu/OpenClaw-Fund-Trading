@@ -254,19 +254,21 @@ workspace/
 
 ```json
 {
-  "name": "fund-2200-review",
-  "schedule": "0 22 * * 1-5",
+  "name": "fund-2230-review",
+  "schedule": "30 22 * * 1-5",
   "timeoutSeconds": 600,
-  "retry": 3,
+  "retry": 2,
   "delivery": "feishu",
   "feishu_webhook": "YOUR_FEISHU_WEBHOOK",
   "notify_on": ["always"],
   "steps": [
-    "1. 交易日检查 (is_trading_day.py)",
-    "2. 生成复盘报告 (08-fund-daily-review/reviews/YYYY-MM-DD.md)",
-    "3. 更新 state.json 和 ledger.jsonl",
-    "4. Git 提交并推送到 GitHub 归档 ✅ 自动",
-    "5. 飞书通知 GitHub 推送完成 ✅ 自动"
+    "1. 交易日检查 (is_trading_day.py) - 1 分钟",
+    "2. 生成复盘报告 (08-fund-daily-review/reviews/YYYY-MM-DD.md) - 5 分钟",
+    "3. 更新 state.json 和 ledger.jsonl - 2 分钟",
+    "4. Git 提交并推送到 GitHub 归档 ✅ 自动 - 2 分钟",
+    "5. 飞书通知 GitHub 推送完成 ✅ 自动 - 1 分钟"
+  ],
+  "expectedDuration": "11 分钟"
   ]
 }
 ```
