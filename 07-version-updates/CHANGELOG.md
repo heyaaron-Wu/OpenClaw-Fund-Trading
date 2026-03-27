@@ -49,7 +49,39 @@
 
 ## 📅 更新历史
 
-### [v1.0.18] - 2026-03-26 ⭐ 最新
+### [v1.0.19] - 2026-03-27 ⭐ 最新
+
+#### ✨ 新增
+- **多 Agent 架构** - 创建 worker-agent 专门处理耗时任务
+  - main agent 负责日常对话（秒回）
+  - worker-agent 负责 Cron 任务和后台处理
+  - 通过 routing.json 自动路由
+  - 优势：处理任务时不再"不理人"
+
+#### 🚀 优化
+- **统一 Python 版本** - 所有脚本使用 `/usr/bin/python3.11`
+  - 修复 shebang：`#!/usr/bin/python3.11`
+  - 修复 Cron 配置脚本路径
+  - 解决 AKShare 导入问题
+
+#### 🐛 修复
+- **预检脚本字段检查** - 支持 `confirmed_amount` 字段
+  - 修复持仓检查逻辑（之前只检查 `confirmed_shares`）
+  - 解决"持仓份额异常"误报问题
+- **Cron 配置错误** - 统一 `payload.kind` 为 `systemEvent`
+  - 修复 11 个任务的配置
+  - 清除所有错误状态
+  - 所有任务启用并路由到 worker-agent
+- **版本更新检查失败** - 修复 JavaScript trim 错误
+
+#### 📝 文档
+- **路由配置** - 添加 `~/.openclaw/routing.json`
+  - fund-cron-tasks → worker-agent
+  - subagent-tasks → worker-agent
+
+---
+
+### [v1.0.18] - 2026-03-26
 
 #### 🚀 优化
 - **定时任务迁移到系统 cron** - 彻底解决 OpenClaw cron 稳定性问题
