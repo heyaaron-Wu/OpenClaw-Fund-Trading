@@ -1,24 +1,5 @@
 # 版本更新日志
 
-## v1.0.19 - 2026-03-27
-
-### ✨ 新增功能
-- 🤖 **多 Agent 架构** - 创建 worker-agent 专门处理耗时任务
-  - main agent 负责日常对话（秒回）
-  - worker-agent 负责 Cron 任务和后台处理
-  - 通过 routing.json 自动路由
-- 📋 **路由规则配置** - 新增 `~/.openclaw/routing.json`
-  - fund-cron-tasks → worker-agent
-  - subagent-tasks → worker-agent
-
-### 🚀 性能优化
-- 🔧 **统一 Python 版本** - 所有脚本使用 `/usr/bin/python3.11`
-  - 修复 shebang：`#!/usr/bin/python3.11`
-  - 修复 Cron 配置脚本路径
-- ⚡ **AKShare 支持** - 确认安装 v1.18.44
-  - 腾讯 API + AKShare 双数据源
-
-
 ## v1.0.20 - 2026-03-28
 
 ### ✨ 新增功能
@@ -64,6 +45,26 @@
 - ✅ 日终复盘报告（16 份）
 - ✅ 周报复盘报告（3 份：W11-W13）
 - ✅ 定时任务说明文档
+
+---
+
+## v1.0.19 - 2026-03-27
+
+### ✨ 新增功能
+- 🤖 **多 Agent 架构** - 创建 worker-agent 专门处理耗时任务
+  - main agent 负责日常对话（秒回）
+  - worker-agent 负责 Cron 任务和后台处理
+  - 通过 routing.json 自动路由
+- 📋 **路由规则配置** - 新增 `~/.openclaw/routing.json`
+  - fund-cron-tasks → worker-agent
+  - subagent-tasks → worker-agent
+
+### 🚀 性能优化
+- 🔧 **统一 Python 版本** - 所有脚本使用 `/usr/bin/python3.11`
+  - 修复 shebang：`#!/usr/bin/python3.11`
+  - 修复 Cron 配置脚本路径
+- ⚡ **AKShare 支持** - 确认安装 v1.18.44
+  - 腾讯 API + AKShare 双数据源
 
 ### 🐛 Bug 修复
 - 🐛 **预检脚本字段检查** - 支持 `confirmed_amount` 字段
