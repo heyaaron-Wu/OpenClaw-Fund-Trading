@@ -126,6 +126,17 @@ workspace/
 │   └── GitHub 集成指南
 ├── 05-scripts/              # 工具脚本
 │   └── setup-github-integration.sh
+├── 07-version-updates/      # 版本更新日志 ⭐
+│   ├── CHANGELOG.md         # 版本历史记录
+│   ├── CRON_CONFIG.md       # Cron 配置文档
+│   ├── VERSION_CHECK_CRON.md # 版本检查说明
+│   └── scripts/
+│       └── check_daily_updates.sh # 自动更新脚本
+├── 08-fund-daily-review/    # 基金日终复盘 ⭐
+│   ├── reviews/             # 每日复盘报告
+│   ├── weekly/              # 周报复盘
+│   ├── state.json           # 挑战状态
+│   └── ledger.jsonl         # 交易账本
 └── 04-private-configs/      # 私有配置（不推送）
     ├── memory/              # 记忆文件
     ├── fund_challenge/      # 基金挑战配置
