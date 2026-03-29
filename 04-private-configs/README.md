@@ -119,7 +119,7 @@ cat 04-private-configs/fund_challenge/ledger.jsonl
 ## 🔗 相关文件
 
 - [隐私审计报告](../03-system-docs/PRIVACY_AUDIT_REPORT.md)
-- [文件结构说明](../03-system-docs/FILE_STRUCTURE.md)
+- [文件结构说明](../03-system-docs/file-structure.md)
 - [.gitignore](../.gitignore)
 
 ---

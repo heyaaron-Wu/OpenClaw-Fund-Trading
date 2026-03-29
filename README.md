@@ -130,7 +130,7 @@ workspace/
 │   └── ...
 │
 ├── 03-system-docs/          # 📚 系统文档（14 个）
-│   ├── FILE_STRUCTURE.md    # 文件结构说明
+│   ├── file-structure.md    # 文件结构说明
 │   ├── fund_challenge_*.md  # 基金挑战优化文档 (4 个)
 │   ├── github_*.md          # GitHub 集成文档 (2 个)
 │   ├── system_weekly_report_fix_20260320.md

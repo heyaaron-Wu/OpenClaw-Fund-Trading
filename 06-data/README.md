@@ -97,7 +97,7 @@ python3 -c "import json; data=json.load(open('06-data/health-history.json')); pr
 ## 🔗 相关文件
 
 - [隐私审计报告](../03-system-docs/PRIVACY_AUDIT_REPORT.md)
-- [文件结构说明](../03-system-docs/FILE_STRUCTURE.md)
+- [文件结构说明](../03-system-docs/file-structure.md)
 - [.gitignore](../.gitignore)
 
 ---

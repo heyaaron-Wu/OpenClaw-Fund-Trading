@@ -252,11 +252,11 @@ echo "✅ CHANGELOG.md 已更新"
 echo ""
 echo "🔄 检查并更新相关文档..."
 
-# 1. 更新 FILE_STRUCTURE.md 中的版本号
-FILE_STRUCTURE="$WORKSPACE/03-system-docs/FILE_STRUCTURE.md"
+# 1. 更新 file-structure.md 中的版本号
+FILE_STRUCTURE="$WORKSPACE/03-system-docs/file-structure.md"
 if [ -f "$FILE_STRUCTURE" ]; then
-    echo "  📄 检查 FILE_STRUCTURE.md..."
-    # 如果 CHANGELOG 更新了，FILE_STRUCTURE.md 通常不需要更新（除非目录结构变化）
+    echo "  📄 检查 file-structure.md..."
+    # 如果 CHANGELOG 更新了，file-structure.md 通常不需要更新（除非目录结构变化）
     echo "     ✅ 无需更新（目录结构无变化）"
 fi
 
@@ -305,7 +305,7 @@ git add "$README_FILE" 2>/dev/null || true
 
 # 添加其他相关文档（如果存在变更）
 RELATED_DOCS=(
-    "03-system-docs/FILE_STRUCTURE.md"
+    "03-system-docs/file-structure.md"
     "07-version-updates/CRON_CONFIG.md"
     "07-version-updates/VERSION_CHECK_CRON.md"
     "07-version-updates/MODULE_DOCS_CRON.md"
@@ -333,7 +333,7 @@ echo ""
 echo "📄 更新文件:"
 echo "   - CHANGELOG.md ✅"
 echo "   - README.md (如有变更) ✅"
-echo "   - FILE_STRUCTURE.md (如有变更) ✅"
+echo "   - file-structure.md (如有变更) ✅"
 echo "   - CRON_CONFIG.md (如有变更) ✅"
 echo "   - 其他相关文档 (如有变更) ✅"
 echo "📊 今日提交：$TODAY_COMMITS 个"
