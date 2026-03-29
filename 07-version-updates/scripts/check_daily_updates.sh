@@ -35,20 +35,38 @@ git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --oneline
 echo ""
 
 # 分类统计
-echo "📊 检查复盘文档..."
+echo "📊 提交分类统计:"
 
-# 检查是否有复盘文档提交（日终复盘/周复盘）
+NEW_FEATURES=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="✨\|feat\|新增\|添加" --oneline | wc -l)
+echo "  ✨ 新增功能：$NEW_FEATURES 个"
+
+OPTIMIZATIONS=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🚀\|perf\|优化\|改进" --oneline | wc -l)
+echo "  🚀 性能优化：$OPTIMIZATIONS 个"
+
+BUG_FIXES=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🐛\|fix\|修复\|bug" --oneline | wc -l)
+echo "  🐛 Bug 修复：$BUG_FIXES 个"
+
+SECURITY=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🔒\|security\|安全" --oneline | wc -l)
+echo "  🔒 安全修复：$SECURITY 个"
+
+DOCS=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="📝\|docs\|文档" --oneline | wc -l)
+echo "  📝 文档更新：$DOCS 个"
+
+# 检查是否有复盘文档（跳过不记录）
 # 检测文件路径：08-fund-daily-review/reviews/ 或 08-fund-daily-review/weekly/
 FUND_REVIEW_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD 2>/dev/null | grep -E "08-fund-daily-review/(reviews|weekly)/.*\.md$" | wc -l)
+if [ "$FUND_REVIEW_FILES" -gt 0 ]; then
+    echo "  📊 复盘文档：$FUND_REVIEW_FILES 个（不记录）"
+fi
+echo ""
 
-if [ "$FUND_REVIEW_FILES" -eq 0 ]; then
-    echo "✅ 今日无复盘文档，跳过版本更新"
+# 检查是否有有效更新（排除复盘文档）
+EFFECTIVE_CHANGES=$((NEW_FEATURES + OPTIMIZATIONS + BUG_FIXES + SECURITY + DOCS))
+
+if [ "$EFFECTIVE_CHANGES" -eq 0 ]; then
+    echo "✅ 今日提交仅为复盘文档，跳过版本更新"
     exit 0
 fi
-
-echo "发现 $FUND_REVIEW_FILES 个复盘文档"
-git diff-tree --no-commit-id --name-only -r HEAD 2>/dev/null | grep -E "08-fund-daily-review/(reviews|weekly)/.*\.md$"
-echo ""
 
 # 检查 CHANGELOG.md 是否已包含今日更新
 if grep -q "## \[.*\] - $TODAY" "$CHANGELOG_FILE" 2>/dev/null; then
@@ -114,20 +132,57 @@ echo "📊 版本号递增：v$CURRENT_VERSION → v$VERSION_NUM"
 # 创建临时文件
 TEMP_CHANGELOG="/tmp/changelog_update_$$.md"
 
-# 创建新版本条目（只记录复盘文档）
+# 创建新版本条目
 cat > "$TEMP_CHANGELOG" << EOF
 
 ### [v$VERSION_NUM] - $TODAY
-
-#### 📊 复盘文档
 EOF
 
-# 添加复盘文档文件名
-git diff-tree --no-commit-id --name-only -r HEAD 2>/dev/null | grep -E "08-fund-daily-review/(reviews|weekly)/.*\.md$" | while read filepath; do
-    # 提取文件名
-    FILENAME=$(basename "$filepath")
-    echo "- 📄 $FILENAME" >> "$TEMP_CHANGELOG"
-done
+# 添加各类更新
+if [ "$NEW_FEATURES" -gt 0 ]; then
+    echo "" >> "$TEMP_CHANGELOG"
+    echo "#### ✨ 新增" >> "$TEMP_CHANGELOG"
+    git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="✨\|feat\|新增\|添加" --oneline | while read commit; do
+        MSG=$(echo "$commit" | cut -d' ' -f2-)
+        echo "- $MSG" >> "$TEMP_CHANGELOG"
+    done
+fi
+
+if [ "$OPTIMIZATIONS" -gt 0 ]; then
+    echo "" >> "$TEMP_CHANGELOG"
+    echo "#### 🚀 优化" >> "$TEMP_CHANGELOG"
+    git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🚀\|perf\|优化\|改进" --oneline | while read commit; do
+        MSG=$(echo "$commit" | cut -d' ' -f2-)
+        echo "- $MSG" >> "$TEMP_CHANGELOG"
+    done
+fi
+
+if [ "$BUG_FIXES" -gt 0 ]; then
+    echo "" >> "$TEMP_CHANGELOG"
+    echo "#### 🐛 修复" >> "$TEMP_CHANGELOG"
+    git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🐛\|fix\|修复\|bug" --oneline | while read commit; do
+        MSG=$(echo "$commit" | cut -d' ' -f2-)
+        echo "- $MSG" >> "$TEMP_CHANGELOG"
+    done
+fi
+
+if [ "$SECURITY" -gt 0 ]; then
+    echo "" >> "$TEMP_CHANGELOG"
+    echo "#### 🔒 安全" >> "$TEMP_CHANGELOG"
+    git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🔒\|security\|安全" --oneline | while read commit; do
+        MSG=$(echo "$commit" | cut -d' ' -f2-)
+        echo "- $MSG" >> "$TEMP_CHANGELOG"
+    done
+fi
+
+if [ "$DOCS" -gt 0 ]; then
+    echo "" >> "$TEMP_CHANGELOG"
+    echo "#### 📝 文档" >> "$TEMP_CHANGELOG"
+    git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="📝\|docs\|文档" --oneline | while read commit; do
+        MSG=$(echo "$commit" | cut -d' ' -f2-)
+        echo "- $MSG" >> "$TEMP_CHANGELOG"
+    done
+fi
 
 # 插入到 CHANGELOG.md（在"## 📅 更新历史"之后）
 echo "🔍 查找插入位置..."
