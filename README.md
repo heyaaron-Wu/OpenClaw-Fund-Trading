@@ -110,36 +110,62 @@ if confidence_score < 60:
 
 ```
 workspace/
-├── 01-public-configs/        # 基础配置文件
+├── README.md                 # 项目说明
+├── LICENSE                   # MIT 许可证
+├── .gitignore               # Git 忽略规则
+│
+├── 01-public-configs/        # 📋 基础配置文件（7 个）
 │   ├── AGENTS.md            # Agent 配置指南
 │   ├── SOUL.md              # Agent 人格定义
 │   ├── USER.md              # 用户信息
-│   └── ...
-├── 02-skill-docs/skills/    # 技能文档（17 个技能）
+│   ├── TOOLS.md             # 工具配置
+│   ├── HEARTBEAT.md         # 心跳任务配置
+│   ├── IDENTITY.md          # Agent 身份定义
+│   └── BOOTSTRAP.md         # 初始化指南
+│
+├── 02-skill-docs/skills/    # 🧩 技能文档（19 个技能）
 │   ├── fund-challenge-*     # 基金挑战专用技能 (8 个)
 │   ├── akshare-finance      # 财经数据接口
 │   ├── etf-assistant        # ETF 投资助理
 │   └── ...
-├── 03-system-docs/          # 系统文档（20+ 文档）
-│   ├── 系统优化报告
-│   ├── 定时任务分析
-│   └── GitHub 集成指南
-├── 05-scripts/              # 工具脚本
+│
+├── 03-system-docs/          # 📚 系统文档（14 个）
+│   ├── FILE_STRUCTURE.md    # 文件结构说明
+│   ├── fund_challenge_*.md  # 基金挑战优化文档 (4 个)
+│   ├── github_*.md          # GitHub 集成文档 (2 个)
+│   ├── system_weekly_report_fix_20260320.md
+│   ├── timeout_investigation_20260319.md
+│   ├── privacy_audit_report.md
+│   └── fund-challenge-optimization/  # 优化子目录
+│
+├── 04-private-configs/      # 🔒 私有配置（不推送）
+│   └── ...
+│
+├── 05-scripts/              # 🔧 工具脚本
 │   └── setup-github-integration.sh
-├── 07-version-updates/      # 版本更新日志 ⭐
-│   ├── CHANGELOG.md         # 版本历史记录
+│
+├── 06-data/                 # 📊 数据文件（不推送）
+│   └── ...
+│
+├── 07-version-updates/ ⭐   # 📝 版本更新日志
+│   ├── CHANGELOG.md         # 版本历史记录（每日 23:30 自动更新）
 │   ├── CRON_CONFIG.md       # Cron 配置文档
 │   ├── VERSION_CHECK_CRON.md # 版本检查说明
+│   ├── MODULE_DOCS_CRON.md  # 模块文档 Cron 说明
 │   └── scripts/
-│       └── check_daily_updates.sh # 自动更新脚本
-├── 08-fund-daily-review/    # 基金日终复盘 ⭐
+│       └── check_daily_updates.sh
+│
+├── 08-fund-daily-review/ ⭐ # 📊 基金日终复盘
 │   ├── reviews/             # 每日复盘报告
 │   ├── weekly/              # 周报复盘
 │   ├── state.json           # 挑战状态
-│   └── ledger.jsonl         # 交易账本
-└── 04-private-configs/      # 私有配置（不推送）
-    ├── memory/              # 记忆文件
-    ├── fund_challenge/      # 基金挑战配置
+│   ├── ledger.jsonl         # 交易账本
+│   ├── config.json          # 配置
+│   ├── README.md            # 模块说明
+│   ├── scripts/             # 脚本工具
+│   └── templates/           # 报告模板
+│
+└── 09-memory/               # 🧠 记忆文件
     └── ...
 ```
 
