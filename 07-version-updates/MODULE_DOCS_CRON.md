@@ -59,7 +59,7 @@
   "wakeMode": "now",
   "payload": {
     "kind": "agentTurn",
-    "message": "bash /home/admin/.openclaw/workspace/07-version-updates/scripts/check_module_updates.sh",
+    "message": "bash /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system/07-version-updates/scripts/check_module_updates.sh",
     "timeoutSeconds": 300
   },
   "retryPolicy": {
@@ -76,7 +76,7 @@
 
 ```bash
 crontab -e
-30 23 * * * cd /home/admin/.openclaw/workspace/07-version-updates/scripts && bash check_module_updates.sh >> /tmp/module-check.log 2>&1
+30 23 * * * cd /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system/07-version-updates/scripts && bash check_module_updates.sh >> /tmp/module-check.log 2>&1
 ```
 
 ---

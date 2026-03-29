@@ -48,7 +48,7 @@
   "wakeMode": "now",
   "payload": {
     "kind": "agentTurn",
-    "message": "bash /home/admin/.openclaw/workspace/07-version-updates/scripts/check_daily_updates.sh",
+    "message": "bash /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system/07-version-updates/scripts/check_daily_updates.sh",
     "timeoutSeconds": 300
   },
   "retryPolicy": {
@@ -68,14 +68,14 @@
 crontab -e
 
 # 添加以下行
-30 23 * * * cd /home/admin/.openclaw/workspace/07-version-updates/scripts && bash check_daily_updates.sh >> /tmp/version-check.log 2>&1
+30 23 * * * cd /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system/07-version-updates/scripts && bash check_daily_updates.sh >> /tmp/version-check.log 2>&1
 ```
 
 ### 方法 3: 手动执行
 
 ```bash
 # 手动测试
-cd /home/admin/.openclaw/workspace/07-version-updates/scripts
+cd /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system/07-version-updates/scripts
 bash check_daily_updates.sh
 ```
 
@@ -256,7 +256,7 @@ git diff HEAD~1 07-version-updates/CHANGELOG.md
 每周检查一次 CHANGELOG.md：
 ```bash
 # 每周一 9:00 检查
-0 9 * * 1 cd /home/admin/.openclaw/workspace/07-version-updates && cat CHANGELOG.md | head -30
+0 9 * * 1 cd /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system/07-version-updates && cat CHANGELOG.md | head -30
 ```
 
 ### 3. 版本发布
