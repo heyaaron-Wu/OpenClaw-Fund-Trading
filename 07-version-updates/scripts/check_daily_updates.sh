@@ -35,36 +35,18 @@ git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --oneline
 echo ""
 
 # 分类统计
-echo "📊 提交分类统计:"
+echo "📊 检查复盘报告..."
 
-NEW_FEATURES=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="✨\|feat\|新增\|添加" --oneline | wc -l)
-echo "  ✨ 新增功能：$NEW_FEATURES 个"
+# 只检查复盘报告（日终复盘/周复盘）
+FUND_REVIEW=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="📊\|日终复盘\|周报复盘\|fund.*review\|weekly.*review" --oneline | wc -l)
 
-OPTIMIZATIONS=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🚀\|perf\|优化\|改进" --oneline | wc -l)
-echo "  🚀 性能优化：$OPTIMIZATIONS 个"
-
-BUG_FIXES=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🐛\|fix\|修复\|bug" --oneline | wc -l)
-echo "  🐛 Bug 修复：$BUG_FIXES 个"
-
-SECURITY=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🔒\|security\|安全" --oneline | wc -l)
-echo "  🔒 安全修复：$SECURITY 个"
-
-# 检查是否有复盘报告（日终复盘/周复盘）
-FUND_REVIEW=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="📊\|日终复盘\|周报复盘" --oneline | wc -l)
-echo "  📊 复盘报告：$FUND_REVIEW 个"
-
-DOCS=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="📝\|docs\|文档" --oneline | wc -l)
-echo "  📝 文档更新：$DOCS 个"
-echo ""
-
-# 检查是否有有效更新（代码变更 + 复盘报告）
-# 纯文档更新（📝）不记录到 CHANGELOG
-EFFECTIVE_CHANGES=$((NEW_FEATURES + OPTIMIZATIONS + BUG_FIXES + SECURITY + FUND_REVIEW))
-
-if [ "$EFFECTIVE_CHANGES" -eq 0 ]; then
-    echo "✅ 今日提交仅为文档更新，跳过版本更新"
+if [ "$FUND_REVIEW" -eq 0 ]; then
+    echo "✅ 今日无复盘报告，跳过版本更新"
     exit 0
 fi
+
+echo "发现 $FUND_REVIEW 个复盘报告"
+echo ""
 
 # 检查 CHANGELOG.md 是否已包含今日更新
 if grep -q "## \[.*\] - $TODAY" "$CHANGELOG_FILE" 2>/dev/null; then
@@ -119,76 +101,30 @@ fi
 
 echo "📊 当前最新版本：v$CURRENT_VERSION"
 
-# 解析版本号
+# 解析版本号并递增
 MAJOR=$(echo "$CURRENT_VERSION" | cut -d. -f1)
 MINOR=$(echo "$CURRENT_VERSION" | cut -d. -f2)
 PATCH=$(echo "$CURRENT_VERSION" | cut -d. -f3)
-
-# 递增版本号（复盘报告也算有效更新）
 PATCH=$((PATCH + 1))
 VERSION_NUM="$MAJOR.$MINOR.$PATCH"
 echo "📊 版本号递增：v$CURRENT_VERSION → v$VERSION_NUM"
 
-# 使用有效更新数进行后续判断
-CODE_CHANGES=$EFFECTIVE_CHANGES
-
 # 创建临时文件
 TEMP_CHANGELOG="/tmp/changelog_update_$$.md"
 
-# 创建新版本条目
+# 创建新版本条目（只记录复盘报告）
 cat > "$TEMP_CHANGELOG" << EOF
 
 ### [v$VERSION_NUM] - $TODAY
+
+#### 📊 复盘报告
 EOF
 
-# 添加复盘报告（优先展示）
-if [ "$FUND_REVIEW" -gt 0 ]; then
-    echo "" >> "$TEMP_CHANGELOG"
-    echo "#### 📊 复盘报告" >> "$TEMP_CHANGELOG"
-    git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="📊\|日终复盘\|周报复盘" --oneline | while read commit; do
-        MSG=$(echo "$commit" | cut -d' ' -f2-)
-        echo "- $MSG" >> "$TEMP_CHANGELOG"
-    done
-fi
-
-# 添加各类更新（仅展示非文档类）
-if [ "$NEW_FEATURES" -gt 0 ]; then
-    echo "" >> "$TEMP_CHANGELOG"
-    echo "#### ✨ 新增" >> "$TEMP_CHANGELOG"
-    git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="✨\|feat\|新增\|添加" --oneline | while read commit; do
-        MSG=$(echo "$commit" | cut -d' ' -f2-)
-        echo "- $MSG" >> "$TEMP_CHANGELOG"
-    done
-fi
-
-if [ "$OPTIMIZATIONS" -gt 0 ]; then
-    echo "" >> "$TEMP_CHANGELOG"
-    echo "#### 🚀 优化" >> "$TEMP_CHANGELOG"
-    git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🚀\|perf\|优化\|改进" --oneline | while read commit; do
-        MSG=$(echo "$commit" | cut -d' ' -f2-)
-        echo "- $MSG" >> "$TEMP_CHANGELOG"
-    done
-fi
-
-if [ "$BUG_FIXES" -gt 0 ]; then
-    echo "" >> "$TEMP_CHANGELOG"
-    echo "#### 🐛 修复" >> "$TEMP_CHANGELOG"
-    git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🐛\|fix\|修复\|bug" --oneline | while read commit; do
-        MSG=$(echo "$commit" | cut -d' ' -f2-)
-        echo "- $MSG" >> "$TEMP_CHANGELOG"
-    done
-fi
-
-if [ "$SECURITY" -gt 0 ]; then
-    echo "" >> "$TEMP_CHANGELOG"
-    echo "#### 🔒 安全" >> "$TEMP_CHANGELOG"
-    git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🔒\|security\|安全" --oneline | while read commit; do
-        MSG=$(echo "$commit" | cut -d' ' -f2-)
-        echo "- $MSG" >> "$TEMP_CHANGELOG"
-    done
-fi
-
-# 不添加文档更新章节（📝 文档）
+# 添加复盘报告提交
+git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="📊\|日终复盘\|周报复盘\|fund.*review\|weekly.*review" --oneline | while read commit; do
+    MSG=$(echo "$commit" | cut -d' ' -f2-)
+    echo "- $MSG" >> "$TEMP_CHANGELOG"
+done
 
 # 插入到 CHANGELOG.md（在"## 📅 更新历史"之后）
 echo "🔍 查找插入位置..."
