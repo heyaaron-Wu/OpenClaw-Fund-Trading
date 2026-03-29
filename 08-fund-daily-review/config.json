@@ -23,7 +23,7 @@
   },
   
   "feishu": {
-    "webhook": "https://open.feishu.cn/open-apis/bot/v2/hook/f1286a3e-4e41-4809-a0bc-fd2bbbbc3f10",
+    "webhook": "YOUR_FEISHU_WEBHOOK_HERE",
     "notify_on_error": true,
     "notify_on_success": false
   },

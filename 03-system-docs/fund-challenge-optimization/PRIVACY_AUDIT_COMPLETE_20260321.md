@@ -31,7 +31,7 @@
 
 **敏感 URL:**
 ```
-https://open.feishu.cn/open-apis/bot/v2/hook/f1286a3e-4e41-4809-a0bc-fd2bbbbc3f10
+https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_FEISHU_WEBHOOK
 ```
 
 **影响文件 (13 个):**
@@ -60,7 +60,7 @@ https://open.feishu.cn/open-apis/bot/v2/hook/f1286a3e-4e41-4809-a0bc-fd2bbbbc3f1
 
 **敏感 Token:**
 ```
-https://oapi.dingtalk.com/robot/send?access_token=6ab3e0f7233d9656c72b0f80a2e8d20a5a917adc82700719f7259b5325b22430
+https://oapi.dingtalk.com/robot/send?access_token=YOUR_DINGTALK_TOKEN
 ```
 
 **影响文件 (2 个):**
@@ -91,7 +91,7 @@ https://oapi.dingtalk.com/robot/send?access_token=6ab3e0f7233d9656c72b0f80a2e8d2
 sed -i 's|https://open\.feishu\.cn/open-apis/bot/v2/hook/f1286a3e-4e41-4809-a0bc-fd2bbbbc3f10|YOUR_FEISHU_WEBHOOK|g' <files>
 
 # 清理钉钉 token
-sed -i 's|https://oapi\.dingtalk\.com/robot/send?access_token=6ab3e0f7233d9656c72b0f80a2e8d20a5a917adc82700719f7259b5325b22430|YOUR_DINGTALK_WEBHOOK|g' <files>
+sed -i 's|https://oapi\.dingtalk\.com/robot/send?access_token=YOUR_DINGTALK_TOKEN|YOUR_DINGTALK_WEBHOOK|g' <files>
 ```
 
 ---
