@@ -1,9 +1,9 @@
+# 技能模块（软链接指向外部）
 skills/fund-challenge/
 
 # 私有配置 - 不推送
 04-private-configs/
 06-data/
-evidence/
 
 # 脚本（特定 scripts 文件夹除外）
 scripts/
@@ -15,8 +15,22 @@ scripts/
 *.log
 .cache/
 
-# OpenClaw 状态文件
+# OpenClaw 运行时数据
 .openclaw/
+*.bak
+*.backup
 
 # AI 记忆文件夹（私有）
 01-memory/
+
+# 根目录配置文件（已移动到 01-public-configs/）
+AGENTS.md
+SOUL.md
+TOOLS.md
+USER.md
+HEARTBEAT.md
+IDENTITY.md
+
+# 无用符号链接
+evidence
+fund_challenge
