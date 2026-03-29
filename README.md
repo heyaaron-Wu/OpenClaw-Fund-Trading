@@ -165,7 +165,6 @@ workspace/
 │   ├── scripts/             # 脚本工具
 │   └── templates/           # 报告模板
 │
-└── 09-memory/               # 🧠 记忆文件
     └── ...
 ```
 
