@@ -34,7 +34,7 @@ echo "📝 今日提交详情:"
 git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --oneline
 echo ""
 
-# 分类统计（排除纯文档提交）
+# 分类统计
 echo "📊 提交分类统计:"
 
 NEW_FEATURES=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="✨\|feat\|新增\|添加" --oneline | wc -l)
@@ -46,18 +46,24 @@ echo "  🚀 性能优化：$OPTIMIZATIONS 个"
 BUG_FIXES=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🐛\|fix\|修复\|bug" --oneline | wc -l)
 echo "  🐛 Bug 修复：$BUG_FIXES 个"
 
-DOCS=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="📝\|docs\|文档" --oneline | wc -l)
-echo "  📝 文档更新：$DOCS 个"
-
 SECURITY=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🔒\|security\|安全" --oneline | wc -l)
 echo "  🔒 安全修复：$SECURITY 个"
+
+# 检查是否有复盘报告（日终复盘/周复盘）
+FUND_REVIEW=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="📊\|日终复盘\|周报复盘" --oneline | wc -l)
+echo "  📊 复盘报告：$FUND_REVIEW 个"
+
+DOCS=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="📝\|docs\|文档" --oneline | wc -l)
+echo "  📝 文档更新：$DOCS 个"
 echo ""
 
-# 检查是否有实际代码/功能变更（排除纯文档更新）
-CODE_CHANGES=$((NEW_FEATURES + OPTIMIZATIONS + BUG_FIXES + SECURITY))
+# 检查是否有有效更新（代码变更 + 复盘报告）
+# 纯文档更新（📝）不记录到 CHANGELOG
+EFFECTIVE_CHANGES=$((NEW_FEATURES + OPTIMIZATIONS + BUG_FIXES + SECURITY + FUND_REVIEW))
 
-if [ "$CODE_CHANGES" -eq 0 ]; then
-    echo "✅ 今日提交仅为文档更新，不更新版本号"
+if [ "$EFFECTIVE_CHANGES" -eq 0 ]; then
+    echo "✅ 今日提交仅为文档更新，跳过版本更新"
+    exit 0
 fi
 
 # 检查 CHANGELOG.md 是否已包含今日更新
@@ -118,33 +124,34 @@ MAJOR=$(echo "$CURRENT_VERSION" | cut -d. -f1)
 MINOR=$(echo "$CURRENT_VERSION" | cut -d. -f2)
 PATCH=$(echo "$CURRENT_VERSION" | cut -d. -f3)
 
-# 只有代码变更才递增版本号
-if [ "$CODE_CHANGES" -gt 0 ]; then
-    PATCH=$((PATCH + 1))
-    VERSION_NUM="$MAJOR.$MINOR.$PATCH"
-    echo "📊 版本号递增：v$CURRENT_VERSION → v$VERSION_NUM"
-else
-    VERSION_NUM="$CURRENT_VERSION"
-    echo "📊 版本号不变：v$VERSION_NUM (仅文档更新)"
-fi
+# 递增版本号（复盘报告也算有效更新）
+PATCH=$((PATCH + 1))
+VERSION_NUM="$MAJOR.$MINOR.$PATCH"
+echo "📊 版本号递增：v$CURRENT_VERSION → v$VERSION_NUM"
+
+# 使用有效更新数进行后续判断
+CODE_CHANGES=$EFFECTIVE_CHANGES
 
 # 创建临时文件
 TEMP_CHANGELOG="/tmp/changelog_update_$$.md"
 
-# 只有代码变更才创建新版本条目，否则标记为文档更新
-if [ "$CODE_CHANGES" -gt 0 ]; then
-    cat > "$TEMP_CHANGELOG" << EOF
+# 创建新版本条目
+cat > "$TEMP_CHANGELOG" << EOF
 
 ### [v$VERSION_NUM] - $TODAY
 EOF
-else
-    cat > "$TEMP_CHANGELOG" << EOF
 
-### [v$VERSION_NUM] - $TODAY (文档更新)
-EOF
+# 添加复盘报告（优先展示）
+if [ "$FUND_REVIEW" -gt 0 ]; then
+    echo "" >> "$TEMP_CHANGELOG"
+    echo "#### 📊 复盘报告" >> "$TEMP_CHANGELOG"
+    git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="📊\|日终复盘\|周报复盘" --oneline | while read commit; do
+        MSG=$(echo "$commit" | cut -d' ' -f2-)
+        echo "- $MSG" >> "$TEMP_CHANGELOG"
+    done
 fi
 
-# 添加各类更新
+# 添加各类更新（仅展示非文档类）
 if [ "$NEW_FEATURES" -gt 0 ]; then
     echo "" >> "$TEMP_CHANGELOG"
     echo "#### ✨ 新增" >> "$TEMP_CHANGELOG"
@@ -172,15 +179,6 @@ if [ "$BUG_FIXES" -gt 0 ]; then
     done
 fi
 
-if [ "$DOCS" -gt 0 ]; then
-    echo "" >> "$TEMP_CHANGELOG"
-    echo "#### 📝 文档" >> "$TEMP_CHANGELOG"
-    git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="📝\|docs\|文档" --oneline | while read commit; do
-        MSG=$(echo "$commit" | cut -d' ' -f2-)
-        echo "- $MSG" >> "$TEMP_CHANGELOG"
-    done
-fi
-
 if [ "$SECURITY" -gt 0 ]; then
     echo "" >> "$TEMP_CHANGELOG"
     echo "#### 🔒 安全" >> "$TEMP_CHANGELOG"
@@ -189,6 +187,8 @@ if [ "$SECURITY" -gt 0 ]; then
         echo "- $MSG" >> "$TEMP_CHANGELOG"
     done
 fi
+
+# 不添加文档更新章节（📝 文档）
 
 # 插入到 CHANGELOG.md（在"## 📅 更新历史"之后）
 echo "🔍 查找插入位置..."
