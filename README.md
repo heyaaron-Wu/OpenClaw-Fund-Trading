@@ -123,13 +123,13 @@ workspace/
 │   ├── IDENTITY.md          # Agent 身份定义
 │   └── BOOTSTRAP.md         # 初始化指南
 │
-├── 02-skill-docs/skills/    # 🧩 技能文档（19 个技能）
+├── 02-skill-docs/skills/    # 🧩 技能文档（25 个技能）
 │   ├── fund-challenge-*     # 基金挑战专用技能 (8 个)
 │   ├── akshare-finance      # 财经数据接口
 │   ├── etf-assistant        # ETF 投资助理
 │   └── ...
 │
-├── 03-system-docs/          # 📚 系统文档（14 个）
+├── 03-system-docs/          # 📚 系统文档（12 个）
 │   ├── file-structure.md    # 文件结构说明
 │   ├── fund_challenge_*.md  # 基金挑战优化文档 (4 个)
 │   ├── github_*.md          # GitHub 集成文档 (2 个)
@@ -185,18 +185,25 @@ workspace/
 | `fund-challenge-instrument-rules` | 交易规则管理（T+、截止时间等） | 每日 5 次 |
 | `fund-challenge-ledger-postmortem` | 交易流水追溯与复盘 | 每周 1 次 |
 
-### 通用技能（9 个）
+### 通用技能（17 个）
 
 | 技能名称 | 作用 |
 |----------|------|
 | `agent-browser` | 浏览器自动化，网页数据抓取 |
 | `akshare-finance` | AKShare 财经数据接口封装 |
 | `akshare-stock` | A 股量化数据分析 |
+| `charts` | 图表生成工具 |
 | `etf-assistant` | ETF 投资助理，查询行情、筛选对比 |
-| `finance-lite` | 每日市场简报（FRED +  benchmarks） |
-| `news-summary` | 新闻摘要，RSS  feeds 聚合 |
+| `finance-lite` | 每日市场简报（FRED + benchmarks） |
+| `find-skills` | 技能查找与安装 |
+| `news-summary` | 新闻摘要，RSS feeds 聚合 |
+| `obsidian-ontology-sync` | Obsidian 知识图谱同步 |
+| `openclaw-tavily-search` | Tavily 网络搜索 |
+| `proactive-agent` | 主动代理模式 |
+| `proactive-agent-lite` | 轻量级主动代理 |
 | `searxng` | 隐私保护搜索引擎 |
 | `self-improving-agent` | 自我改进，错误记录与学习 |
+| `skill-vetter` | 技能安全检查 |
 | `stock-watcher` | 股票 watchlist 管理 |
 
 ---
