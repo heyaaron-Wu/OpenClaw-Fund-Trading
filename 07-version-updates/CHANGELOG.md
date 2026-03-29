@@ -49,6 +49,24 @@
 
 ## 📅 更新历史
 
+## v1.0.19 - 2026-03-29
+
+### 🚀 优化
+- 🔧 统一文件命名规范（21 个文件）
+- 🧹 删除废弃目录（09-memory、workspace/memory）
+- 📝 更新 README 文档（技能数量、任务数量）
+
+### 🐛 修复
+- 📝 修复 FILE_STRUCTURE.md 引用链接
+- 🔒 清理隐私信息（Webhook URL 替换为占位符）
+
+### 📝 文档
+- 📋 新增 PRIVACY_SECURITY_CHECKLIST.md
+- 📊 更新 FILE_STRUCTURE.md（完善目录说明）
+- 🔧 更新 Cron 任务配置（删除并恢复 cron-health-monitor）
+
+---
+
 ## v1.0.18 - 2026-03-28
 
 ### ✨ 新增功能
