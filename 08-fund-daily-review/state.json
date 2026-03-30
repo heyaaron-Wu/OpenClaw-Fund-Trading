@@ -10,42 +10,42 @@
       "name": "华夏科创 50ETF 联接 A",
       "type": "off_exchange",
       "confirmed_amount": 399.52,
-      "daily_pnl": -7.23,
-      "daily_pnl_rate": -1.81,
-      "unrealized_pnl": -35.21,
-      "pnl_rate": -8.11,
-      "last_updated": "2026-03-26T21:50:00.000000"
+      "daily_pnl": -2.95,
+      "daily_pnl_rate": -0.74,
+      "unrealized_pnl": -30.93,
+      "pnl_rate": -7.74,
+      "last_updated": "2026-03-30T22:16:42.428723"
     },
     {
       "code": "013180",
       "name": "广发新能源车电池 ETF 联接 C",
       "type": "off_exchange",
       "confirmed_amount": 300.0,
-      "daily_pnl": 0.28,
-      "daily_pnl_rate": 0.09,
-      "unrealized_pnl": 0.78,
-      "pnl_rate": 0.26,
-      "last_updated": "2026-03-26T21:50:00.000000"
+      "daily_pnl": -1.06,
+      "daily_pnl_rate": -0.35,
+      "unrealized_pnl": -0.56,
+      "pnl_rate": -0.19,
+      "last_updated": "2026-03-30T22:16:42.428760"
     },
     {
       "code": "014320",
       "name": "德邦半导体产业混合 C",
       "type": "off_exchange",
       "confirmed_amount": 300.0,
-      "daily_pnl": -6.51,
-      "daily_pnl_rate": -2.17,
-      "unrealized_pnl": -25.75,
-      "pnl_rate": -7.90,
-      "last_updated": "2026-03-26T21:50:00.000000"
+      "daily_pnl": 0.85,
+      "daily_pnl_rate": 0.28,
+      "unrealized_pnl": -18.39,
+      "pnl_rate": -6.13,
+      "last_updated": "2026-03-30T22:16:42.428768"
     }
   ],
   "total_fees": 0.48,
-  "portfolio_value": 953.49,
-  "last_updated": "2026-03-26T21:50:00.000000",
-  "total_pnl": -63.69,
-  "total_pnl_rate": -6.37,
+  "portfolio_value": 949.64,
+  "last_updated": "2026-03-30T22:16:42.428778",
+  "total_pnl": -49.88,
+  "total_pnl_rate": -4.99,
   "total_market_value": 936.31,
   "manual_update": true,
-  "last_manual_date": "2026-03-26",
-  "last_manual_note": "根据蚂蚁财富截图更新实际收益（仅初始 3 只基金）"
+  "last_manual_date": "2026-03-30",
+  "last_manual_note": "根据蚂蚁财富截图更新 3 月 30 日收益"
 }
