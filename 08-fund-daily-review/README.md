@@ -1,37 +1,40 @@
-# 基金日终复盘
+# 基金日终复盘系统
 
-**每日交易结束后自动生成复盘报告并推送到飞书群**
+**每日交易结束后自动生成复盘报告，集成东方财富妙想 API，推送到飞书群并归档到 GitHub**
 
 ---
 
-## 📋 复盘流程
+## 🚀 核心功能
 
-### 执行时间
+### 1. 自动日终复盘
+- ⏰ **执行时间**：每个交易日 22:30
+- 📊 **内容**：持仓盈亏 + 市场分析 + 亏损原因 + 后市展望
+- 🔄 **归档**：自动提交到 GitHub
 
-```
-每个交易日 22:30 自动执行（收盘后 3.5 小时，确保净值更新完成）
-```
+### 2. 东方财富资讯集成
+- 📰 **盘后收评**：15:30 自动获取当日收评
+- 🤖 **AI 总结**：提取重点，不是复制粘贴
+- 🔗 **来源链接**：可点击查看详情
+- 🔄 **多源 fallback**：收评→复盘→要闻，智能切换
 
-### 执行内容
+### 3. 飞书通知
+- 📢 **简洁版**：持仓 + 资讯摘要 + 挑战进度
+- 🔗 **GitHub 链接**：一键查看完整报告
+- ⏰ **完成时间**：约 22:35 推送
 
-1. **交易日检查** - 确认是否为交易日
-2. **净值更新** - 更新所有持仓最新净值
-3. **盈亏计算** - 计算当日盈亏和累计收益
-4. **报告生成** - 生成富文本复盘报告（含 AI 总结资讯）
-5. **推送通知** - 推送到飞书群
-6. **GitHub 归档** - 提交报告到 GitHub
+### 4. 系统监控
+- 📊 **版本更新**：23:45 检查当日提交
+- 🔍 **Cron 健康**：每小时检查任务状态
+- ⚠️  **异常告警**：失败自动重试 + 飞书通知
 
 ---
 
 ## 📊 复盘报告模板
 
-### 报告结构
-
 ```markdown
 # 日终复盘 YYYY-MM-DD
 
 ## 📊 今日盈亏
-
 | 项目 | 数值 |
 |------|------|
 | 今日盈亏 | +/-XX.XX 元 |
@@ -41,24 +44,20 @@
 | 累计收益率 | +/-X.XX% |
 
 ## 📈 持仓明细
-
 | 基金 | 代码 | 今日盈亏 | 累计盈亏 |
 |------|------|----------|----------|
-| 基金 A | XXXXXX | +/-X.XX 元 | +/-X.XX 元 |
-| 基金 B | XXXXXX | +/-X.XX 元 | +/-X.XX 元 |
+| ... | ... | ... | ... |
 
 ## 📰 今日要闻（东方财富）
-
 **1. 标题关键词**
 内容摘要
-*来源：[来源名](链接)*
+*来源：[来源名](链接)* | 时间
 
 **2. 标题关键词**
 内容摘要
-*来源：[来源名](链接)*
+*来源：[来源名](链接)* | 时间
 
 ## 📝 今日总结
-
 ### 市场表现
 - 上证指数：+/-X.XX%
 - 创业板指：+/-X.XX%
@@ -70,12 +69,9 @@
 3. 持仓因素
 
 ### 后市展望
-- 短期展望
-- 中期展望
-- 操作建议
+- 短期/中期/操作建议
 
 ## 📅 挑战进度
-
 - 挑战开始：YYYY-MM-DD
 - 当前天数：第 X 天
 - 目标金额：XXXX 元
@@ -110,28 +106,15 @@
 
 ---
 
-## 🛠️ 脚本说明
+## 🛠️ 核心脚本
 
-### 核心脚本
-
-| 脚本 | 作用 | 调用时机 |
+| 脚本 | 作用 | 执行时间 |
 |------|------|----------|
-| `auto_review_automation.py` | 自动复盘全流程 | 22:30 |
+| `auto_review_automation.py` | 日终复盘全流程 | 22:30 |
 | `fund-daily-review.sh` | 包装脚本（含飞书通知） | 22:30 |
-
-### 使用示例
-
-```bash
-# 手动执行日终复盘
-python3.11 auto_review_automation.py \
-  --base /path/to/Semi-automatic-artificial-intelligence-system \
-  --generate-report
-
-# 推送到飞书群
-curl -X POST "YOUR_FEISHU_WEBHOOK" \
-  -H "Content-Type: application/json" \
-  -d '{"msg_type":"text","content":{"text":"✅ 日终复盘已完成"}}'
-```
+| `mx-market-news.sh` | 东方财富资讯获取 | 15:30 |
+| `system-version-update.sh` | 版本更新检查 | 23:45 |
+| `cron_health_monitor.py` | Cron 健康监控 | 每小时 |
 
 ---
 
@@ -141,7 +124,7 @@ curl -X POST "YOUR_FEISHU_WEBHOOK" \
 08-fund-daily-review/
 ├── README.md                   # 本文档
 ├── reviews/                    # 复盘报告存档
-│   ├── 2026-03-30.md
+│   ├── 2026-03-30.md          # 最新报告
 │   ├── 2026-03-27.md
 │   └── ...
 ├── state.json                  # 当前持仓状态
@@ -150,58 +133,89 @@ curl -X POST "YOUR_FEISHU_WEBHOOK" \
 
 ---
 
-## 🎯 自动化流程
+## 🎯 执行流程
 
-### 执行流程
-
-```
-22:30 触发
-  ↓
-检查交易日
-  ↓
-获取市场数据（腾讯 API）
-  ↓
-读取持仓状态
-  ↓
-生成复盘报告（含 AI 总结资讯）
-  ↓
-Git 提交并推送 GitHub
-  ↓
-飞书通知
-  ↓
-完成
+```mermaid
+graph TD
+    A[15:30 盘后资讯] --> B[获取东方财富收评]
+    B --> C[AI 总结 + 来源链接]
+    C --> D[保存到 mx_news_YYYY-MM-DD.json]
+    
+    E[22:30 日终复盘] --> F[获取市场数据]
+    F --> G[读取持仓状态]
+    G --> H[生成复盘报告]
+    H --> I[Git 提交 GitHub]
+    I --> J[飞书通知]
+    
+    K[23:45 版本更新] --> L[检查当日提交]
+    L --> M[飞书通知]
 ```
 
 ---
 
-## 📝 注意事项
+## 📊 东方财富 API 功能
 
-### 资讯来源
+### 资讯查询（多源 fallback）
+```bash
+1. 查询"收评" → 失败？
+2. 查询"复盘" → 失败？
+3. 查询"收盘点评" → 失败？
+4. 查询"A 股市场" → 失败？
+5. 查询"重要新闻" → ✅ 成功
+```
 
-- ✅ 东方财富妙想 API（盘后收评优先）
-- ✅ 来源附带链接，可点击查看详情
-- ✅ AI 总结重点，不是复制粘贴
+### 资讯处理
+- ✅ **AI 总结**：提取核心要点，不是复制粘贴
+- ✅ **来源链接**：每条资讯附带可点击链接
+- ✅ **时间显示**：显示资讯发布时间
+- ✅ **盘后优先**：优先获取 15:00 后的收评
 
-### 推送时间
+---
 
-- ✅ 交易日 22:30 执行
-- ✅ 非交易日自动跳过
-- ✅ 约 22:35 完成推送
+## 📝 使用示例
 
-### 隐私保护
+### 手动执行日终复盘
+```bash
+cd /home/admin/.openclaw/workspace/skills/fund-challenge
+python3.11 fund_challenge/scripts/auto_review_automation.py \
+  --base /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system \
+  --generate-report
+```
 
-- 🔒 Webhook URL 本地存储
-- 🔒 敏感信息不公开
-- 🔒 GitHub 只公开报告，不公开持仓明细
+### 获取盘后资讯
+```bash
+bash /home/admin/.openclaw/workspace/05-scripts/mx-market-news.sh
+```
+
+### 检查系统版本更新
+```bash
+bash /home/admin/.openclaw/workspace/05-scripts/system-version-update.sh
+```
+
+---
+
+## 📈 系统统计
+
+### 3 月 30 日更新
+- ✅ 5 个提交
+- 📊 添加日终复盘
+- 🔧 修复市场数据获取
+- 🔗 添加东方财富 API
+
+### 3 月 31 日更新
+- ✅ 9 个提交
+- 📰 改为盘后收评资讯
+- 🤖 AI 总结 + 来源链接
+- 📝 更新 README 模板
 
 ---
 
 ## 🔗 相关链接
 
 - [GitHub 仓库](https://github.com/heyaaron-Wu/Semi-automatic-artificial-intelligence-system)
-- [飞书开放平台](https://open.feishu.cn/document/)
 - [东方财富妙想](https://marketing.dfcfs.com/views/finskillshub/indexIoMv0EzE)
+- [飞书开放平台](https://open.feishu.cn/document/)
 
 ---
 
-*最后更新：2026-03-30*
+*最后更新：2026-03-31*
