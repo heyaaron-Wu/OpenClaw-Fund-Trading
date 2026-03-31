@@ -6,7 +6,7 @@ set -e
 
 WORKSPACE="/home/admin/.openclaw/workspace"
 README_FILE="$WORKSPACE/Semi-automatic-artificial-intelligence-system/README.md"
-CRON_FILE="$WORKSPACE/.openclaw/cron/jobs.json"
+CRON_FILE="$HOME/.openclaw/cron/jobs.json"
 SKILLS_DIR="$WORKSPACE/skills"
 
 echo "🔄 自动更新 README.md..."

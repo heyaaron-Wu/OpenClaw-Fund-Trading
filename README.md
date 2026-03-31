@@ -191,30 +191,39 @@ workspace/
 ### 通用技能（19+ 个）
 
 <!-- AUTO:skill_list -->
-### 通用技能（19 个）
+### 通用技能（29 个）
 
 | 技能名称 | 作用 |
 |----------|------|
-| `agent-browser` | 浏览器自动化，网页数据抓取 |
-| `akshare-finance` | AKShare 财经数据接口封装 |
-| `akshare-stock` | A 股量化数据分析 |
-| `charts` | 图表生成工具 |
-| `etf-assistant` | ETF 投资助理，查询行情、筛选对比 |
-| `finance-lite` | 每日市场简报（FRED + benchmarks） |
-| `find-skills` | 技能查找与安装 |
-| `mx-data` | 东方财富妙想数据查询 |
-| `mx-search` | 东方财富妙想搜索 |
-| `mx-selfselect` | 妙想自选股管理 |
-| `mx-stock-simulator` | 妙想股票模拟交易 |
-| `news-summary` | 新闻摘要，RSS feeds 聚合 |
-| `obsidian-ontology-sync` | Obsidian 知识图谱同步 |
-| `openclaw-tavily-search` | Tavily 网络搜索 |
-| `proactive-agent` | 主动代理模式 |
-| `proactive-agent-lite` | 轻量级主动代理 |
-| `searxng` | 隐私保护搜索引擎 |
-| `self-improving-agent` | 自我改进，错误记录与学习 |
-| `skill-vetter` | 技能安全检查 |
-| `stock-watcher` | 股票 watchlist 管理 |
+| `agent-browser` | --- |
+| `akshare-finance` | --- |
+| `akshare-stock` | --- |
+| `charts` | Generate professional technical analysis charts wi |
+| `etf-assistant` | --- |
+| `finance-lite` | --- |
+| `find-skills` | --- |
+| `fund-challenge-daily-trader-core` | 技能模块 |
+| `fund-challenge-data-guard` | 技能模块 |
+| `fund-challenge-evidence-audit` | 技能模块 |
+| `fund-challenge-execution-engine` | 技能模块 |
+| `fund-challenge-identity-freshness-guard` | 技能模块 |
+| `fund-challenge-instrument-rules` | 技能模块 |
+| `fund-challenge-ledger-postmortem` | 技能模块 |
+| `fund-challenge-orchestrator` | 技能模块 |
+| `mx-data` | --- |
+| `mx-search` | --- |
+| `mx-select-stock` | 本 Skill 支持基于股票选股条件，如行情**指标、财务指标等**，筛选满足条件的股票；可查询** |
+| `mx-selfselect` | --- |
+| `mx-stock-simulator` | --- |
+| `news-summary` | --- |
+| `obsidian-ontology-sync` | --- |
+| `openclaw-tavily-search` | --- |
+| `proactive-agent` | --- |
+| `proactive-agent-lite` | --- |
+| `searxng` | --- |
+| `self-improving-agent` | --- |
+| `skill-vetter` | --- |
+| `stock-watcher` | --- |
 <!-- END AUTO -->
 
 ---
@@ -291,16 +300,16 @@ workspace/
 
 | 任务名 | 时间 | 作用 | 推送策略 |
 |------|------|------|----------|
-| system-daily-optimize | 0 1 * * * | 系统清理、缓存释放 | error, timeout |
-| fund-daily-check | 0 9 * * 1-5 | 交易日 9:00 执行预检管线（含自动修复），系统状态检查 | error, timeout |
-| system-weekly-report | 0 8 * * 1 | 周一 8:00 执行系统健康检查 + 自动修复（磁盘清理/Gateway 重启）+ 生成周报 | always, error |
-| fund-1335-universe | 35 13 * * 1-5 | 交易日 13:35 刷新候选基金池（自动重试 + 多数据源），评分识别高评分机会 | high_score |
+| system-daily-optimize | 0 1 * * * | 每日凌晨 1 点执行系统清理（智能清理 + 自动修复），磁盘>85% 自动清理，Gateway 异常自动重启 | error, timeout |
 | fund-1400-decision | 0 14 * * 1-5 | 交易日 14:00 生成交易决策（智能 fallback+ 自动重试），获取实时行情并生成持仓建议 | always |
-| fund-1448-exec-gate | 48 14 * * 1-5 | 交易日 14:48 执行门控确认，决策缺失时自动触发重新决策 | low_score |
 | fund-weekly-report | 0 23 * * 5 | 周五 23:00 生成周度总结和复盘报告 | always |
+| cron-health-monitor | 0 6,12,18 * * * | 每日 3 次检查 cron 状态（06:00/12:00/18:00），异常时推送飞书告警 | error, warning |
+| system-weekly-report | 0 8 * * 1 | 周一 8:00 执行系统健康检查 + 自动修复 + 性能趋势分析 + 智能优化建议 + GitHub 归档 | always, error |
+| fund-daily-check | 0 9 * * 1-5 | 交易日 9:00 执行预检管线（含自动修复），系统状态检查 | error, timeout |
 | fund-2230-review | 30 22 * * 1-5 | 交易日 22:30 生成日终复盘报告（智能重试 + 降级处理），GitHub 归档全自动 | always |
 | system-version-update | 30 23 * * * | 每日 23:30 检查系统当日提交，如有更新则更新 CHANGELOG.md 并推送到 GitHub 归档 | always |
-| cron-health-monitor | 0 6,12,18 * * * | 每日 3 次检查 cron 状态（06:00/12:00/18:00），异常时推送飞书告警 | error, warning |
+| fund-1335-universe | 35 13 * * 1-5 | 交易日 13:35 刷新候选基金池（自动重试 + 多数据源），评分识别高评分机会 | high_score |
+| fund-1448-exec-gate | 48 14 * * 1-5 | 交易日 14:48 执行门控确认，决策缺失时自动触发重新决策 | low_score |
 <!-- END AUTO -->
 
 ### 每日任务
