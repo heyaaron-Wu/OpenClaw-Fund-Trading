@@ -89,9 +89,9 @@ while IFS= read -r line; do
     fi
     
     if [ "$IN_UPDATE_HISTORY" = true ]; then
-        # 匹配版本号行：### [v1.0.16] - 2026-03-22
-        if [[ "$line" =~ ^###\ \[v([0-9]+\.[0-9]+\.[0-9]+)\] ]]; then
-            VERSION="${BASH_REMATCH[1]}"
+        # 匹配版本号行：## v1.1.1 - 2026-03-31 或 ### [v1.0.16] - 2026-03-22
+        if [[ "$line" =~ ^##+\ (v)?([0-9]+\.[0-9]+\.[0-9]+) ]]; then
+            VERSION="${BASH_REMATCH[2]}"
             # 读取后续行，跳过空行，检查是否为空版本
             IS_EMPTY_VERSION=false
             while read -r next_line || break; do
@@ -132,10 +132,10 @@ echo "📊 版本号递增：v$CURRENT_VERSION → v$VERSION_NUM"
 # 创建临时文件
 TEMP_CHANGELOG="/tmp/changelog_update_$$.md"
 
-# 创建新版本条目
+# 创建新版本条目（新格式：## vX.Y.Z - YYYY-MM-DD）
 cat > "$TEMP_CHANGELOG" << EOF
 
-### [v$VERSION_NUM] - $TODAY
+## v$VERSION_NUM - $TODAY
 EOF
 
 # 添加各类更新
