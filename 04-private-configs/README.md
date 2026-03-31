@@ -124,6 +124,6 @@ cat 04-private-configs/fund_challenge/ledger.jsonl
 
 ---
 
-*最后更新：2026-03-13*
+*最后更新：2026-03-31*
 
 **⚠️ 此文件仅用于说明，04-private-configs/ 文件夹内容不推送到 GitHub**

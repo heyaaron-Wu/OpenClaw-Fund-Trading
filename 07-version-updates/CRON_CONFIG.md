@@ -285,4 +285,38 @@ git diff HEAD~1 07-version-updates/CHANGELOG.md
 
 ---
 
-*最后更新：2026-03-13*
+## 🔧 故障排除
+
+### 定时任务 error 状态修复（2026-03-31）
+
+**问题描述：**
+所有定时任务显示 error 状态，错误信息：
+```
+TypeError: Cannot read properties of undefined (reading 'trim')
+```
+
+**根本原因：**
+OpenClaw Gateway 内部 JavaScript 错误，可能是系统更新导致的兼容性问题。
+
+**修复方法：**
+```bash
+# 1. 备份 cron 配置
+cp ~/.openclaw/cron/jobs.json ~/.openclaw/cron/jobs.json.bak
+
+# 2. 清除错误状态
+cat ~/.openclaw/cron/jobs.json | jq '.jobs[].state |= if . then .lastError = null | .consecutiveErrors = 0 | .lastStatus = "idle" else . end' > /tmp/jobs_fixed.json
+mv /tmp/jobs_fixed.json ~/.openclaw/cron/jobs.json
+
+# 3. 重启 Gateway
+systemctl --user restart openclaw-gateway
+
+# 4. 验证状态
+openclaw cron list
+```
+
+**修复结果：**
+所有 9 个定时任务状态从 error 恢复为 idle，正常运行。
+
+---
+
+*最后更新：2026-03-31*

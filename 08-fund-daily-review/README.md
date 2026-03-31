@@ -194,22 +194,6 @@ bash /home/admin/.openclaw/workspace/05-scripts/system-version-update.sh
 
 ---
 
-## 📈 系统统计
-
-### 3 月 30 日更新
-- ✅ 5 个提交
-- 📊 添加日终复盘
-- 🔧 修复市场数据获取
-- 🔗 添加东方财富 API
-
-### 3 月 31 日更新
-- ✅ 9 个提交
-- 📰 改为盘后收评资讯
-- 🤖 AI 总结 + 来源链接
-- 📝 更新 README 模板
-
----
-
 ## 🔗 相关链接
 
 - [GitHub 仓库](https://github.com/heyaaron-Wu/Semi-automatic-artificial-intelligence-system)
