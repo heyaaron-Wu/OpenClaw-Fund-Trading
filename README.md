@@ -126,17 +126,20 @@ workspace/
 ├── 02-skill-docs/skills/    # 🧩 技能文档（25 个技能）
 │   ├── fund-challenge-*     # 基金挑战专用技能 (8 个)
 │   ├── akshare-finance      # 财经数据接口
+│   ├── akshare-stock        # A 股量化分析
 │   ├── etf-assistant        # ETF 投资助理
+│   ├── mx-*                 # 东方财富妙想系列 (5 个) ⭐ 新增
 │   └── ...
 │
-├── 03-system-docs/          # 📚 系统文档（12 个）
+├── 03-system-docs/          # 📚 系统文档（23 个）
 │   ├── file-structure.md    # 文件结构说明
-│   ├── fund_challenge_*.md  # 基金挑战优化文档 (4 个)
-│   ├── github_*.md          # GitHub 集成文档 (2 个)
-│   ├── system_weekly_report_fix_20260320.md
-│   ├── timeout_investigation_20260319.md
-│   ├── privacy_audit_report.md
-│   └── fund-challenge-optimization/  # 优化子目录
+│   ├── fund-challenge-*.md  # 基金挑战优化文档 (5 个)
+│   ├── github-*.md          # GitHub 集成文档 (2 个)
+│   ├── system-weekly-report-fix-2026-03-20.md
+│   ├── timeout-investigation-2026-03-19.md
+│   ├── privacy-security-checklist.md  ⭐ 新增
+│   ├── instreet-skills-learning-report.md
+│   └── fund-challenge-optimization/   # 优化子目录
 │
 ├── 04-private-configs/      # 🔒 私有配置（不推送）
 │   └── ...
@@ -185,7 +188,7 @@ workspace/
 | `fund-challenge-instrument-rules` | 交易规则管理（T+、截止时间等） | 每日 5 次 |
 | `fund-challenge-ledger-postmortem` | 交易流水追溯与复盘 | 每周 1 次 |
 
-### 通用技能（17 个）
+### 通用技能（19+ 个）
 
 | 技能名称 | 作用 |
 |----------|------|
@@ -196,6 +199,10 @@ workspace/
 | `etf-assistant` | ETF 投资助理，查询行情、筛选对比 |
 | `finance-lite` | 每日市场简报（FRED + benchmarks） |
 | `find-skills` | 技能查找与安装 |
+| `mx-data` | 东方财富妙想数据查询 ⭐ 新增 |
+| `mx-search` | 东方财富妙想搜索 ⭐ 新增 |
+| `mx-selfselect` | 妙想自选股管理 ⭐ 新增 |
+| `mx-stock-simulator` | 妙想股票模拟交易 ⭐ 新增 |
 | `news-summary` | 新闻摘要，RSS feeds 聚合 |
 | `obsidian-ontology-sync` | Obsidian 知识图谱同步 |
 | `openclaw-tavily-search` | Tavily 网络搜索 |
@@ -272,19 +279,21 @@ workspace/
 09:00 ──▶ system-weekly-report    系统周报（周一）
 ```
 
-### 定时任务说明
+### 定时任务说明（截至 2026-03-31）
 
-| 任务 | 时间 | 作用 | 推送策略 |
-|------|------|------|----------|
-| system-daily-optimize | 01:00 | 系统清理、缓存释放 | 异常告警 |
-| fund-daily-check | 09:00 | 交易日健康检查 | 异常告警 |
-| system-weekly-report | 周一 09:00 | 系统优化周报 | 文本报告 |
-| fund-1335-universe | 13:35 | 候选池刷新 | 高评分告警 |
-| fund-1400-decision | 14:00 | 交易决策 | 总是推送 |
-| fund-1448-exec-gate | 14:48 | 执行门控 | 仅异常 |
-| fund-weekly-report | 周五 23:00 | 周报复盘 | 总是推送 |
-| **fund-2230-review** | **22:30** | **日终复盘（增强版）+ GitHub 归档** | **总是推送** ⭐ |
-| **system-version-update** | **23:30** | **系统版本更新检查 + GitHub 归档** | **总是推送** ⭐ |
+| 任务 | 时间 | 作用 | 推送策略 | 状态 |
+|------|------|------|----------|------|
+| system-daily-optimize | 01:00 | 系统清理、缓存释放 | 异常告警 | ⚠️ error |
+| fund-daily-check | 09:00 | 交易日健康检查 | 异常告警 | ⚠️ error |
+| system-weekly-report | 周一 08:00 | 系统优化周报 | 文本报告 | ⚠️ error |
+| fund-1335-universe | 13:35 | 候选池刷新 | 高评分告警 | ⚠️ error |
+| fund-1400-decision | 14:00 | 交易决策 | 总是推送 | ⚠️ error |
+| fund-1448-exec-gate | 14:48 | 执行门控 | 仅异常 | ⚠️ error |
+| fund-weekly-report | 周五 23:00 | 周报复盘 | 总是推送 | ✅ idle |
+| **fund-2230-review** | **22:30** | **日终复盘（增强版）+ GitHub 归档** | **总是推送** | ⚠️ error |
+| **system-version-update** | **23:30** | **系统版本更新检查 + GitHub 归档** | **总是推送** | ⚠️ error |
+
+> **注意：** 大部分任务显示 error 状态，需检查日志排查原因。可能是任务执行超时或依赖服务异常。
 
 ### 每日任务
 
@@ -415,29 +424,31 @@ openclaw gateway start
 
 ## 📈 性能指标 |2vCPU|2GiB内存|40GiB系统盘|
 
-### 系统运行数据（截至 2026-03-22）
+### 系统运行数据（截至 2026-03-31）
 
 | 指标 | 数值 | 状态 |
 |------|------|------|
-| Gateway 服务 | 运行中 (pid 6391) | ✅ 正常 |
-| 定时任务数 | **10 个** | ✅ 全部正常 |
-| 技能总数 | **25 个** | ✅ 运行中 |
+| Gateway 服务 | 运行中 | ✅ 正常 |
+| 定时任务数 | **9 个** | ⚠️ 需关注 |
+| 技能总数 | **19+ 个** | ✅ 运行中 |
 | CPU 使用率 | ~60% | ✅ 正常 |
 | 内存使用率 | 56% | ✅ 正常 |
 | 磁盘使用率 | 41% | ✅ 正常 |
 | Token 消耗 | ~2,400/月 | ✅ 优化 |
 
-### 交易表现（截至 2026-03-24）
+> **注意：** 部分定时任务显示 error 状态，需检查日志排查原因
+
+### 交易表现（截至 2026-03-30）
 
 | 指标 | 数值 |
 |------|------|
 | 初始资金 | 1000.00 元 |
 | 投入本金 | 999.52 元 |
-| 组合市值 | **937.98 元** |
-| 累计盈亏 | **-62.02 元** (-6.20%) |
+| 组合市值 | **949.64 元** |
+| 累计盈亏 | **-49.88 元** (-4.99%) |
 | 可用现金 | 0.00 元 |
 | 持仓数量 | 3 只 |
-| 目标进度 | 还需 +1062.02 元 (+113.2%) |
+| 目标进度 | 还需 +1050.36 元 (+110.6%) |
 
 ### 🎯 现实目标调整
 
@@ -449,13 +460,15 @@ openclaw gateway start
 
 > **说明：** 3 个月翻倍（+100%）概率 <5%，需要运气 + 实力。建议先实现 +30% 的现实目标，活下来比赚快钱更重要。
 
-### 持仓明细
+### 持仓明细（截至 2026-03-30）
 
-| 基金代码 | 基金名称 | 累计盈亏 | 表现 |
-|---------|----------|---------|------|
-| 013180 | 广发新能源车电池 ETF 联接 C | **+2.37 元** | ✅ 盈利 |
-| 011612 | 华夏科创 50ETF 联接 A | **-20.40 元** | ❌ 亏损 |
-| 014320 | 德邦半导体产业混合 C | **-12.68 元** | ❌ 亏损 |
+| 基金代码 | 基金名称 | 累计盈亏 | 收益率 | 表现 |
+|---------|----------|---------|--------|------|
+| 013180 | 广发新能源车电池 ETF 联接 C | **-0.56 元** | -0.19% | ⚠️ 微亏 |
+| 011612 | 华夏科创 50ETF 联接 A | **-30.93 元** | -7.74% | ❌ 亏损 |
+| 014320 | 德邦半导体产业混合 C | **-18.39 元** | -6.13% | ❌ 亏损 |
+
+> **数据来源：** 蚂蚁财富截图手动更新 (2026-03-30)
 
 ---
 
@@ -487,14 +500,17 @@ openclaw gateway start
 
 ### 系统文档
 
-- [系统优化完整报告](03-system-docs/system_optimization_full_report.md)
-- [定时任务分析](03-system-docs/cron_jobs_analysis.md)
-- [基金挑战技能审查](03-system-docs/fund_challenge_skill_audit.md)
-- [GitHub 集成指南](03-system-docs/github_integration_benefits.md)
-- [InStreet 技能学习报告](03-system-docs/instreet_skills_learning_report.md)
-- [系统审计报告](03-system-docs/SYSTEM_AUDIT_REPORT_20260322.md) ⭐ 新增
-- [性能优化方案](03-system-docs/PERFORMANCE_OPTIMIZATION_20260322.md) ⭐ 新增
-- [优化完成报告](03-system-docs/OPTIMIZATION_COMPLETE_20260322.md) ⭐ 新增
+- [文件结构说明](03-system-docs/file-structure.md)
+- [GitHub 集成指南](03-system-docs/github-integration-benefits.md)
+- [GitHub 集成实践](03-system-docs/github_integration_guide.md)
+- [InStreet 技能学习报告](03-system-docs/instreet-skills-learning-report.md)
+- [隐私安全检查清单](03-system-docs/privacy-security-checklist.md) ⭐ 新增
+- [系统周报修复报告](03-system-docs/system-weekly-report-fix-2026-03-20.md)
+- [超时问题调查](03-system-docs/timeout-investigation-2026-03-19.md)
+- [基金挑战优化文档](03-system-docs/fund-challenge-optimization/) ⭐ 系列文档
+  - [完整优化方案](03-system-docs/fund-challenge-optimization.md)
+  - [自动报告机制](03-system-docs/fund-challenge-auto-report.md)
+  - [候选池风险优化](03-system-docs/fund-challenge-pool-risk-optimization.md)
 
 ### 配置文件
 
@@ -502,6 +518,8 @@ openclaw gateway start
 - [Agent 人格](01-public-configs/SOUL.md)
 - [用户信息](01-public-configs/USER.md)
 - [工具配置](01-public-configs/TOOLS.md)
+- [心跳任务](01-public-configs/HEARTBEAT.md)
+- [Agent 身份](01-public-configs/IDENTITY.md)
 
 ---
 
