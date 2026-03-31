@@ -267,9 +267,10 @@ workspace/
 13:35 ──▶ fund-1335-universe       候选池刷新（高评分告警）
 14:00 ──▶ fund-1400-decision       交易决策（HOLD/BUY/SELL）
 14:48 ──▶ fund-1448-exec-gate      执行门控（仅异常推送）
-22:30 ──▶ fund-2230-review         日终复盘（增强版 + GitHub 归档）⭐ 新增
-23:00 ──▶ fund-weekly-report       周报复盘（周五）⭐ 时间优化
-23:30 ──▶ system-version-update    版本更新检查（GitHub 归档）⭐ 新增
+22:30 ──▶ fund-2230-review         日终复盘（增强版 + GitHub 归档）
+23:00 ──▶ fund-weekly-report       周报复盘（周五）
+23:30 ──▶ system-version-update    版本更新检查（GitHub 归档）
+每小时 ──▶ cron-health-monitor     Cron 健康监控
 ```
 
 ### 每日任务
@@ -292,6 +293,7 @@ workspace/
 | fund-weekly-report | 周五 23:00 | 周报复盘 | 总是推送 |
 | **fund-2230-review** | **22:30** | **日终复盘（增强版）+ GitHub 归档** | **总是推送** |
 | **system-version-update** | **23:30** | **系统版本更新检查 + GitHub 归档** | **总是推送** |
+| cron-health-monitor | 每小时 | Cron 健康监控 | 异常告警 |
 
 ### 每日任务
 
@@ -427,7 +429,7 @@ openclaw gateway start
 | 指标 | 数值 | 状态 |
 |------|------|------|
 | Gateway 服务 | 运行中 | ✅ 正常 |
-| 定时任务数 | **9 个** | ✅ 全部正常 |
+| 定时任务数 | **10 个** | ✅ 全部正常 |
 | 技能总数 | **19+ 个** | ✅ 运行中 |
 | CPU 使用率 | ~60% | ✅ 正常 |
 | 内存使用率 | 56% | ✅ 正常 |
