@@ -190,6 +190,9 @@ workspace/
 
 ### 通用技能（19+ 个）
 
+<!-- AUTO:skill_list -->
+### 通用技能（19 个）
+
 | 技能名称 | 作用 |
 |----------|------|
 | `agent-browser` | 浏览器自动化，网页数据抓取 |
@@ -199,10 +202,10 @@ workspace/
 | `etf-assistant` | ETF 投资助理，查询行情、筛选对比 |
 | `finance-lite` | 每日市场简报（FRED + benchmarks） |
 | `find-skills` | 技能查找与安装 |
-| `mx-data` | 东方财富妙想数据查询 ⭐ 新增 |
-| `mx-search` | 东方财富妙想搜索 ⭐ 新增 |
-| `mx-selfselect` | 妙想自选股管理 ⭐ 新增 |
-| `mx-stock-simulator` | 妙想股票模拟交易 ⭐ 新增 |
+| `mx-data` | 东方财富妙想数据查询 |
+| `mx-search` | 东方财富妙想搜索 |
+| `mx-selfselect` | 妙想自选股管理 |
+| `mx-stock-simulator` | 妙想股票模拟交易 |
 | `news-summary` | 新闻摘要，RSS feeds 聚合 |
 | `obsidian-ontology-sync` | Obsidian 知识图谱同步 |
 | `openclaw-tavily-search` | Tavily 网络搜索 |
@@ -212,6 +215,7 @@ workspace/
 | `self-improving-agent` | 自我改进，错误记录与学习 |
 | `skill-vetter` | 技能安全检查 |
 | `stock-watcher` | 股票 watchlist 管理 |
+<!-- END AUTO -->
 
 ---
 
@@ -282,18 +286,22 @@ workspace/
 
 ### 定时任务说明
 
-| 任务 | 时间 | 作用 | 推送策略 |
+<!-- AUTO:task_table -->
+### 定时任务列表（10 个）
+
+| 任务名 | 时间 | 作用 | 推送策略 |
 |------|------|------|----------|
-| system-daily-optimize | 01:00 | 系统清理、缓存释放 | 异常告警 |
-| fund-daily-check | 09:00 | 交易日健康检查 | 异常告警 |
-| system-weekly-report | 周一 08:00 | 系统优化周报 | 文本报告 |
-| fund-1335-universe | 13:35 | 候选池刷新 | 高评分告警 |
-| fund-1400-decision | 14:00 | 交易决策 | 总是推送 |
-| fund-1448-exec-gate | 14:48 | 执行门控 | 仅异常 |
-| fund-weekly-report | 周五 23:00 | 周报复盘 | 总是推送 |
-| **fund-2230-review** | **22:30** | **日终复盘（增强版）+ GitHub 归档** | **总是推送** |
-| **system-version-update** | **23:30** | **系统版本更新检查 + GitHub 归档** | **总是推送** |
-| cron-health-monitor | 每小时 | Cron 健康监控 | 异常告警 |
+| system-daily-optimize | 0 1 * * * | 系统清理、缓存释放 | error, timeout |
+| fund-daily-check | 0 9 * * 1-5 | 交易日 9:00 执行预检管线（含自动修复），系统状态检查 | error, timeout |
+| system-weekly-report | 0 8 * * 1 | 周一 8:00 执行系统健康检查 + 自动修复（磁盘清理/Gateway 重启）+ 生成周报 | always, error |
+| fund-1335-universe | 35 13 * * 1-5 | 交易日 13:35 刷新候选基金池（自动重试 + 多数据源），评分识别高评分机会 | high_score |
+| fund-1400-decision | 0 14 * * 1-5 | 交易日 14:00 生成交易决策（智能 fallback+ 自动重试），获取实时行情并生成持仓建议 | always |
+| fund-1448-exec-gate | 48 14 * * 1-5 | 交易日 14:48 执行门控确认，决策缺失时自动触发重新决策 | low_score |
+| fund-weekly-report | 0 23 * * 5 | 周五 23:00 生成周度总结和复盘报告 | always |
+| fund-2230-review | 30 22 * * 1-5 | 交易日 22:30 生成日终复盘报告（智能重试 + 降级处理），GitHub 归档全自动 | always |
+| system-version-update | 30 23 * * * | 每日 23:30 检查系统当日提交，如有更新则更新 CHANGELOG.md 并推送到 GitHub 归档 | always |
+| cron-health-monitor | 0 6,12,18 * * * | 每日 3 次检查 cron 状态（06:00/12:00/18:00），异常时推送飞书告警 | error, warning |
+<!-- END AUTO -->
 
 ### 每日任务
 

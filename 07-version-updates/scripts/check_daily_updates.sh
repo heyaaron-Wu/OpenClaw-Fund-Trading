@@ -332,6 +332,11 @@ fi
 echo ""
 echo "✅ 相关文档检查完成"
 
+# ========== 自动更新 README.md ==========
+echo ""
+echo "🔄 自动更新 README.md..."
+bash "$WORKSPACE/07-version-updates/scripts/update_readme.py" || echo "⚠️  README 更新失败，跳过"
+
 # 提交变更
 echo ""
 echo "📤 提交文档更新..."
