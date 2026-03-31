@@ -276,12 +276,14 @@ if [ -f "$README_FILE" ]; then
         echo "     最新版本：$LATEST_VERSION"
         # 检查 README 中是否有版本号需要更新
         if grep -q "当前版本：" "$README_FILE"; then
-            echo "     ✅ 版本号已包含"
+            # 更新版本号
+            sed -i "s/当前版本：v[0-9.]\+/当前版本：v$LATEST_VERSION/g" "$README_FILE"
+            echo "     ✅ 版本号已更新：v$LATEST_VERSION"
         else
             echo "     ℹ️  README.md 无版本号字段"
         fi
     fi
-    echo "     ✅ 无需更新"
+    echo "     ✅ 检查完成"
 fi
 
 # 4. 检查 08-fund-daily-review/README.md
@@ -289,6 +291,42 @@ FUND_README="$WORKSPACE/08-fund-daily-review/README.md"
 if [ -f "$FUND_README" ]; then
     echo "  📄 检查 08-fund-daily-review/README.md..."
     echo "     ✅ 无需更新"
+fi
+
+# 5. 统计今日 Token 消耗（新增）
+echo ""
+echo "📊 统计今日 Token 消耗..."
+
+# 检查是否有 token 统计文件
+TOKEN_LOG="$WORKSPACE/.openclaw/token_usage.jsonl"
+if [ -f "$TOKEN_LOG" ]; then
+    # 统计今日 token 使用
+    TODAY_TOKEN=$(grep "$TODAY" "$TOKEN_LOG" 2>/dev/null | python3.11 -c "
+import sys, json
+total = {'input': 0, 'output': 0}
+for line in sys.stdin:
+    try:
+        data = json.loads(line)
+        total['input'] += data.get('tokens', {}).get('input', 0)
+        total['output'] += data.get('tokens', {}).get('output', 0)
+    except:
+        pass
+print(f\"{total['input']} {total['output']}\")
+" 2>/dev/null)
+    
+    if [ -n "$TODAY_TOKEN" ]; then
+        INPUT_TOKENS=$(echo "$TODAY_TOKEN" | cut -d' ' -f1)
+        OUTPUT_TOKENS=$(echo "$TODAY_TOKEN" | cut -d' ' -f2)
+        TOTAL_TOKENS=$((INPUT_TOKENS + OUTPUT_TOKENS))
+        echo "  💰 今日 Token 消耗："
+        echo "     输入：$INPUT_TOKENS tokens"
+        echo "     输出：$OUTPUT_TOKENS tokens"
+        echo "     总计：$TOTAL_TOKENS tokens"
+    else
+        echo "  ℹ️  今日无 token 使用记录"
+    fi
+else
+    echo "  ℹ️  Token 日志文件不存在：$TOKEN_LOG"
 fi
 
 echo ""
