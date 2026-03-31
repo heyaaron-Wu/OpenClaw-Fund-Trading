@@ -156,17 +156,7 @@ mx_data/output/
 ├── mx_news_YYYY-MM-DD.json    # 每日资讯数据
 ├── risk_monitor_YYYYMMDD.json # 风险监控数据
 └── performance_stats_YYYYMMDD.json # 业绩统计
-```
 
-### 📊 提交统计
-
-**3 月 30 日：5 个提交**
-```
-31fce9a 🔧 修复市场数据获取（使用腾讯 API）
-6c5fef3 🔧 修正目标金额（1300 元）+ 挑战天数
-388e321 🔧 修正持仓累计盈亏数据
-d167389 📊 添加 2026-03-30 日日终复盘
-4c7bde3 📝 补录 2026-03-29 版本日志
 ```
 ## v1.0.19 - 2026-03-29
 
