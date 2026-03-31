@@ -283,21 +283,6 @@ if [ -f "$README_FILE" ]; then
             echo "     ℹ️  README.md 无版本号字段"
         fi
     fi
-    
-    # 自动更新定时任务数量
-    if grep -q "<!-- AUTO:task_count -->" "$README_FILE"; then
-        TASK_COUNT=$(cat /home/admin/.openclaw/cron/jobs.json | jq '.jobs | length')
-        sed -i "s|<!-- AUTO:task_count -->.*<!-- END AUTO -->|<!-- AUTO:task_count -->\n**定时任务总数：** $TASK_COUNT 个\n<!-- END AUTO -->|g" "$README_FILE"
-        echo "     ✅ 定时任务数量已更新：$TASK_COUNT 个"
-    fi
-    
-    # 自动更新技能数量
-    if grep -q "<!-- AUTO:skill_count -->" "$README_FILE"; then
-        SKILL_COUNT=$(ls -d /home/admin/.openclaw/workspace/skills/*/ 2>/dev/null | wc -l)
-        sed -i "s|<!-- AUTO:skill_count -->.*<!-- END AUTO -->|<!-- AUTO:skill_count -->\n**技能总数：** $SKILL_COUNT 个\n<!-- END AUTO -->|g" "$README_FILE"
-        echo "     ✅ 技能数量已更新：$SKILL_COUNT 个"
-    fi
-    
     echo "     ✅ 检查完成"
 fi
 

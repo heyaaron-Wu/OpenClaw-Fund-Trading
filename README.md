@@ -175,10 +175,6 @@ workspace/
 
 ## 🧩 技能模块
 
-<!-- AUTO:skill_count -->
-**技能总数：** 22 个
-<!-- END AUTO -->
-
 ### 基金挑战核心技能（8 个）
 
 | 技能名称 | 职责 | 使用频率 |
@@ -192,8 +188,7 @@ workspace/
 | `fund-challenge-instrument-rules` | 交易规则管理（T+、截止时间等） | 每日 5 次 |
 | `fund-challenge-ledger-postmortem` | 交易流水追溯与复盘 | 每周 1 次 |
 
-<!-- AUTO:skill_list -->
-### 通用技能（14 个）
+### 通用技能（19+ 个）
 
 | 技能名称 | 作用 |
 |----------|------|
@@ -204,10 +199,10 @@ workspace/
 | `etf-assistant` | ETF 投资助理，查询行情、筛选对比 |
 | `finance-lite` | 每日市场简报（FRED + benchmarks） |
 | `find-skills` | 技能查找与安装 |
-| `mx-data` | 东方财富妙想数据查询 |
-| `mx-search` | 东方财富妙想搜索 |
-| `mx-selfselect` | 妙想自选股管理 |
-| `mx-stock-simulator` | 妙想股票模拟交易 |
+| `mx-data` | 东方财富妙想数据查询 ⭐ 新增 |
+| `mx-search` | 东方财富妙想搜索 ⭐ 新增 |
+| `mx-selfselect` | 妙想自选股管理 ⭐ 新增 |
+| `mx-stock-simulator` | 妙想股票模拟交易 ⭐ 新增 |
 | `news-summary` | 新闻摘要，RSS feeds 聚合 |
 | `obsidian-ontology-sync` | Obsidian 知识图谱同步 |
 | `openclaw-tavily-search` | Tavily 网络搜索 |
@@ -217,7 +212,6 @@ workspace/
 | `self-improving-agent` | 自我改进，错误记录与学习 |
 | `skill-vetter` | 技能安全检查 |
 | `stock-watcher` | 股票 watchlist 管理 |
-<!-- END AUTO -->
 
 ---
 
@@ -266,10 +260,6 @@ workspace/
 
 ## ⏰ 定时任务配置
 
-<!-- AUTO:task_count -->
-**定时任务总数：** 10 个
-<!-- END AUTO -->
-
 ### 交易日任务流（周一至周五）
 
 ```
@@ -290,7 +280,6 @@ workspace/
 09:00 ──▶ system-weekly-report    系统周报（周一）
 ```
 
-<!-- AUTO:task_table -->
 ### 定时任务说明
 
 | 任务 | 时间 | 作用 | 推送策略 |
@@ -305,7 +294,6 @@ workspace/
 | **fund-2230-review** | **22:30** | **日终复盘（增强版）+ GitHub 归档** | **总是推送** |
 | **system-version-update** | **23:30** | **系统版本更新检查 + GitHub 归档** | **总是推送** |
 | cron-health-monitor | 每小时 | Cron 健康监控 | 异常告警 |
-<!-- END AUTO -->
 
 ### 每日任务
 
