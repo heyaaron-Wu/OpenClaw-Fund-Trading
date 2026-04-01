@@ -269,6 +269,19 @@ workspace/
 | `decision_template_shortener.py` | 决策文案短格式化 | 控制在 300 字内 |
 | `decision_delta_guard.py` | 同日重复决策防抖 | 避免重复推送 |
 
+### 📱 飞书推送格式
+
+**统一使用富文本卡片格式**，包含以下板块：
+
+1. **📰 今日财经资讯** - 午间新闻摘要（妙想 API，如无则显示"暂无重要财经资讯"）
+2. **📈 市场表现** - 主要指数涨跌幅表格（腾讯财经数据源）
+3. **💼 持仓决策** - 每只基金的 HOLD/BUY/SELL 决策及理由
+4. **🔔 调仓建议** - 买入机会或观察重点
+5. **📊 持仓概览** - 总资产、累计盈亏、持仓数量
+
+**推送脚本**: `skills/fund-challenge/fund_challenge/scripts/decision_maker.py`  
+**推送函数**: `send_feishu_decision_card()`
+
 ---
 
 ## ⏰ 定时任务配置
