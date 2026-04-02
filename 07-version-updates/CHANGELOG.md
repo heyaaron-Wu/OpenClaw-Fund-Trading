@@ -34,6 +34,51 @@ v主版本。次版本。修订号
 
 ```markdown
 ## vX.Y.Z - YYYY-MM-DD
+## v1.1.3 - 2026-04-02
+
+### ✨ 新增
+- **多源新闻聚合系统**
+  - 创建 multi_source_news.py 独立脚本
+  - 集成妙想金融、Google News、新浪财经、东方财富 4 个 API 源
+  - 实现新闻去重和每源数量限制
+  - 决策脚本集成多源新闻展示
+
+### 🚀 优化
+- **decision_maker.py 完整重建**
+  - 重构为 400+ 行干净代码
+  - 优化代码结构和可读性
+  - 添加多源新闻调用接口
+
+### 🐛 修复
+- **定时任务 Bug 修复（6 个）**
+  - fund-daily-check: 参数顺序错误
+  - universe_refresh.py: 妙想 API 数据结构解析 bug
+  - exec_gate.py: Path 作用域冲突
+  - decision_maker.py: 字符串转义和多处语法错误
+  - auto_review_automation.py: 缺少 import time
+  - fund-2230-review: cron 参数错误 (--auto-push → --generate-report)
+
+### 📝 文档
+- **decision_records/ 目录**
+  - 新增每日交易决策记录功能
+  - 记录 14:00 决策快照供追溯
+
+### 🔧 数据修正
+- **复盘报告数据准确性提升**
+  - 以手动提供的实际数据为准
+  - 自动获取数据仅作为参考
+  - 修正 2026-04-02 日盈亏数据（+22.72 元 → -22.02 元）
+
+### 🛠️ 脚本更新
+- universe_refresh.py - 妙想 API 嵌套结构修复
+- exec_gate.py - 删除局部 Path 导入
+- decision_maker.py - 完整重建
+- multi_source_news.py - 新建多源新闻聚合
+- auto_review_automation.py - 添加 import time
+
+---
+
+
 
 #### ✨ 新增
 - 新功能描述
