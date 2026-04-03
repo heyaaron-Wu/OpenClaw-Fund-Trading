@@ -2,7 +2,7 @@
 """
 基金日终复盘报告生成器（增强版）
 - 获取真实市场数据（AKShare）
-- 获取真实财经新闻（妙想 API）
+- 获取真实财经新闻（多源聚合：妙想 + 新浪 + 东方财富 + Google News）
 - 生成完整复盘报告
 """
 
@@ -65,40 +65,64 @@ def get_market_data():
 
 
 def get_finance_news(api_key=None):
-    """获取财经新闻（妙想 API）"""
-    if not api_key:
-        return []
-    
+    """获取财经新闻（多源聚合）"""
+    # 尝试导入多源新闻聚合脚本
     try:
-        import urllib.request
-        import json as json_lib
+        sys.path.insert(0, '/home/admin/.openclaw/workspace/skills/fund-challenge/fund_challenge/scripts')
+        from multi_source_news import get_multi_source_news as fetch_multi_news
         
-        url = "https://mkapi2.dfcfs.com/finskillshub/api/claw/news-search"
-        headers = {
-            "Content-Type": "application/json",
-            "apikey": api_key
-        }
+        print("📰 获取多源财经资讯...")
+        news_list = fetch_multi_news()
         
-        data = json_lib.dumps({"query": "A 股市场 今日收盘 板块表现"}).encode('utf-8')
-        req = urllib.request.Request(url, data=data, headers=headers)
+        # 格式统一化
+        formatted_news = []
+        for news in news_list[:8]:  # 限制最多 8 条
+            formatted_news.append({
+                'title': news.get('title', ''),
+                'url': news.get('url', ''),
+                'time': news.get('time', '')[:16] if news.get('time') else '',
+                'source': news.get('source', '')
+            })
         
-        with urllib.request.urlopen(req, timeout=5) as response:
-            result = json_lib.loads(response.read().decode('utf-8'))
-            # 妙想 API 返回结构：data.data.llmSearchResponse.data
-            news_data = result.get('data', {}).get('llmSearchResponse', {}).get('data', [])
-            # 返回标题 + 链接 + 时间 + 来源
-            return [
-                {
-                    'title': item.get('title', ''),
-                    'url': item.get('jumpUrl', ''),
-                    'time': item.get('date', '')[:16] if item.get('date') else '',
-                    'source': item.get('source', '')
-                }
-                for item in news_data[:5]
-            ]
+        return formatted_news
     except Exception as e:
-        print(f"⚠️  新闻获取失败：{e}")
-        return []
+        print(f"⚠️  多源新闻获取失败：{e}")
+        print("   降级为妙想单源...")
+        
+        # Fallback: 妙想单源
+        if not api_key:
+            return []
+        
+        try:
+            import urllib.request
+            import json as json_lib
+            
+            url = "https://mkapi2.dfcfs.com/finskillshub/api/claw/news-search"
+            headers = {
+                "Content-Type": "application/json",
+                "apikey": api_key
+            }
+            
+            data = json_lib.dumps({"query": "A 股市场 今日收盘 板块表现"}).encode('utf-8')
+            req = urllib.request.Request(url, data=data, headers=headers)
+            
+            with urllib.request.urlopen(req, timeout=5) as response:
+                result = json_lib.loads(response.read().decode('utf-8'))
+                # 妙想 API 返回结构：data.data.llmSearchResponse.data
+                news_data = result.get('data', {}).get('llmSearchResponse', {}).get('data', [])
+                # 返回标题 + 链接 + 时间 + 来源
+                return [
+                    {
+                        'title': item.get('title', ''),
+                        'url': item.get('jumpUrl', ''),
+                        'time': item.get('date', '')[:16] if item.get('date') else '',
+                        'source': item.get('source', '')
+                    }
+                    for item in news_data[:5]
+                ]
+        except Exception as e2:
+            print(f"⚠️  妙想 API 也失败：{e2}")
+            return []
 
 
 def calculate_daily_pnl(positions):
@@ -428,11 +452,19 @@ def main():
     else:
         print("   ⚠️  市场数据获取失败")
     
-    # 获取财经新闻
-    print("📰 获取财经新闻...")
+    # 获取财经新闻（多源聚合）
+    print("📰 获取财经新闻（多源聚合）...")
     news_list = get_finance_news(args.mx_apikey)
     if news_list:
+        # 统计各来源数量
+        source_count = {}
+        for news in news_list:
+            source = news.get('source', '未知')
+            source_count[source] = source_count.get(source, 0) + 1
+        
         print(f"   ✅ 获取到 {len(news_list)} 条新闻")
+        for source, count in sorted(source_count.items(), key=lambda x: -x[1]):
+            print(f"      • {source}: {count}条")
     else:
         print("   ⚠️  新闻获取失败")
     
