@@ -110,6 +110,59 @@ def calculate_daily_pnl(positions):
     return total_daily_pnl
 
 
+def generate_tomorrow_plan(positions_data, market_data, daily_pnl):
+    """根据今日表现动态生成明日计划"""
+    plans = []
+    
+    # 判断市场趋势
+    market_trend = "震荡"
+    for name, pct in market_data.items():
+        if abs(pct) > 1.5:
+            market_trend = "大涨" if pct > 0 else "大跌"
+            break
+        elif abs(pct) > 0.5:
+            market_trend = "上涨" if pct > 0 else "下跌"
+    
+    # 判断持仓表现
+    profitable_count = sum(1 for pos in positions_data if pos['daily_pnl'] > 0)
+    total_count = len(positions_data)
+    
+    # 根据情况生成计划
+    if daily_pnl > 0:
+        plans.append("✅ 今日盈利，保持现有仓位，观察持续性")
+    elif daily_pnl < -10:
+        plans.append("⚠️ 今日亏损较大，关注企稳信号，谨慎操作")
+    else:
+        plans.append("📊 今日震荡，持仓观望为主")
+    
+    # 根据盈利持仓数量
+    if profitable_count == 0:
+        plans.append("🔍 持仓全线下跌，检查是否需调仓换股")
+    elif profitable_count == total_count:
+        plans.append("✅ 持仓全线上涨，考虑是否止盈部分仓位")
+    
+    # 根据市场趋势
+    if "大跌" in market_trend:
+        plans.append("📉 市场大跌，关注超跌反弹机会")
+    elif "大涨" in market_trend:
+        plans.append("📈 市场大涨，警惕冲高回落")
+    
+    # 固定计划（根据日期判断）
+    weekday = datetime.now().strftime('%w')
+    if weekday == '0':  # 周日
+        plans.append("⏰ 明日周一，关注 14:00 交易决策建议")
+    elif weekday == '4':  # 周五
+        plans.append("📊 明日周五，关注周末消息面变化")
+    
+    # 至少保证 3 条计划
+    if len(plans) < 3:
+        plans.append("📰 关注宏观经济数据和政策面变化")
+    if len(plans) < 3:
+        plans.append("🔍 观察各板块走势，寻找结构性机会")
+    
+    return plans
+
+
 def generate_review(state, ledger, date, market_data, news_list):
     """生成复盘报告"""
     positions = state.get('positions', [])
@@ -167,6 +220,11 @@ def generate_review(state, ledger, date, market_data, news_list):
         position_analysis.append(analysis)
     position_text = '\n\n'.join(position_analysis)
     
+    # 生成明日计划（动态）
+    tomorrow_plan = generate_tomorrow_plan(positions_data, market_data, daily_pnl)
+    plan_lines = [f"- [ ] {plan}" for plan in tomorrow_plan]
+    plan_text = '\n'.join(plan_lines)
+    
     # 生成报告数据
     review_data = {
         'date': date,
@@ -186,6 +244,7 @@ def generate_review(state, ledger, date, market_data, news_list):
         'market_data': market_text,
         'news_list': news_text,
         'position_analysis': position_text,
+        'tomorrow_plan': plan_text,
         'challenge_days': (datetime.now() - datetime.strptime(state.get('challenge_start', '2026-03-09'), '%Y-%m-%d')).days,
         'target_amount': '1300 元（+30% 挑战）',
         'distance_to_target': f"+{1300 - portfolio_value:.2f} 元"
@@ -247,9 +306,7 @@ def render_markdown(data):
 
 ## 🎯 明日计划
 
-- [ ] 观察各板块走势，等待企稳信号
-- [ ] 根据决策建议评估是否调仓
-- [ ] 关注宏观经济数据和政策面
+{{tomorrow_plan}}
 
 ---
 
