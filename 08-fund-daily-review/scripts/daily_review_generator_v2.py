@@ -77,11 +77,21 @@ def get_finance_news(api_key=None):
         # 格式统一化
         formatted_news = []
         for news in news_list[:8]:  # 限制最多 8 条
+            # 处理来源字段（可能是字典或字符串）
+            source = news.get('source', '')
+            if isinstance(source, dict):
+                source = source.get('name', '')
+            
+            # 处理时间字段
+            time_str = news.get('time', '')
+            if time_str and len(time_str) > 16:
+                time_str = time_str[:16]
+            
             formatted_news.append({
                 'title': news.get('title', ''),
                 'url': news.get('url', ''),
-                'time': news.get('time', '')[:16] if news.get('time') else '',
-                'source': news.get('source', '')
+                'time': time_str,
+                'source': source
             })
         
         return formatted_news
