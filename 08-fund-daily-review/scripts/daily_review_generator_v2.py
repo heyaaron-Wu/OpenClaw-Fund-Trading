@@ -85,7 +85,15 @@ def get_finance_news(api_key=None):
         with urllib.request.urlopen(req, timeout=5) as response:
             result = json_lib.loads(response.read().decode('utf-8'))
             news_list = result.get('data', [])[:5]
-            return [item.get('title', '') for item in news_list]
+            # 返回标题 + 链接 + 时间
+            return [
+                {
+                    'title': item.get('title', ''),
+                    'url': item.get('jumpUrl', item.get('url', '')),
+                    'time': item.get('publishTime', '')[:16].replace('T', ' ') if item.get('publishTime') else ''
+                }
+                for item in news_list
+            ]
     except Exception as e:
         print(f"⚠️  新闻获取失败：{e}")
         return []
@@ -132,10 +140,16 @@ def generate_review(state, ledger, date, market_data, news_list):
         market_lines.append(f"- {name}：**{sign}{pct:.2f}%**")
     market_text = '\n'.join(market_lines) if market_lines else '- 数据暂缺'
     
-    # 生成新闻列表
+    # 生成新闻列表（带链接）
     news_lines = []
     for i, news in enumerate(news_list[:5], 1):
-        news_lines.append(f"{i}. **{news}**")
+        title = news.get('title', '')
+        url = news.get('url', '')
+        time_str = news.get('time', '')
+        if url:
+            news_lines.append(f"{i}. **{title}**\n   *来源：[链接]({url})* | {time_str}")
+        else:
+            news_lines.append(f"{i}. **{title}**")
     news_text = '\n'.join(news_lines) if news_lines else '- 暂无新闻数据'
     
     # 生成持仓分析
