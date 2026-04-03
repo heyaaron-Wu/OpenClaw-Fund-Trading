@@ -84,15 +84,17 @@ def get_finance_news(api_key=None):
         
         with urllib.request.urlopen(req, timeout=5) as response:
             result = json_lib.loads(response.read().decode('utf-8'))
-            news_list = result.get('data', [])[:5]
-            # 返回标题 + 链接 + 时间
+            # 妙想 API 返回结构：data.data.llmSearchResponse.data
+            news_data = result.get('data', {}).get('llmSearchResponse', {}).get('data', [])
+            # 返回标题 + 链接 + 时间 + 来源
             return [
                 {
                     'title': item.get('title', ''),
-                    'url': item.get('jumpUrl', item.get('url', '')),
-                    'time': item.get('publishTime', '')[:16].replace('T', ' ') if item.get('publishTime') else ''
+                    'url': item.get('jumpUrl', ''),
+                    'time': item.get('date', '')[:16] if item.get('date') else '',
+                    'source': item.get('source', '')
                 }
-                for item in news_list
+                for item in news_data[:5]
             ]
     except Exception as e:
         print(f"⚠️  新闻获取失败：{e}")
@@ -140,17 +142,22 @@ def generate_review(state, ledger, date, market_data, news_list):
         market_lines.append(f"- {name}：**{sign}{pct:.2f}%**")
     market_text = '\n'.join(market_lines) if market_lines else '- 数据暂缺'
     
-    # 生成新闻列表（带链接）
+    # 生成新闻列表（带链接）- 符合 README.md 规范格式
     news_lines = []
     for i, news in enumerate(news_list[:5], 1):
         title = news.get('title', '')
         url = news.get('url', '')
         time_str = news.get('time', '')
-        if url:
+        source = news.get('source', '')
+        
+        if url and source:
+            # 格式：*来源：[来源名](链接)* | 时间
+            news_lines.append(f"{i}. **{title}**\n   *来源：[{source}]({url})* | {time_str}")
+        elif url:
             news_lines.append(f"{i}. **{title}**\n   *来源：[链接]({url})* | {time_str}")
         else:
             news_lines.append(f"{i}. **{title}**")
-    news_text = '\n'.join(news_lines) if news_lines else '- 暂无新闻数据'
+    news_text = '\n\n'.join(news_lines) if news_lines else '- 暂无新闻数据'
     
     # 生成持仓分析
     position_analysis = []
