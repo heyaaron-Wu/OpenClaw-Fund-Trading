@@ -23,5 +23,35 @@
   ],
   "market_data": {
     "科创 50": 0.82
+  },
+  "verified": true,
+  "verification": {
+    "date": "2026-04-02",
+    "total": 3,
+    "correct": 1,
+    "wrong": 2,
+    "details": [
+      {
+        "code": "011612",
+        "name": "华夏科创 50ETF 联接 A",
+        "action": "HOLD",
+        "daily_pnl_rate": -2.47,
+        "correct": false
+      },
+      {
+        "code": "013180",
+        "name": "广发新能源车电池 ETF 联接 C",
+        "action": "HOLD",
+        "daily_pnl_rate": -1.27,
+        "correct": true
+      },
+      {
+        "code": "014320",
+        "name": "德邦半导体产业混合 C",
+        "action": "HOLD",
+        "daily_pnl_rate": -2.79,
+        "correct": false
+      }
+    ]
   }
 }
