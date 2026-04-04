@@ -48,5 +48,6 @@
   "manual_update": true,
   "last_manual_date": "2026-04-01",
   "last_manual_note": "根据蚂蚁财富实际数据修正 3 月全月 +4 月 1 日收益",
-  "cumulative_pnl": -6.23
+  "cumulative_pnl": -6.23,
+  "principal": 999.52
 }
