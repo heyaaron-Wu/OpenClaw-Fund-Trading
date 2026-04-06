@@ -1,6 +1,6 @@
 #!/bin/bash
 # 版本更新检查脚本 - 每晚 23:30 执行
-# 功能：检查当日提交，更新 CHANGELOG.md 和 README.md
+# 功能：检查当日提交，更新 CHANGELOG.md 和 README.md + 飞书推送
 
 set -e
 
@@ -9,6 +9,56 @@ CHANGELOG_FILE="$WORKSPACE/07-version-updates/CHANGELOG.md"
 README_FILE="$WORKSPACE/README.md"
 TODAY=$(date +%Y-%m-%d)
 TODAY_CN=$(date +"%Y 年%m 月%d 日")
+
+# 飞书 Webhook 配置
+FEISHU_WEBHOOK="https://open.feishu.cn/open-apis/bot/v2/hook/f1286a3e-4e41-4809-a0bc-fd2bbbbc3f10"
+
+# 飞书推送函数
+send_feishu_alert() {
+    local title="$1"
+    local content="$2"
+    
+    # 使用 Python 构建 JSON（避免 bash 转义问题）
+    python3 << PYEOF
+import urllib.request
+import json
+
+webhook = "$FEISHU_WEBHOOK"
+title = '''$title'''
+content = '''$content'''
+
+payload = {
+    "msg_type": "interactive",
+    "card": {
+        "header": {
+            "title": {"tag": "plain_text", "content": title},
+            "template": "blue"
+        },
+        "elements": [
+            {"tag": "markdown", "content": content}
+        ]
+    }
+}
+
+try:
+    req = urllib.request.Request(
+        webhook,
+        data=json.dumps(payload, ensure_ascii=False).encode('utf-8'),
+        headers={'Content-Type': 'application/json'}
+    )
+    response = urllib.request.urlopen(req, timeout=10)
+    result = json.loads(response.read().decode('utf-8'))
+    if result.get('StatusCode') == 0 or result.get('code') == 0:
+        print("✅ 飞书推送成功")
+        exit(0)
+    else:
+        print(f"⚠️  飞书推送失败：{result}")
+        exit(1)
+except Exception as e:
+    print(f"❌ 推送异常：{e}")
+    exit(1)
+PYEOF
+}
 
 echo "🔍 版本更新检查"
 echo "=============="
@@ -23,6 +73,14 @@ TODAY_COMMITS=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --on
 
 if [ "$TODAY_COMMITS" -eq 0 ]; then
     echo "✅ 今日无提交记录，无需更新"
+    
+    # 发送无更新通知
+    FEISHU_CONTENT="**日期:** $TODAY
+**提交数:** 0 个
+
+✅ 今日无系统更新，继续运行中"
+    
+    send_feishu_alert "📝 版本更新日志 - 无更新" "$FEISHU_CONTENT"
     exit 0
 fi
 
@@ -65,6 +123,15 @@ EFFECTIVE_CHANGES=$((NEW_FEATURES + OPTIMIZATIONS + BUG_FIXES + SECURITY + DOCS)
 
 if [ "$EFFECTIVE_CHANGES" -eq 0 ]; then
     echo "✅ 今日提交仅为复盘文档，跳过版本更新"
+    
+    # 发送通知
+    FEISHU_CONTENT="**日期:** $TODAY
+**提交数:** $TODAY_COMMITS 个
+**有效更新:** 0 个
+
+📊 今日仅有基金复盘文档，版本日志无需更新"
+    
+    send_feishu_alert "📝 版本更新日志 - 仅复盘" "$FEISHU_CONTENT"
     exit 0
 fi
 
@@ -369,6 +436,35 @@ echo "🚀 推送到 GitHub..."
 git pull --rebase || true
 git push origin OpenClaw-Fund-Trading
 
+# ========== 飞书推送 ==========
+echo ""
+echo "📢 飞书推送..."
+
+# 构建推送内容
+PUSH_STATUS="成功"
+PUSH_URL="https://github.com/heyaaron-Wu/Semi-automatic-artificial-intelligence-system/blob/OpenClaw-Fund-Trading/07-version-updates/CHANGELOG.md"
+
+FEISHU_CONTENT="**日期:** $TODAY
+**版本:** v$VERSION_NUM
+**提交数:** $TODAY_COMMITS 个
+
+**更新分类:**
+- ✨ 新增：$NEW_FEATURES 个
+- 🚀 优化：$OPTIMIZATIONS 个
+- 🐛 修复：$BUG_FIXES 个
+- 📝 文档：$DOCS 个
+
+**更新文件:**
+- CHANGELOG.md ✅
+- README.md ✅
+
+**GitHub:** [查看 CHANGELOG]($PUSH_URL)
+
+---
+✅ 版本更新完成，已推送到 GitHub"
+
+send_feishu_alert "📝 版本更新日志 - v$VERSION_NUM" "$FEISHU_CONTENT"
+
 echo ""
 echo "================================"
 echo "✅ 版本更新检查完成！"
@@ -381,5 +477,5 @@ echo "   - CRON_CONFIG.md (如有变更) ✅"
 echo "   - 其他相关文档 (如有变更) ✅"
 echo "📊 今日提交：$TODAY_COMMITS 个"
 echo "📦 推送分支：OpenClaw-Fund-Trading"
-echo "🔗 GitHub: https://github.com/heyaaron-Wu/Semi-automatic-artificial-intelligence-system/blob/OpenClaw-Fund-Trading/07-version-updates/CHANGELOG.md"
+echo "🔗 GitHub: $PUSH_URL"
 echo ""
