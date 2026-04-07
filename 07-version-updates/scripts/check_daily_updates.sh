@@ -65,7 +65,8 @@ echo "=============="
 echo "日期：$TODAY"
 echo ""
 
-cd "$WORKSPACE"
+# 切换到 git 仓库目录
+cd "$WORKSPACE/Semi-automatic-artificial-intelligence-system"
 
 # 检查今日是否有提交
 echo "📊 检查今日提交记录..."
