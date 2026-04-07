@@ -395,8 +395,8 @@ echo "✅ 相关文档检查完成"
 
 # ========== 自动更新 README.md ==========
 echo ""
-echo "🔄 自动更新 README.md..."
-bash "$WORKSPACE/07-version-updates/scripts/update_readme.py" || echo "⚠️  README 更新失败，跳过"
+echo "🔄 自动更新 README.md 及相关文档..."
+python3.11 "$WORKSPACE/07-version-updates/scripts/update_readme.py" || echo "⚠️  README 更新失败，跳过"
 
 # 提交变更
 echo ""
@@ -406,21 +406,9 @@ cd "$WORKSPACE"
 # 添加所有相关文档
 git add "$CHANGELOG_FILE" 2>/dev/null || true
 git add "$README_FILE" 2>/dev/null || true
-
-# 添加其他相关文档（如果存在变更）
-RELATED_DOCS=(
-    "03-system-docs/file-structure.md"
-    "07-version-updates/CRON_CONFIG.md"
-    "07-version-updates/VERSION_CHECK_CRON.md"
-    "07-version-updates/MODULE_DOCS_CRON.md"
-    "08-fund-daily-review/README.md"
-)
-
-for doc in "${RELATED_DOCS[@]}"; do
-    if [ -f "$doc" ]; then
-        git add "$doc" 2>/dev/null || true
-    fi
-done
+git add "08-fund-daily-review/README.md" 2>/dev/null || true
+git add "03-system-docs/FILE_STRUCTURE.md" 2>/dev/null || true
+git add "07-version-updates/CRON_CONFIG.md" 2>/dev/null || true
 
 COMMIT_MSG="📝 自动更新版本日志 - $TODAY"
 git commit -m "$COMMIT_MSG" 2>/dev/null || echo "无变更或已提交"

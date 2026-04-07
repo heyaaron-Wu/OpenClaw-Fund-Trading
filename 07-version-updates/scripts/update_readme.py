@@ -1,105 +1,124 @@
-#!/bin/bash
-# README 自动更新脚本
-# 功能：根据系统配置自动更新 README.md 中的定时任务列表和技能列表
+#!/usr/bin/env python3
+"""
+README 自动更新脚本
+功能：根据 CHANGELOG.md 自动更新 README.md 中的版本号和相关文档
+"""
 
-set -e
-
-WORKSPACE="/home/admin/.openclaw/workspace"
-README_FILE="$WORKSPACE/Semi-automatic-artificial-intelligence-system/README.md"
-CRON_FILE="$HOME/.openclaw/cron/jobs.json"
-SKILLS_DIR="$WORKSPACE/skills"
-
-echo "🔄 自动更新 README.md..."
-echo ""
-
-# ========== 1. 更新定时任务列表 ==========
-echo "📅 更新定时任务列表..."
-
-# 生成定时任务表格
-TASK_TABLE=$(cat "$CRON_FILE" | jq -r '
-  .jobs | sort_by(.schedule.expr) | .[] | 
-  "| \(.name) | \(.schedule.expr) | \(.description) | \(.notify_on | join(", ")) |"
-')
-
-TASK_COUNT=$(cat "$CRON_FILE" | jq '.jobs | length')
-
-# 使用 Python 安全替换（避免 sed 特殊字符问题）
-python3.11 << PYEOF
+import sys
 import re
+from pathlib import Path
+from datetime import datetime
 
-with open('$README_FILE', 'r', encoding='utf-8') as f:
-    content = f.read()
+WORKSPACE = Path('/home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system')
 
-# 替换定时任务表格（在 <!-- AUTO:task_table --> 和 <!-- END AUTO --> 之间）
-task_section = """<!-- AUTO:task_table -->
-### 定时任务列表（$TASK_COUNT 个）
-
-| 任务名 | 时间 | 作用 | 推送策略 |
-|------|------|------|----------|
-$TASK_TABLE
-<!-- END AUTO -->"""
-
-# 使用正则替换
-pattern = r'<!-- AUTO:task_table -->.*?<!-- END AUTO -->'
-content = re.sub(pattern, task_section, content, flags=re.DOTALL)
-
-with open('$README_FILE', 'w', encoding='utf-8') as f:
-    f.write(content)
-
-print(f"   ✅ 定时任务列表已更新（$TASK_COUNT 个）")
-PYEOF
-
-# ========== 2. 更新技能列表 ==========
-echo ""
-echo "🧩 更新技能列表..."
-
-# 获取技能列表（排除 fund-challenge 子技能）
-SKILL_LIST=$(ls -1 "$SKILLS_DIR" | grep -v "^fund-challenge$" | while read skill; do
-    # 获取技能名称
-    skill_name="$skill"
+def get_latest_version():
+    """从 CHANGELOG.md 获取最新版本号"""
+    changelog_path = WORKSPACE / '07-version-updates' / 'CHANGELOG.md'
+    if not changelog_path.exists():
+        return None
     
-    # 尝试读取 SKILL.md 获取描述
-    skill_dir="$SKILLS_DIR/$skill"
-    if [ -f "$skill_dir/SKILL.md" ]; then
-        # 读取第一行非空行作为描述
-        desc=$(grep -v "^#" "$skill_dir/SKILL.md" | grep -v "^$" | head -1 | cut -c1-50)
-        if [ -z "$desc" ]; then
-            desc="技能模块"
-        fi
-    else
-        desc="技能模块"
-    fi
+    content = changelog_path.read_text(encoding='utf-8')
+    # 匹配版本号格式：## vX.Y.Z - YYYY-MM-DD
+    match = re.search(r'^## v(\d+\.\d+\.\d+)\s*-\s*\d{4}-\d{2}-\d{2}', content, re.MULTILINE)
+    if match:
+        return f'v{match.group(1)}'
+    return None
+
+
+def update_readme_version(readme_path, version):
+    """更新 README.md 中的版本号"""
+    if not readme_path.exists():
+        print(f"  ℹ️  {readme_path} 不存在，跳过")
+        return False
     
-    echo "| \`$skill_name\` | $desc |"
-done)
+    content = readme_path.read_text(encoding='utf-8')
+    
+    # 尝试更新"当前版本：vX.Y.Z"格式
+    if '当前版本：' in content:
+        old_content = content
+        content = re.sub(r'当前版本：v\d+\.\d+\.\d+', f'当前版本：{version}', content)
+        if content != old_content:
+            readme_path.write_text(content, encoding='utf-8')
+            print(f"  ✅ 版本号已更新：{version}")
+            return True
+        else:
+            print(f"  ℹ️  版本号已是最新：{version}")
+            return False
+    else:
+        print(f"  ℹ️  README.md 无版本号字段，跳过")
+        return False
 
-SKILL_COUNT=$(ls -1 "$SKILLS_DIR" | grep -v "^fund-challenge$" | wc -l)
 
-# 使用 Python 安全替换
-python3.11 << PYEOF
-import re
+def update_file_structure():
+    """更新 FILE_STRUCTURE.md 的更新时间"""
+    fs_path = WORKSPACE / '03-system-docs' / 'FILE_STRUCTURE.md'
+    if not fs_path.exists():
+        return False
+    
+    content = fs_path.read_text(encoding='utf-8')
+    today = datetime.now().strftime('%Y-%m-%d')
+    
+    # 更新时间戳
+    if '最后更新：' in content:
+        old_content = content
+        content = re.sub(r'最后更新：\d{4}-\d{2}-\d{2}', f'最后更新：{today}', content)
+        if content != old_content:
+            fs_path.write_text(content, encoding='utf-8')
+            print(f"  ✅ FILE_STRUCTURE.md 已更新时间")
+            return True
+    
+    return False
 
-with open('$README_FILE', 'r', encoding='utf-8') as f:
-    content = f.read()
 
-# 替换技能列表（在 <!-- AUTO:skill_list --> 和 <!-- END AUTO --> 之间）
-skill_section = """<!-- AUTO:skill_list -->
-### 通用技能（$SKILL_COUNT 个）
+def update_cron_config():
+    """更新 CRON_CONFIG.md 的更新时间"""
+    cron_path = WORKSPACE / '07-version-updates' / 'CRON_CONFIG.md'
+    if not cron_path.exists():
+        return False
+    
+    content = cron_path.read_text(encoding='utf-8')
+    today = datetime.now().strftime('%Y-%m-%d')
+    
+    # 更新时间戳
+    if '最后更新：' in content:
+        old_content = content
+        content = re.sub(r'最后更新：\d{4}-\d{2}-\d{2}', f'最后更新：{today}', content)
+        if content != old_content:
+            cron_path.write_text(content, encoding='utf-8')
+            print(f"  ✅ CRON_CONFIG.md 已更新时间")
+            return True
+    
+    return False
 
-| 技能名称 | 作用 |
-|----------|------|
-$SKILL_LIST
-<!-- END AUTO -->"""
 
-# 使用正则替换
-pattern = r'<!-- AUTO:skill_list -->.*?<!-- END AUTO -->'
-content = re.sub(pattern, skill_section, content, flags=re.DOTALL)
+def main():
+    print("🔄 自动更新 README 及相关文档...")
+    
+    # 1. 获取最新版本号
+    version = get_latest_version()
+    if not version:
+        print("  ⚠️  无法获取最新版本号")
+        return 1
+    
+    print(f"  📊 最新版本：{version}")
+    
+    # 2. 更新主 README.md
+    readme_path = WORKSPACE / 'README.md'
+    update_readme_version(readme_path, version)
+    
+    # 3. 更新 08-fund-daily-review/README.md
+    fund_readme_path = WORKSPACE / '08-fund-daily-review' / 'README.md'
+    update_readme_version(fund_readme_path, version)
+    
+    # 4. 更新 FILE_STRUCTURE.md
+    update_file_structure()
+    
+    # 5. 更新 CRON_CONFIG.md
+    update_cron_config()
+    
+    print("  ✅ 文档检查完成")
+    return 0
 
-with open('$README_FILE', 'w', encoding='utf-8') as f:
-    f.write(content)
 
-print(f"   ✅ 技能列表已更新（$SKILL_COUNT 个）")
-PYEOF
-
-echo ""
-echo "✅ README 自动更新完成！"
+if __name__ == '__main__':
+    sys.exit(main())
