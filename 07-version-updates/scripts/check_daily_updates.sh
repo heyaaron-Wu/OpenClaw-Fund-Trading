@@ -365,36 +365,29 @@ fi
 echo ""
 echo "📊 统计今日 Token 消耗..."
 
-# 检查是否有 token 统计文件
-TOKEN_LOG="$WORKSPACE/.openclaw/token_usage.jsonl"
-if [ -f "$TOKEN_LOG" ]; then
-    # 统计今日 token 使用
-    TODAY_TOKEN=$(grep "$TODAY" "$TOKEN_LOG" 2>/dev/null | python3.11 -c "
-import sys, json
-total = {'input': 0, 'output': 0}
+# 从 session 历史估算 token 使用
+SESSIONS_DIR="$HOME/.openclaw/agents/main/sessions"
+if [ -d "$SESSIONS_DIR" ]; then
+    # 统计今日 session 的 token 使用
+    TODAY_TOKENS=$(find "$SESSIONS_DIR" -name "*.jsonl" -mtime -1 -exec grep -h '"totalTokens":' {} \; 2>/dev/null | python3.11 -c "
+import sys, re
+total = 0
 for line in sys.stdin:
-    try:
-        data = json.loads(line)
-        total['input'] += data.get('tokens', {}).get('input', 0)
-        total['output'] += data.get('tokens', {}).get('output', 0)
-    except:
-        pass
-print(f\"{total['input']} {total['output']}\")
+    match = re.search(r'\"totalTokens\":\s*(\d+)', line)
+    if match:
+        total += int(match.group(1))
+print(total)
 " 2>/dev/null)
     
-    if [ -n "$TODAY_TOKEN" ]; then
-        INPUT_TOKENS=$(echo "$TODAY_TOKEN" | cut -d' ' -f1)
-        OUTPUT_TOKENS=$(echo "$TODAY_TOKEN" | cut -d' ' -f2)
-        TOTAL_TOKENS=$((INPUT_TOKENS + OUTPUT_TOKENS))
-        echo "  💰 今日 Token 消耗："
-        echo "     输入：$INPUT_TOKENS tokens"
-        echo "     输出：$OUTPUT_TOKENS tokens"
-        echo "     总计：$TOTAL_TOKENS tokens"
+    if [ -n "$TODAY_TOKENS" ] && [ "$TODAY_TOKENS" -gt 0 ]; then
+        echo "  💰 今日 Token 消耗（估算）："
+        echo "     总计：$TODAY_TOKENS tokens"
+        echo "     ℹ️  基于 session 历史估算"
     else
         echo "  ℹ️  今日无 token 使用记录"
     fi
 else
-    echo "  ℹ️  Token 日志文件不存在：$TOKEN_LOG"
+    echo "  ℹ️  Token 统计功能未启用"
 fi
 
 echo ""
