@@ -337,6 +337,31 @@ workspace/
 ### 定时任务说明
 
 <!-- AUTO:task_table -->
+### 任务依赖关系
+
+```
+交易日任务依赖关系：
+
+09:00 fund-daily-check（健康检查）
+    │
+    ├──▶ 13:35 fund-1335-universe（候选池刷新）
+    │         │
+    │         └──▶ 14:00 fund-1400-decision（交易决策）
+    │                   │
+    │                   └──▶ 14:48 fund-1448-exec-gate（执行门控）
+    │
+    └──▶ 22:30 fund-2230-review（日终复盘）
+              │
+              └──▶ 23:30 system-version-update（版本更新）
+
+每日任务：
+01:00 system-daily-optimize（系统清理）
+08:00 system-health-check（健康检查）
+
+监控任务：
+每 6 小时 cron-health-monitor（Cron 健康监控）
+```
+
 ### 定时任务列表
 
 <!-- START CRON TASKS -->
@@ -356,6 +381,26 @@ workspace/
 | fund-1335-universe | 35 13 * * 1-5 | 交易日 13:35 刷新候选基金池（自动重试 + 多数据源），评分识别高评分机会 | high_score |
 
 <!-- END CRON TASKS -->
+
+### 推送策略说明
+
+| 策略 | 说明 | 适用场景 | 示例任务 |
+|------|------|---------|---------|
+| **always** | 每次都推送 | 日报、周报、决策 | fund-2230-review, system-version-update |
+| **error** | 仅错误时推送 | 健康检查、系统任务 | system-health-check, system-daily-optimize |
+| **timeout** | 仅超时时推送 | 长时间任务 | system-daily-optimize |
+| **warning** | 仅预警时推送 | 监控任务 | cron-health-monitor |
+| **high_score** | 高分机会推送 | 候选池刷新 | fund-1335-universe |
+| **low_score** | 低分预警推送 | 执行门控 | fund-1448-exec-gate |
+| **none** | 不推送 | 静默执行 | fund-daily-check |
+
+**说明：**
+- `always`：无论成功失败都推送（适合需要每日确认的任务）
+- `error/timeout`：仅在异常时推送（适合后台任务）
+- `high_score/low_score`：根据评分结果推送（适合决策类任务）
+- `none`：不推送，结果记录在日志中
+
+---
 
 ### 每日任务
 
