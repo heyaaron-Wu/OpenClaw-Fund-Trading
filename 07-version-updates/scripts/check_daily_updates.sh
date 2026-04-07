@@ -393,10 +393,10 @@ fi
 echo ""
 echo "✅ 相关文档检查完成"
 
-# ========== 自动更新 README.md ==========
+# ========== 智能同步 README.md ==========
 echo ""
-echo "🔄 自动更新 README.md 及相关文档..."
-python3.11 "$WORKSPACE/07-version-updates/scripts/update_readme.py" || echo "⚠️  README 更新失败，跳过"
+echo "🔄 智能同步 README.md 内容..."
+python3.11 "$WORKSPACE/07-version-updates/scripts/sync_readme.py" || echo "⚠️  README 同步失败，跳过"
 
 # 提交变更
 echo ""
