@@ -442,22 +442,27 @@ workspace/
 sequenceDiagram
     autonumber
     participant Cron as 定时任务
-    participant Orch as 编排器
-    participant Pre as 预检管线
-    participant Ev as 证据生成
-    participant Val as 证据验证
-    participant Gate as 发布门控
+    participant Pre as 预检管线 (09:00)
+    participant Uni as 候选池 (13:35)
+    participant Dec as 交易决策 (14:00)
+    participant Gate as 执行门控 (14:48)
     participant User as 用户
     participant State as state.json
 
-    Cron->>Orch: 触发任务 (14:00)
-    Orch->>Pre: 预检 (计算/规则)
-    Pre->>Ev: 生成证据
-    Ev->>Val: 验证证据
-    Val->>Gate: 门控判断
-    Gate-->>User: 推送决策 (HOLD/BUY/SELL)
-    User-->>Orch: 确认执行
-    Orch->>State: 更新状态
+    Cron->>Pre: 09:00 健康检查
+    Pre->>Uni: 13:35 刷新候选池
+    Uni->>Dec: 14:00 生成决策
+    Dec->>Dec: 获取市场数据
+    Dec->>Dec: 分析持仓表现
+    Dec->>Dec: 参考候选池评分
+    Dec-->>User: 推送决策 (HOLD/BUY/SELL)
+    Note over Dec,User: 仅异常/建议时推送
+    Dec->>Gate: 14:48 执行确认
+    Gate->>Gate: 验证决策完整性
+    Gate->>Gate: 检查持仓状态
+    Gate->>Gate: 评分验证
+    Gate-->>User: 异常时告警
+    Gate->>State: 更新状态 (22:30)
 ```
 
 ### 决策输出示例
