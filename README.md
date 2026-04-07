@@ -271,6 +271,32 @@ workspace/
 | `decision_template_shortener.py` | 决策文案短格式化 | 控制在 300 字内 |
 | `decision_delta_guard.py` | 同日重复决策防抖 | 避免重复推送 |
 
+### 📋 完整脚本清单（自动同步）
+
+<!-- START SCRIPTS -->
+
+| 脚本名 | 作用 | 分类 |
+|------|------|------|
+| `auto_review_automation.py` | 日终复盘自动化脚本（增强版 v2） | 报告 |
+| `build_evidence.py` | 构建证据数据 | 核心 |
+| `daily_pnl_updater_v2.py` | 每日收益更新脚本 (增强版) | 核心 |
+| `decision_delta_guard.py` | 决策防重复检查 | 决策 |
+| `decision_maker.py` | 生成交易决策 | 决策 |
+| `exec_gate.py` | 执行门控确认 | 决策 |
+| `fetch_fund_nav.py` | 获取基金净值 | 核心 |
+| `is_trading_day.py` | 检查是否为交易日 | 核心 |
+| `market_alert.py` | 市场异常监控 | 监控 |
+| `multi_source_news.py` | 多源新闻获取 | 核心 |
+| `preflight_guard.py` | 预检管线 | 监控 |
+| `system_weekly_report.py` | 系统周报生成 | 报告 |
+| `universe_refresh.py` | 候选池刷新 | 核心 |
+| `validate_evidence.py` | 证据验证 | 监控 |
+| `weekly_report.py` | 周报复盘 | 报告 |
+
+<!-- END SCRIPTS -->
+
+---
+
 ### 📱 飞书推送格式
 
 **统一使用富文本卡片格式**，包含以下板块：

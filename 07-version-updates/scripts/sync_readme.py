@@ -80,27 +80,49 @@ def get_script_list():
         if py_file.name.startswith('__'):
             continue
         
+        # 跳过自动化工具脚本
+        if py_file.name in ['sync_readme.py', 'update_readme.py']:
+            continue
+        
         # 读取文件第一行作为描述
         content = py_file.read_text(encoding='utf-8', errors='ignore')
         first_line = content.split('\n')[0].replace('#', '').strip()
         
+        # 分类
+        category = 'core'
+        if 'report' in py_file.name:
+            category = 'report'
+        elif 'monitor' in py_file.name or 'guard' in py_file.name:
+            category = 'monitor'
+        elif 'decision' in py_file.name or 'exec' in py_file.name:
+            category = 'decision'
+        
         scripts.append({
             'name': py_file.name,
-            'description': first_line[:60]
+            'description': first_line[:60],
+            'category': category
         })
     
-    return sorted(scripts, key=lambda x: x['name'])
+    return sorted(scripts, key=lambda x: (x['category'], x['name']))
 
 
 def generate_script_table(scripts):
     """生成脚本清单表格 Markdown"""
     lines = [
-        "| 脚本名 | 作用 |",
-        "|------|------|"
+        "| 脚本名 | 作用 | 分类 |",
+        "|------|------|------|"
     ]
     
+    category_map = {
+        'core': '核心',
+        'report': '报告',
+        'monitor': '监控',
+        'decision': '决策'
+    }
+    
     for script in scripts:
-        lines.append(f"| `{script['name']}` | {script['description']} |")
+        category_cn = category_map.get(script['category'], '其他')
+        lines.append(f"| `{script['name']}` | {script['description']} | {category_cn} |")
     
     return '\n'.join(lines)
 
@@ -160,9 +182,9 @@ def main():
             print(f"  ✅ 定时任务列表已更新（{len(tasks)} 个任务）")
             updated = True
     
-    # 3. 更新脚本清单
+    # 3. 更新脚本清单（如果 README 中有标记）
     scripts = get_script_list()
-    if scripts:
+    if scripts and '<!-- START SCRIPTS -->' in content:
         script_table = generate_script_table(scripts)
         old_content = content
         content = update_readme_section(
