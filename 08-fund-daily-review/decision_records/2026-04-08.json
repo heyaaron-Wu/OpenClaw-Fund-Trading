@@ -1,0 +1,45 @@
+{
+  "date": "2026-04-08",
+  "decision_time": "2026-04-08T14:00:00+08:00",
+  "market_status": "trading",
+  "positions": [
+    {
+      "code": "011612",
+      "name": "华夏科创 50ETF 联接 A",
+      "action": "HOLD",
+      "reason": "科技股反弹趋势确立，继续持有观察持续性",
+      "target_price": null,
+      "stop_loss": null
+    },
+    {
+      "code": "013180",
+      "name": "广发新能源车电池 ETF 联接 C",
+      "action": "HOLD",
+      "reason": "新能源车板块企稳回升，等待进一步确认信号",
+      "target_price": null,
+      "stop_loss": null
+    },
+    {
+      "code": "014320",
+      "name": "德邦半导体产业混合 C",
+      "action": "HOLD",
+      "reason": "半导体板块强势，国产替代逻辑持续，继续持有",
+      "target_price": null,
+      "stop_loss": null
+    }
+  ],
+  "market_analysis": {
+    "sentiment": "bullish",
+    "key_drivers": [
+      "科技股大幅反弹",
+      "半导体板块强势上涨",
+      "新能源车产业链企稳"
+    ],
+    "risk_factors": [
+      "单日涨幅较大，注意回调风险",
+      "市场成交量需持续放大"
+    ]
+  },
+  "summary": "全线 HOLD，三大持仓板块均表现强势，继续持有观察",
+  "accuracy_note": "待次日验证"
+}
