@@ -90,7 +90,7 @@ def fetch_akshare_data():
         # 获取指数数据
         data = {}
         try:
-            stock_zh_index_spot_df = ak.stock_zh_index_spot()
+            stock_zh_index_spot_df = ak.stock_zh_index_spot_em()
             # 提取需要的指数
             for _, row in stock_zh_index_spot_df.iterrows():
                 if '科创 50' in str(row.get('name', '')):
