@@ -1,205 +1,177 @@
 # 基金日终复盘系统
 
-**每日交易结束后自动生成复盘报告，集成东方财富妙想 API，推送到飞书群并归档到 GitHub**
+自动化的基金投资复盘系统，每日 22:30 自动生成复盘报告并推送到 GitHub 归档。
 
 ---
 
-## 🚀 核心功能
+## 📊 核心功能
 
-### 1. 自动日终复盘
-- ⏰ **执行时间**：每个交易日 22:30
-- 📊 **内容**：持仓盈亏 + 市场分析 + 亏损原因 + 后市展望
-- 🔄 **归档**：自动提交到 GitHub
-
-### 2. 东方财富资讯集成
-- 📰 **盘后收评**：15:30 自动获取当日收评
-- 🤖 **AI 总结**：提取重点，不是复制粘贴
-- 🔗 **来源链接**：可点击查看详情
-- 🔄 **多源 fallback**：收评→复盘→要闻，智能切换
-
-### 3. 飞书通知
-- 📢 **简洁版**：持仓 + 资讯摘要 + 挑战进度
-- 🔗 **GitHub 链接**：一键查看完整报告
-- ⏰ **完成时间**：约 22:35 推送
-
-### 4. 系统监控
-- 📊 **版本更新**：23:30 检查当日提交
-- 🔍 **Cron 健康**：每小时检查任务状态
-- ⚠️  **异常告警**：失败自动重试 + 飞书通知
+- **自动复盘**：每日 22:30 自动生成日终复盘报告
+- **数据校验**：每日 22:00 自动校验数据一致性
+- **自动备份**：每日 22:00 自动备份关键数据
+- **GitHub 归档**：复盘报告自动推送到 GitHub
+- **飞书通知**：关键操作结果自动推送
 
 ---
 
-## 📊 复盘报告模板
-
-```markdown
-# 日终复盘 YYYY-MM-DD
-
-## 📊 今日盈亏
-| 项目 | 数值 |
-|------|------|
-| 今日盈亏 | +/-XX.XX 元 |
-| 组合市值 | XXX.XX 元 |
-| 投入本金 | XXX.XX 元 |
-| 累计盈亏 | +/-XX.XX 元 |
-| 累计收益率 | +/-X.XX% |
-
-## 📈 持仓明细
-| 基金 | 代码 | 今日盈亏 | 累计盈亏 |
-|------|------|----------|----------|
-| ... | ... | ... | ... |
-
-## 📰 今日要闻（东方财富）
-**1. 标题关键词**
-内容摘要
-*来源：[来源名](链接)* | 时间
-
-**2. 标题关键词**
-内容摘要
-*来源：[来源名](链接)* | 时间
-
-## 📝 今日总结
-### 市场表现
-- 上证指数：+/-X.XX%
-- 创业板指：+/-X.XX%
-- 科创 50: +/-X.XX%
-
-### 亏损原因分析
-1. 市场因素
-2. 板块因素
-3. 持仓因素
-
-### 后市展望
-- 短期/中期/操作建议
-
-## 📅 挑战进度
-- 挑战开始：YYYY-MM-DD
-- 当前天数：第 X 天
-- 目标金额：XXXX 元
-- 距离目标：+/-XXX.XX 元
-```
-
----
-
-## 📢 飞书通知模板
-
-```
-✅ YYYY-MM-DD 日终复盘
-
-💰 组合价值：¥XXX.XX
-📉 累计盈亏：+/-XX.XX 元 (+/-X.XX%)
-
-📋 持仓详情:
-  基金 A: +/-X.XX 元 | 累计+/-X.XX 元
-  基金 B: +/-X.XX 元 | 累计+/-X.XX 元
-
-📰 重要资讯:
-1. 资讯标题关键词... (来源)
-2. 资讯标题关键词... (来源)
-3. 资讯标题关键词... (来源)
-
-📅 挑战进度：第 X 天 | 目标 XXXX 元 | 距离+/-XXX.XX 元
-
-📝 完整报告：[GitHub](链接)
-
-⏰ HH:MM
-```
-
----
-
-## 🛠️ 核心脚本
-
-| 脚本 | 作用 | 执行时间 |
-|------|------|----------|
-| `auto_review_automation.py` | 日终复盘全流程 | 22:30 |
-| `fund-daily-review.sh` | 包装脚本（含飞书通知） | 22:30 |
-| `mx-market-news.sh` | 东方财富资讯获取 | 15:30 |
-| `system-version-update.sh` | 版本更新检查 | 23:30 |
-| `cron_health_monitor.py` | Cron 健康监控 | 每小时 |
-
----
-
-## 📁 文件结构
+## 📂 文件结构
 
 ```
 08-fund-daily-review/
-├── README.md                   # 本文档
-├── reviews/                    # 复盘报告存档
-│   ├── 2026-03-30.md          # 最新报告
-│   ├── 2026-03-27.md
-│   └── ...
-├── state.json                  # 当前持仓状态
-└── ledger.jsonl                # 交易记录
+├── state.json              # 当前持仓状态（权威数据源）
+├── ledger.jsonl            # 每日盈亏明细（流水账）
+├── decision_records/       # 每日决策记录
+│   └── YYYY-MM-DD.json
+├── reviews/                # 复盘报告
+│   ├── YYYY-MM-DD.md       # 每日复盘
+│   └── YYYY-MM-复盘.md      # 月度复盘
+├── backups/                # 自动备份目录
+└── README.md               # 本文档
 ```
 
 ---
 
-## 🎯 执行流程
+## 🔄 数据流向
 
-```mermaid
-graph TD
-    A[15:30 盘后资讯] --> B[获取东方财富收评]
-    B --> C[AI 总结 + 来源链接]
-    C --> D[保存到 mx_news_YYYY-MM-DD.json]
-    
-    E[22:30 日终复盘] --> F[获取市场数据]
-    F --> G[读取持仓状态]
-    G --> H[生成复盘报告]
-    H --> I[Git 提交 GitHub]
-    I --> J[飞书通知]
-    
-    K[23:30 版本更新] --> L[检查当日提交]
-    L --> M[飞书通知]
 ```
+蚂蚁财富截图 → state.json（手动/自动更新）
+                ↓
+        ledger.jsonl（每日盈亏记录）
+                ↓
+        复盘报告（自动生成）
+                ↓
+        GitHub 归档（自动推送）
+```
+
+**核心原则：**
+- ✅ **state.json 是权威数据源**（来自蚂蚁财富实际持仓）
+- ✅ **ledger.jsonl 是辅助记录**（应与 state.json 一致）
+- ✅ **每日校验**：自动校验两者一致性
 
 ---
 
-## 📊 东方财富 API 功能
+## ⏰ 定时任务清单
 
-### 资讯查询（多源 fallback）
+### 交易日任务（周一至周五）
+
+| 时间 | 任务名 | 作用 |
+|------|--------|------|
+| 09:00 | fund-daily-check | 每日健康检查 |
+| 13:35 | fund-1335-universe | 候选池刷新 |
+| 14:00 | fund-1400-decision | 交易决策 |
+| 14:48 | fund-1448-exec-gate | 执行门控 |
+| 22:00 | **data-validate** | **数据校验** ⭐ |
+| 22:00 | **backup-data** | **自动备份** ⭐ |
+| 22:30 | fund-2230-review | 日终复盘 + GitHub 归档 |
+
+### 每日任务
+
+| 时间 | 任务名 | 作用 |
+|------|--------|------|
+| 01:00 | system-daily-optimize | 系统清理 |
+| 23:30 | system-version-update | 版本更新 + GitHub 归档 |
+
+---
+
+## 🛠️ 维护指南
+
+### 数据校验
+
 ```bash
-1. 查询"收评" → 失败？
-2. 查询"复盘" → 失败？
-3. 查询"收盘点评" → 失败？
-4. 查询"A 股市场" → 失败？
-5. 查询"重要新闻" → ✅ 成功
+# 手动运行数据校验
+python3 /home/admin/.openclaw/workspace/05-scripts/validate_data.py
 ```
 
-### 资讯处理
-- ✅ **AI 总结**：提取核心要点，不是复制粘贴
-- ✅ **来源链接**：每条资讯附带可点击链接
-- ✅ **时间显示**：显示资讯发布时间
-- ✅ **盘后优先**：优先获取 15:00 后的收评
+### 数据备份
+
+```bash
+# 手动备份
+bash /home/admin/.openclaw/workspace/05-scripts/backup_data.sh
+
+# 备份位置
+/home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system/08-fund-daily-review/backups/
+```
+
+### 故障排查
+
+#### 问题 1：数据不一致
+
+**症状：** 校验脚本报错
+**解决：**
+1. 以 state.json 为准（来自蚂蚁财富实际持仓）
+2. 修正 ledger.jsonl 使其与 state.json 一致
+3. 重新运行校验脚本
+
+#### 问题 2：Git 推送失败
+
+**症状：** 复盘报告无法推送到 GitHub
+**解决：**
+```bash
+cd /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system
+git pull --rebase origin OpenClaw-Fund-Trading
+git push origin OpenClaw-Fund-Trading
+```
+
+#### 问题 3：cron 任务异常
+
+**症状：** 任务未执行或显示 error
+**解决：**
+```bash
+# 查看 cron 状态
+openclaw cron list
+
+# 重启 Gateway
+openclaw gateway restart
+```
 
 ---
 
-## 📝 使用示例
+## 📈 数据标准
 
-### 手动执行日终复盘
-```bash
-cd /home/admin/.openclaw/workspace/skills/fund-challenge
-python3.11 fund_challenge/scripts/auto_review_automation.py \
-  --base /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system \
-  --generate-report
-```
+### state.json 字段说明
 
-### 获取盘后资讯
-```bash
-bash /home/admin/.openclaw/workspace/05-scripts/mx-market-news.sh
-```
+| 字段 | 说明 | 示例 |
+|------|------|------|
+| `total_pnl` | 累计盈亏 | -34.37 元 |
+| `portfolio_value` | 组合市值 | 965.15 元 |
+| `positions` | 持仓明细 | 数组 |
+| `positions[].unrealized_pnl` | 单只基金累计盈亏 | -10.98 元 |
 
-### 检查系统版本更新
-```bash
-bash /home/admin/.openclaw/workspace/05-scripts/system-version-update.sh
-```
+### ledger.jsonl 字段说明
 
----
-
-## 🔗 相关链接
-
-- [GitHub 仓库](https://github.com/heyaaron-Wu/Semi-automatic-artificial-intelligence-system)
-- [东方财富妙想](https://marketing.dfcfs.com/views/finskillshub/indexIoMv0EzE)
-- [飞书开放平台](https://open.feishu.cn/document/)
+| 字段 | 说明 | 示例 |
+|------|------|------|
+| `date` | 日期 | 2026-04-08 |
+| `total_pnl` | 当日总盈亏 | 51.37 元 |
+| `positions` | 各基金盈亏明细 | 数组 |
+| `positions[].daily_pnl` | 单只基金当日盈亏 | 21.57 元 |
 
 ---
 
-*最后更新：2026-03-31*
+## 🔒 安全与隐私
+
+### 禁止推送的数据
+
+- ❌ API tokens / keys
+- ❌ 飞书 Webhook URL
+- ❌ 个人身份信息
+- ❌ 财务数据（持仓明细、基金代码）- 已脱敏处理
+
+### 可以推送的数据
+
+- ✅ 复盘报告（已脱敏）
+- ✅ 系统配置文档
+- ✅ 脚本文件
+
+---
+
+## 📞 支持
+
+- 系统文档：`/opt/openclaw/docs`
+- GitHub 仓库：https://github.com/heyaaron-Wu/Semi-automatic-artificial-intelligence-system
+- 飞书通知 Webhook：已配置
+
+---
+
+**最后更新：** 2026-04-09
+**版本：** v1.2.0
