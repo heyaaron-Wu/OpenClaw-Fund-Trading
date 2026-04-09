@@ -66,7 +66,7 @@ echo "日期：$TODAY"
 echo ""
 
 # 切换到 git 仓库目录
-cd "$WORKSPACE/Semi-automatic-artificial-intelligence-system"
+cd "$WORKSPACE"
 
 # 检查今日是否有提交
 echo "📊 检查今日提交记录..."
@@ -189,13 +189,44 @@ fi
 
 echo "📊 当前最新版本：v$CURRENT_VERSION"
 
-# 解析版本号并递增
+# 智能判断版本号递增规则
 MAJOR=$(echo "$CURRENT_VERSION" | cut -d. -f1)
 MINOR=$(echo "$CURRENT_VERSION" | cut -d. -f2)
 PATCH=$(echo "$CURRENT_VERSION" | cut -d. -f3)
-PATCH=$((PATCH + 1))
+
+# 分析今日提交内容，智能决定版本号
+echo "🔍 分析今日提交内容..."
+
+# 统计新功能数量
+NEW_FEATURES=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --oneline | grep -E "✨|feat|新增 | 添加" | wc -l)
+
+# 统计 Bug 修复数量
+BUG_FIXES=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --oneline | grep -E "🐛|fix|修复 | Bug" | wc -l)
+
+# 统计文档更新数量
+DOC_UPDATES=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --oneline | grep -E "📝|docs|文档" | wc -l)
+
+echo "  新功能：$NEW_FEATURES 个"
+echo "  Bug 修复：$BUG_FIXES 个"
+echo "  文档更新：$DOC_UPDATES 个"
+
+# 智能判断版本号
+if [ "$NEW_FEATURES" -ge 5 ]; then
+    # 5 个以上新功能：次版本 +1（重大更新）
+    MINOR=$((MINOR + 1))
+    PATCH=0
+    echo "📊 重大更新：v$CURRENT_VERSION → v$MAJOR.$MINOR.$PATCH"
+elif [ "$NEW_FEATURES" -ge 1 ]; then
+    # 有新功能：修订号 +1
+    PATCH=$((PATCH + 1))
+    echo "📊 功能更新：v$CURRENT_VERSION → v$MAJOR.$MINOR.$PATCH"
+else
+    # 仅有 Bug 修复或文档：修订号 +1
+    PATCH=$((PATCH + 1))
+    echo "📊 维护更新：v$CURRENT_VERSION → v$MAJOR.$MINOR.$PATCH"
+fi
+
 VERSION_NUM="$MAJOR.$MINOR.$PATCH"
-echo "📊 版本号递增：v$CURRENT_VERSION → v$VERSION_NUM"
 
 # 创建临时文件
 TEMP_CHANGELOG="/tmp/changelog_update_$$.md"
