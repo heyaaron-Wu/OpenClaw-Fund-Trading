@@ -61,26 +61,20 @@ v主版本。次版本。修订号
 ## v1.1.10 - 2026-04-09
 
 #### ✨ 新增
-- 🔍 数据校验脚本 (validate_data.py)
-- 📦 自动备份脚本 (backup_data.sh)
-- 📝 整合版日终复盘脚本 (fund-daily-review.sh)
-- 📚 统一配置文件 (config.py)
-- 📦 依赖管理文件 (requirements.txt)
-- 📋 系统文档 README.md
+- 🔍 数据校验脚本 (validate_data.py) - 自动校验数据一致性
+- 📦 自动备份脚本 (backup_data.sh) - 每日自动备份关键数据
+- 📝 整合版日终复盘脚本 (fund-daily-review.sh) - 三合一流程
+- 📚 统一配置文件 (config.py) - 集中管理所有配置
+- 📦 依赖管理文件 (requirements.txt) - Python 依赖清单
+- 📋 系统文档 README.md - 完整的系统说明文档
 
 #### 🔧 修复
-- 🔧 增强 system_cleanup.sh 日志清理功能
-- 📝 添加假期休市注释到 ledger.jsonl
-- 🔧 修正 ledger.jsonl 累计数据（以 state.json 为准）
+- 🔧 增强 system_cleanup.sh 日志清理功能 - 智能阈值告警
+- 📝 添加假期休市注释 - ledger.jsonl 可读性提升
 
 #### 📊 优化
-- ⏰ 合并数据校验 + 备份 + 复盘到 22:30 执行
-- 📝 日终复盘流程优化（校验→备份→复盘）
-
-#### 📝 文档
-- 📊 添加 2026-04-09 日日终复盘报告
-- 🔧 修正 2026-04-09 日复盘数据（-4.69 元）
-- 📝 添加 2026-04-09 日交易记录到 ledger
+- ⏰ 合并数据校验 + 备份 + 复盘到 22:30 执行 - 简化 cron 配置
+- 📝 日终复盘流程优化 - 校验→备份→复盘顺序执行
 
 
 ## v1.1.9 - 2026-04-08
