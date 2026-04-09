@@ -1,3 +1,7 @@
+# 基金挑战交易账本
+# 数据源：蚂蚁财富截图
+# 最后更新：2026-04-09
+# 注意：4 月 4-6 日为清明节假期，休市
 {"timestamp": "2026-03-10T22:30:00+08:00", "source": "manual", "action": "daily_pnl_update", "date": "2026-03-10", "total_pnl": 25.58, "positions": [{"code": "011612", "name": "华夏科创 50ETF 联接 A", "daily_pnl": 7.61}, {"code": "013180", "name": "广发新能源车电池 ETF 联接 C", "daily_pnl": 5.39}, {"code": "014320", "name": "德邦半导体产业混合 C", "daily_pnl": 12.58}], "note": "03年10 日收益（根据截图）"}
 {"timestamp": "2026-03-11T22:30:00+08:00", "source": "manual", "action": "daily_pnl_update", "date": "2026-03-11", "total_pnl": -3.9, "positions": [{"code": "011612", "name": "华夏科创 50ETF 联接 A", "daily_pnl": -5.43}, {"code": "013180", "name": "广发新能源车电池 ETF 联接 C", "daily_pnl": 8.17}, {"code": "014320", "name": "德邦半导体产业混合 C", "daily_pnl": -6.64}], "note": "03年11 日收益（根据截图）"}
 {"timestamp": "2026-03-12T22:30:00+08:00", "source": "manual", "action": "daily_pnl_update", "date": "2026-03-12", "total_pnl": -7.04, "positions": [{"code": "011612", "name": "华夏科创 50ETF 联接 A", "daily_pnl": -4.64}, {"code": "013180", "name": "广发新能源车电池 ETF 联接 C", "daily_pnl": 0.21}, {"code": "014320", "name": "德邦半导体产业混合 C", "daily_pnl": -2.61}], "note": "03年12 日收益（根据截图）"}
