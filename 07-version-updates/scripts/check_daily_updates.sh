@@ -4,7 +4,7 @@
 
 set -e
 
-WORKSPACE="/home/admin/.openclaw/workspace"
+WORKSPACE="/home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system"
 CHANGELOG_FILE="$WORKSPACE/07-version-updates/CHANGELOG.md"
 README_FILE="$WORKSPACE/README.md"
 TODAY=$(date +%Y-%m-%d)

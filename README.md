@@ -4,7 +4,7 @@
 
 **基于 OpenClaw 的智能化场外基金量化交易系统**
 
-**当前版本：v1.1.9** | **最后更新：2026-04-08**
+**当前版本：vv1.1.10** | **最后更新：2026-04-10**
 
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-2026.3.3-blue)](https://openclaw.ai)
 [![Python](https://img.shields.io/badge/Python-3.6+-green)](https://python.org)
@@ -376,9 +376,9 @@ workspace/
 | fund-1400-decision | 0 14 * * 1-5 | 交易日 14:00 生成交易决策（智能 fallback+ 自动重试），获取实时行情并生成持仓建议 | always |
 | fund-1448-exec-gate | 48 14 * * 1-5 | 交易日 14:48 执行门控确认，决策缺失时自动触发重新决策 | low_score |
 | fund-weekly-report | 0 23 * * 5 | 周五 23:00 生成周度总结和复盘报告 | always |
-| fund-2230-review | 30 22 * * 1-5 | 交易日 22:30 生成日终复盘报告（智能重试 + 降级处理），GitHub 归档全自动 | always |
 | fund-daily-check | 0 9 * * 1-5 | 交易日 9:00 执行预检管线（含自动修复），系统状态检查 | none |
 | fund-1335-universe | 35 13 * * 1-5 | 交易日 13:35 刷新候选基金池（自动重试 + 多数据源），评分识别高评分机会 | high_score |
+| fund-daily-review | 30 22 * * 1-5 | 每日 22:00 执行：数据校验 + 自动备份 + 自动复盘 | error, timeout |
 
 <!-- END CRON TASKS -->
 
