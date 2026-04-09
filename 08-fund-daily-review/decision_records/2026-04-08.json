@@ -41,5 +41,13 @@
     ]
   },
   "summary": "全线 HOLD，三大持仓板块均表现强势，继续持有观察",
-  "accuracy_note": "待次日验证"
+  "accuracy_note": "待次日验证",
+  "verified": true,
+  "verification": {
+    "date": "2026-04-08",
+    "total": 0,
+    "correct": 0,
+    "wrong": 0,
+    "details": []
+  }
 }

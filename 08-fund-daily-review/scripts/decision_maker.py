@@ -2,12 +2,19 @@
 """
 基金交易决策脚本（增强版 - 智能修复 + 多数据源 fallback）
 交易日 14:00 执行，获取实时行情并生成 HOLD/BUY/SELL 决策
+
+数据源优先级：
+1. 妙想 API（东方财富）- 金融垂直数据
+2. 腾讯财经 - 指数实时行情
+3. 新浪财经 - 指数实时行情
+4. AKShare - 备份数据源
 """
 
 import sys
 import json
 import urllib.request
 import time
+import os
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -15,6 +22,72 @@ from pathlib import Path
 # ==================== 缓存配置 ====================
 CACHE_FILE = Path('/tmp/fund_market_data_cache.json')
 CACHE_TTL = 1800  # 30 分钟缓存有效期
+
+
+# ==================== 妙想 API（优先级 1） ====================
+def fetch_market_data_mx():
+    """妙想金融 API - 获取指数实时数据（优先级最高）"""
+    api_key = os.environ.get('MX_APIKEY', '')
+    if not api_key:
+        print("   ⚠️  妙想 API KEY 未配置")
+        return None
+    
+    try:
+        import requests
+        
+        # 查询指数数据
+        queries = [
+            ('科创 50', '科创 50 指数 实时 涨跌幅'),
+            ('半导体', '半导体板块 指数 实时 涨跌幅'),
+            ('新能源车', '新能源车板块 指数 实时 涨跌幅'),
+        ]
+        
+        market_data = {}
+        
+        for name, query in queries:
+            try:
+                result = requests.post(
+                    'https://mkapi2.dfcfs.com/finskillshub/api/claw/news-search',
+                    headers={
+                        'Content-Type': 'application/json',
+                        'apikey': api_key
+                    },
+                    json={'query': query},
+                    timeout=8
+                )
+                data = result.json()
+                
+                # 解析返回数据
+                news_list = data.get('data', {}).get('data', [])
+                if news_list:
+                    # 从新闻标题中提取涨跌幅
+                    for item in news_list[:3]:
+                        title = item.get('title', '')
+                        import re
+                        # 匹配涨跌幅：+X.XX% 或 -X.XX%
+                        match = re.search(r'([+-]?\d+\.?\d*)\s*%', title)
+                        if match and name in title:
+                            pct = float(match.group(1))
+                            market_data[name] = {
+                                'percent': pct,
+                                'source': 'mx',
+                                'title': title
+                            }
+                            break
+                            
+            except Exception as e:
+                print(f"   ⚠️  妙想 {name} 查询失败：{e}")
+                continue
+        
+        if market_data:
+            print(f"   ✅ 妙想 API 成功获取 {len(market_data)} 个数据")
+            return market_data
+        
+        return None
+        
+    except Exception as e:
+        print(f"   ❌ 妙想 API 异常：{e}")
+        return None
 
 
 # ==================== 智能重试和 fallback ====================
@@ -458,10 +531,29 @@ def fetch_market_data_sina():
 
 
 def fetch_market_data():
-    """获取市场数据（多数据源，自动降级）"""
+    """获取市场数据（多数据源，自动降级）
     
-    # 尝试 1: 腾讯财经 API（最可靠）
-    print("   尝试腾讯财经 API...")
+    优先级：
+    1. 妙想 API（东方财富）- 金融垂直数据
+    2. 腾讯财经 - 指数实时行情
+    3. 新浪财经 - 指数实时行情
+    4. AKShare - 备份数据源
+    """
+    
+    # 尝试 1: 妙想 API（金融垂直，最准确）⭐
+    print("   🔄 尝试妙想 API...")
+    market_data = fetch_market_data_mx()
+    
+    if market_data and len(market_data) >= 2:
+        print(f"   ✅ 妙想 API 成功获取 {len(market_data)} 个数据")
+        for name, data in market_data.items():
+            pct = data.get('percent', 0)
+            symbol = "📈" if pct > 0 else "📉" if pct < 0 else "➖"
+            print(f"      {symbol} {name}: {pct:+.2f}%")
+        return market_data
+    
+    # 尝试 2: 腾讯财经 API（最可靠）
+    print("   🔄 尝试腾讯财经 API...")
     market_data = fetch_market_data_tencent()
     
     if len(market_data) > 0:
@@ -472,21 +564,21 @@ def fetch_market_data():
             print(f"      {symbol} {name}: {pct:+.2f}%")
         return market_data
     
-    # 尝试 2: AKShare
-    print("   尝试 AKShare 数据源...")
-    market_data, success = fetch_market_data_akshare()
-    
-    if success and len(market_data) > 0:
-        print(f"   ✅ AKShare 成功获取 {len(market_data)} 个数据")
-        return market_data
-    
     # 尝试 3: 新浪财经
-    print("   尝试新浪财经数据源...")
+    print("   🔄 尝试新浪财经数据源...")
     market_data = fetch_market_data_sina()
     success_count = sum(1 for v in market_data.values() if v.get('source') == 'sina')
     
     if success_count > 0:
         print(f"   ✅ 新浪财经成功获取 {success_count} 个数据")
+        return market_data
+    
+    # 尝试 4: AKShare
+    print("   🔄 尝试 AKShare 数据源...")
+    market_data, success = fetch_market_data_akshare()
+    
+    if success and len(market_data) > 0:
+        print(f"   ✅ AKShare 成功获取 {len(market_data)} 个数据")
         return market_data
     
     # 全部失败，返回估算值
