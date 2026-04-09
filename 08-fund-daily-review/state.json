@@ -12,13 +12,13 @@
       "confirmed_amount": 399.52,
       "daily_pnl": 21.57,
       "daily_pnl_rate": 5.61,
-      "unrealized_pnl": 15.37,
-      "pnl_rate": 3.847117040448538,
+      "unrealized_pnl": -10.98,
+      "pnl_rate": -2.748298308071748,
       "last_updated": "2026-04-08T22:30:00+08:00",
-      "confirmed_nav": 1.03847,
+      "confirmed_nav": 0.97255,
       "daily_growth": 5.61,
       "last_pnl_date": "2026-04-08",
-      "market_value": 414.89
+      "market_value": 388.54
     },
     {
       "code": "013180",
@@ -27,13 +27,13 @@
       "confirmed_amount": 300.0,
       "daily_pnl": 10.95,
       "daily_pnl_rate": 3.59,
-      "unrealized_pnl": -38.84,
-      "pnl_rate": -12.946666666666667,
+      "unrealized_pnl": -23.40,
+      "pnl_rate": -7.8,
       "last_updated": "2026-04-08T22:30:00+08:00",
-      "confirmed_nav": 0.87053,
+      "confirmed_nav": 0.922,
       "daily_growth": 3.59,
       "last_pnl_date": "2026-04-08",
-      "market_value": 261.16
+      "market_value": 276.60
     },
     {
       "code": "014320",
@@ -42,24 +42,24 @@
       "confirmed_amount": 300.0,
       "daily_pnl": 18.85,
       "daily_pnl_rate": 6.28,
-      "unrealized_pnl": 26.85,
-      "pnl_rate": 8.95,
+      "unrealized_pnl": 0.01,
+      "pnl_rate": 0.0033333333333333335,
       "last_updated": "2026-04-08T22:30:00+08:00",
-      "confirmed_nav": 1.0895,
+      "confirmed_nav": 1.00003,
       "daily_growth": 6.28,
       "last_pnl_date": "2026-04-08",
-      "market_value": 326.85
+      "market_value": 300.01
     }
   ],
   "total_fees": 0.48,
-  "portfolio_value": 1002.90,
+  "portfolio_value": 965.15,
   "last_updated": "2026-04-08T22:30:00+08:00",
-  "total_pnl": 3.38,
-  "total_pnl_rate": 0.33816231791259806,
-  "total_market_value": 1002.90,
+  "total_pnl": -34.37,
+  "total_pnl_rate": -3.4386478510384987,
+  "total_market_value": 965.15,
   "manual_update": true,
   "last_manual_date": "2026-04-09",
-  "last_manual_note": "根据截图完整历史数据重新修正（4 月 9 日）- 3 月数据补录 +4 月蚂蚁财富数据",
-  "cumulative_pnl": 3.38,
+  "last_manual_note": "根据截图完整历史数据重新修正（4 月 9 日）- 累计盈亏 -34.37 元",
+  "cumulative_pnl": -34.37,
   "principal": 999.52
 }
