@@ -21,6 +21,7 @@ __pycache__/
 # OpenClaw 运行时数据
 .openclaw/
 *.bak
+*.backup*
 
 # Python 虚拟环境
 venv/
