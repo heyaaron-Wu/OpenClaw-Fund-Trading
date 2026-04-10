@@ -191,23 +191,13 @@ workspace/
 | `fund-challenge-ledger-postmortem` | 交易流水追溯与复盘 | 每周 1 次 |
 
 
-<!-- AUTO:skill_list -->
 ### 通用技能（29 个）
 
-| 技能名称 | 作用 |
-|----------|------|
-| `agent-browser` | --- |
-| `akshare-finance` | --- |
-| `akshare-stock` | --- |
-| `charts` | Generate professional technical analysis charts wi |
-| `etf-assistant` | --- |
-| `finance-lite` | --- |
-| `find-skills` | --- |
-| `fund-challenge-daily-trader-core` | 技能模块 |
-| `fund-challenge-data-guard` | 技能模块 |
-| `fund-challenge-evidence-audit` | 技能模块 |
-| `fund-challenge-execution-engine` | 技能模块 |
-| `fund-challenge-identity-freshness-guard` | 技能模块 |
+📖 **详细说明：** [03-system-docs/GENERAL_SKILLS.md](03-system-docs/GENERAL_SKILLS.md)
+
+<!-- AUTO:skill_list -->
+<!-- 技能列表已移动到 GENERAL_SKILLS.md，此处保留占位 -->
+<!-- END AUTO -->
 | `fund-challenge-instrument-rules` | 技能模块 |
 | `fund-challenge-ledger-postmortem` | 技能模块 |
 | `fund-challenge-orchestrator` | 技能模块 |
