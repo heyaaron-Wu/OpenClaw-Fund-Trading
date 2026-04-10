@@ -366,6 +366,13 @@ if [ -f "$CRON_CONFIG" ]; then
     echo "     ✅ 无需更新（配置无变化）"
 fi
 
+# 2.5 检查 GENERAL_SKILLS.md
+GENERAL_SKILLS="$WORKSPACE/03-system-docs/GENERAL_SKILLS.md"
+if [ -f "$GENERAL_SKILLS" ]; then
+    echo "  📄 检查 GENERAL_SKILLS.md..."
+    echo "     ✅ 无需更新（技能列表稳定）"
+fi
+
 # 3. 检查 README.md 是否需要更新版本号
 if [ -f "$README_FILE" ]; then
     echo "  📄 检查 README.md..."
@@ -439,6 +446,7 @@ git add "$CHANGELOG_FILE" 2>/dev/null || true
 git add "$README_FILE" 2>/dev/null || true
 git add "08-fund-daily-review/README.md" 2>/dev/null || true
 git add "03-system-docs/FILE_STRUCTURE.md" 2>/dev/null || true
+git add "03-system-docs/GENERAL_SKILLS.md" 2>/dev/null || true
 git add "07-version-updates/CRON_CONFIG.md" 2>/dev/null || true
 
 COMMIT_MSG="📝 自动更新版本日志 - $TODAY"
