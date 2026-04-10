@@ -1,0 +1,935 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "name": "system-daily-optimize",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 1 * * *"
+      },
+      "task": "系统每日清理优化",
+      "description": "每日凌晨 1 点执行系统清理（智能清理 + 自动修复），磁盘>85% 自动清理，Gateway 异常自动重启",
+      "retry": 2,
+      "enabled": true,
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      },
+      "notify_on": [
+        "error",
+        "timeout"
+      ],
+      "script": "bash /home/admin/.openclaw/workspace/05-scripts/system_cleanup.sh --autofix",
+      "steps": [
+        "1. 清理临时文件和缓存",
+        "2. 检查磁盘使用率",
+        "3. 清理旧日志",
+        "4. 检查 OpenClaw 状态",
+        "5. 文档审查（每周一）✅ 新增",
+        "6. 异常时发送飞书通知 ✅ 自动"
+      ],
+      "state": {
+        "lastRunAtMs": 1775754000007,
+        "lastStatus": "idle",
+        "nextRunAtMs": 1775840400000,
+        "lastRunStatus": null,
+        "lastDurationMs": 2,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0,
+        "lastError": null
+      },
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "id": "cron:system-daily-optimize:a19f7101",
+      "payload": {
+        "kind": "systemEvent",
+        "script": "bash /home/admin/.openclaw/workspace/05-scripts/system_cleanup.sh",
+        "description": "每日凌晨 1 点执行系统清理、缓存释放、磁盘检查、文档审查（周一）",
+        "retry": 2,
+        "delivery": {
+          "mode": "announce",
+          "channel": "feishu"
+        },
+        "feishu_webhook": "https://open.feishu.cn/open-apis/bot/v2/hook/f1286a3e-4e41-4809-a0bc-fd2bbbbc3f10",
+        "notify_on": [
+          "error",
+          "timeout"
+        ],
+        "steps": [
+          "1. 清理临时文件和缓存",
+          "2. 检查磁盘使用率",
+          "3. 清理旧日志",
+          "4. 检查 OpenClaw 状态",
+          "5. 文档审查（每周一）✅ 新增",
+          "6. 异常时发送飞书通知 ✅ 自动"
+        ]
+      },
+      "agentId": "worker-agent",
+      "updatedAtMs": 1775754000009
+    },
+    {
+      "name": "system-weekly-report",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * 1"
+      },
+      "task": "系统优化周报",
+      "description": "周一 8:00 执行系统健康检查 + 自动修复 + 性能趋势分析 + 智能优化建议 + GitHub 归档",
+      "retry": 1,
+      "enabled": true,
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      },
+      "notify_on": [
+        "always",
+        "error"
+      ],
+      "script": "bash /home/admin/.openclaw/workspace/05-scripts/system_weekly_cleanup.sh && /usr/bin/python3.11 /home/admin/.openclaw/workspace/skills/fund-challenge/fund_challenge/scripts/system_weekly_report.py --alert --github",
+      "steps": [
+        "🗑️ 清理浏览器缓存",
+        "🗑️ 清理过期 Cron 记录（7 天前）",
+        "🗑️ 清理临时文件",
+        "📊 收集系统健康检查数据",
+        "💡 生成本周优化建议",
+        "📝 创建周报文档",
+        "📢 飞书推送周报 ✅ 自动"
+      ],
+      "state": {
+        "lastRunAtMs": 1774832400010,
+        "lastStatus": "idle",
+        "lastRunStatus": null,
+        "lastDurationMs": 1,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0,
+        "nextRunAtMs": 1776042000000,
+        "lastError": null
+      },
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "id": "cron:system-weekly-report:fd974d09",
+      "payload": {
+        "kind": "systemEvent",
+        "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/skills/fund-challenge/fund_challenge/scripts/system_weekly_report.py --base /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system --alert",
+        "description": "周一 8:00 执行系统健康检查 + 自动优化（含浏览器缓存）+ 生成周报",
+        "retry": 1,
+        "delivery": {
+          "mode": "announce",
+          "channel": "feishu"
+        },
+        "feishu_webhook": "https://open.feishu.cn/open-apis/bot/v2/hook/f1286a3e-4e41-4809-a0bc-fd2bbbbc3f10",
+        "notify_on": [
+          "always"
+        ],
+        "steps": [
+          "1. 收集系统健康检查数据",
+          "2. 生成本周优化建议",
+          "3. 创建周报文档",
+          "4. 飞书推送周报 ✅ 自动"
+        ]
+      },
+      "agentId": "worker-agent",
+      "updatedAtMs": 1774832400011
+    },
+    {
+      "name": "fund-1400-decision",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 14 * * 1-5"
+      },
+      "task": "基金挑战交易决策",
+      "description": "交易日 14:00 生成交易决策（智能 fallback+ 自动重试），获取实时行情并生成持仓建议",
+      "retry": 2,
+      "enabled": true,
+      "delivery": {
+        "mode": "none",
+        "channel": "feishu"
+      },
+      "notify_on": [
+        "always"
+      ],
+      "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/skills/fund-challenge/fund_challenge/scripts/decision_maker.py --base /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system --alert --save",
+      "steps": [
+        "1. 读取 09:00 预检结果 (preflight_result.json) ✅",
+        "2. 读取 13:35 候选池 (universe.json) ✅",
+        "3. 获取实时市场数据（带 30 分钟缓存，避免重复 API 调用）✅",
+        "4. 分析持仓并生成决策，参考候选池评分",
+        "5. 保存决策结果 (decision_result.json) ✅ 供执行门控使用",
+        "6. 市场大跌超 -2% 时发送飞书预警 ✅ 自动"
+      ],
+      "state": {
+        "lastRunAtMs": 1775800800011,
+        "lastStatus": "idle",
+        "lastRunStatus": null,
+        "lastDurationMs": 1,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0,
+        "nextRunAtMs": 1776060000000,
+        "lastError": null
+      },
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "id": "cron:fund-1400-decision:c14957d2",
+      "payload": {
+        "kind": "systemEvent",
+        "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/skills/fund-challenge/fund_challenge/scripts/decision_maker.py --base /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system --alert --save",
+        "description": "交易日 14:00 生成交易决策 (HOLD/BUY/SELL)，获取实时行情并生成持仓建议",
+        "retry": 2,
+        "delivery": {
+          "mode": "none",
+          "channel": "feishu"
+        },
+        "feishu_webhook": "https://open.feishu.cn/open-apis/bot/v2/hook/f1286a3e-4e41-4809-a0bc-fd2bbbbc3f10",
+        "notify_on": [
+          "always"
+        ],
+        "steps": [
+          "1. 读取 09:00 预检结果 (preflight_result.json) ✅",
+          "2. 读取 13:35 候选池 (universe.json) ✅",
+          "3. 获取实时市场数据（带 30 分钟缓存，避免重复 API 调用）✅",
+          "4. 分析持仓并生成决策，参考候选池评分",
+          "5. 保存决策结果 (decision_result.json) ✅ 供执行门控使用",
+          "6. 市场大跌超 -2% 时发送飞书预警 ✅ 自动"
+        ]
+      },
+      "updatedAtMs": 1775800800012,
+      "agentId": "worker-agent"
+    },
+    {
+      "name": "fund-1448-exec-gate",
+      "schedule": {
+        "kind": "cron",
+        "expr": "48 14 * * 1-5"
+      },
+      "task": "基金挑战执行门控",
+      "description": "交易日 14:48 执行门控确认，决策缺失时自动触发重新决策",
+      "retry": 1,
+      "enabled": true,
+      "delivery": {
+        "mode": "none",
+        "channel": "feishu"
+      },
+      "notify_on": [
+        "low_score"
+      ],
+      "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/skills/fund-challenge/fund_challenge/scripts/exec_gate.py --base /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system --alert --re-decision",
+      "steps": [
+        "1. 读取 14:00 决策结果 (decision_result.json) ✅",
+        "2. 验证决策流程完整性（预检是否通过）",
+        "3. 检查持仓状态和累计盈亏",
+        "4. 检查候选池评分机会",
+        "5. 检查仓位控制（现金比例）",
+        "6. 发现风险时发送飞书预警 ✅ 自动"
+      ],
+      "state": {
+        "lastRunAtMs": 1775803680007,
+        "lastStatus": "error",
+        "lastRunStatus": "error",
+        "lastDurationMs": 2,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 1,
+        "nextRunAtMs": 1776062880000,
+        "lastError": "TypeError: Cannot read properties of undefined (reading 'trim')"
+      },
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "id": "cron:fund-1448-exec-gate:8dd0af05",
+      "payload": {
+        "kind": "systemEvent",
+        "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/skills/fund-challenge/fund_challenge/scripts/exec_gate.py --base /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system --alert",
+        "description": "交易日 14:48 执行门控确认，评分验证",
+        "retry": 1,
+        "delivery": {
+          "mode": "none",
+          "channel": "feishu"
+        },
+        "feishu_webhook": "https://open.feishu.cn/open-apis/bot/v2/hook/f1286a3e-4e41-4809-a0bc-fd2bbbbc3f10",
+        "notify_on": [
+          "low_score"
+        ],
+        "steps": [
+          "1. 读取 14:00 决策结果 (decision_result.json) ✅",
+          "2. 验证决策流程完整性（预检是否通过）",
+          "3. 检查持仓状态和累计盈亏",
+          "4. 检查候选池评分机会",
+          "5. 检查仓位控制（现金比例）",
+          "6. 发现风险时发送飞书预警 ✅ 自动"
+        ]
+      },
+      "updatedAtMs": 1775803680009,
+      "agentId": "worker-agent"
+    },
+    {
+      "name": "fund-weekly-report",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 23 * * 5"
+      },
+      "task": "基金挑战周报复盘",
+      "description": "周五 23:00 生成周度总结和复盘报告",
+      "retry": 2,
+      "enabled": true,
+      "delivery": {
+        "mode": "none",
+        "channel": "feishu"
+      },
+      "notify_on": [
+        "always"
+      ],
+      "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/skills/fund-challenge/fund_challenge/scripts/weekly_report.py --base /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system --alert --push-github",
+      "steps": [
+        "1. 统计本周交易数据",
+        "2. 分析持仓表现",
+        "3. 生成周报文档 (08-fund-daily-review/weekly/)",
+        "4. 飞书推送周报摘要 ✅ 自动",
+        "5. GitHub 归档 ✅ 自动"
+      ],
+      "state": {
+        "lastRunAtMs": 1775228400012,
+        "lastStatus": "idle",
+        "nextRunAtMs": 1775833200000,
+        "lastRunStatus": null,
+        "lastDurationMs": 3,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0,
+        "lastError": null
+      },
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "id": "cron:fund-weekly-report:e0a2b580",
+      "payload": {
+        "kind": "systemEvent",
+        "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/skills/fund-challenge/fund_challenge/scripts/weekly_report.py --base /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system --alert --push-github",
+        "description": "周五 23:00 生成周度总结和复盘报告",
+        "retry": 2,
+        "delivery": {
+          "mode": "none",
+          "channel": "feishu"
+        },
+        "feishu_webhook": "https://open.feishu.cn/open-apis/bot/v2/hook/f1286a3e-4e41-4809-a0bc-fd2bbbbc3f10",
+        "notify_on": [
+          "always"
+        ],
+        "steps": [
+          "1. 统计本周交易数据",
+          "2. 分析持仓表现",
+          "3. 生成周报文档 (08-fund-daily-review/weekly/)",
+          "4. 飞书推送周报摘要 ✅ 自动",
+          "5. GitHub 归档 ✅ 自动"
+        ]
+      },
+      "agentId": "worker-agent",
+      "updatedAtMs": 1775228400015
+    },
+    {
+      "name": "system-version-update",
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 23 * * *"
+      },
+      "task": "系统版本更新检查",
+      "description": "每日 23:30 检查系统当日提交，如有更新则更新 CHANGELOG.md 并推送到 GitHub 归档",
+      "retry": 2,
+      "enabled": true,
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      },
+      "notify_on": [
+        "always"
+      ],
+      "script": "cd /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system && bash 07-version-updates/scripts/check_daily_updates.sh",
+      "steps": [
+        "1. 检查当日 Git 提交",
+        "2. 分类统计（新增/优化/修复/文档）",
+        "3. 更新 CHANGELOG.md（跳过空版本）",
+        "4. Git 提交并推送到 GitHub 归档 ✅ 自动",
+        "5. 飞书通知推送结果 ✅ 自动"
+      ],
+      "state": {
+        "lastRunAtMs": 1775748600008,
+        "lastStatus": "idle",
+        "lastRunStatus": null,
+        "lastDurationMs": 2,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0,
+        "nextRunAtMs": 1775835000000,
+        "lastRunStatusMsg": "✅ 自动更新完成",
+        "lastError": null
+      },
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "id": "cron:system-version-update:2801fa44",
+      "payload": {
+        "kind": "systemEvent",
+        "script": "cd /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system && bash 07-version-updates/scripts/check_daily_updates.sh",
+        "description": "每日 23:30 检查系统当日提交，如有更新则更新 CHANGELOG.md 并推送到 GitHub 归档",
+        "retry": 2,
+        "delivery": {
+          "mode": "announce",
+          "channel": "feishu"
+        },
+        "feishu_webhook": "https://open.feishu.cn/open-apis/bot/v2/hook/f1286a3e-4e41-4809-a0bc-fd2bbbbc3f10",
+        "notify_on": [
+          "always"
+        ],
+        "steps": [
+          "1. 检查当日 Git 提交（Semi-automatic-artificial-intelligence-system 仓库）",
+          "2. 分类统计（新增/优化/修复/文档）",
+          "3. 更新 CHANGELOG.md（跳过空版本和复盘文档）",
+          "4. 自动检查并更新相关文档（README/FILE_STRUCTURE/CRON_CONFIG 等）",
+          "5. Git 提交所有变更并推送到 GitHub：OpenClaw-Fund-Trading 分支",
+          "6. 飞书通知推送结果（成功/失败）"
+        ]
+      },
+      "updatedAtMs": 1775748600010,
+      "agentId": "worker-agent"
+    },
+    {
+      "id": "d81a62bb-c5b2-4198-80df-0d7c7df7b86d",
+      "name": "fund-daily-check",
+      "description": "交易日 9:00 执行预检管线（含自动修复），系统状态检查",
+      "enabled": true,
+      "createdAtMs": 1775026032037,
+      "updatedAtMs": 1775782877595,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * 1-5",
+        "staggerMs": 0
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "{\"kind\":\"systemEvent\",\"script\":\"/usr/bin/python3.11 /home/admin/.openclaw/workspace/skills/fund-challenge/fund_challenge/scripts/preflight_guard.py --base /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system --mx --save --alert --autofix\",\"retry\":1}"
+      },
+      "state": {
+        "lastStatus": "idle",
+        "consecutiveErrors": 0,
+        "nextRunAtMs": 1776042000000,
+        "lastRunAtMs": 1775782800192,
+        "lastRunStatus": null,
+        "lastDurationMs": 77403,
+        "lastDeliveryStatus": "not-requested",
+        "lastError": null
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "feishu"
+      },
+      "task": "基金每日健康检查",
+      "agentId": "worker-agent"
+    },
+    {
+      "name": "fund-1335-universe",
+      "schedule": {
+        "kind": "cron",
+        "expr": "35 13 * * 1-5"
+      },
+      "task": "基金挑战候选池刷新",
+      "description": "交易日 13:35 刷新候选基金池（自动重试 + 多数据源），评分识别高评分机会",
+      "retry": 2,
+      "enabled": true,
+      "delivery": {
+        "mode": "none",
+        "channel": "feishu"
+      },
+      "notify_on": [
+        "high_score"
+      ],
+      "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/skills/fund-challenge/fund_challenge/scripts/universe_refresh.py --base /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system --retry",
+      "steps": [
+        "1. 获取 ETF + 场外基金列表（主流宽基 + 行业）",
+        "2. 四维评分：估值 (30 分) + 动量 (25 分) + 资金流 (25 分) + 技术面 (20 分)",
+        "3. 筛选高分基金（≥75 分）",
+        "4. 对比特持仓，识别调仓机会",
+        "5. 保存候选池结果 (universe.json)",
+        "6. 发现高分机会时发送飞书通知 ✅ 自动"
+      ],
+      "state": {
+        "lastStatus": "idle",
+        "consecutiveErrors": 0,
+        "nextRunAtMs": 1776058500000,
+        "lastRunStatus": null,
+        "lastRunAtMs": 1775799300008,
+        "lastDurationMs": 2,
+        "lastDeliveryStatus": "not-requested",
+        "lastError": null
+      },
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "id": "cron:fund-1335-universe:5abc3bb2",
+      "payload": {
+        "kind": "systemEvent",
+        "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/skills/fund-challenge/fund_challenge/scripts/universe_refresh.py --base /home/admin/.openclaw/workspace/Semi-automatic-artificial-intelligence-system --alert",
+        "description": "交易日 13:35 刷新候选基金池，扫描全市场基金并评分，识别高评分机会",
+        "retry": 2,
+        "delivery": {
+          "mode": "none",
+          "channel": "feishu"
+        },
+        "feishu_webhook": "https://open.feishu.cn/open-apis/bot/v2/hook/f1286a3e-4e41-4809-a0bc-fd2bbbbc3f10",
+        "notify_on": [
+          "high_score"
+        ],
+        "steps": [
+          "1. 获取 ETF + 场外基金列表（主流宽基 + 行业）",
+          "2. 四维评分：估值 (30 分) + 动量 (25 分) + 资金流 (25 分) + 技术面 (20 分)",
+          "3. 筛选高分基金（≥75 分）",
+          "4. 对比特持仓，识别调仓机会",
+          "5. 保存候选池结果 (universe.json)",
+          "6. 发现高分机会时发送飞书通知 ✅ 自动"
+        ]
+      },
+      "updatedAtMs": 1775799300010,
+      "agentId": "worker-agent"
+    },
+    {
+      "name": "system-health-check",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *"
+      },
+      "task": "系统每日健康检查",
+      "description": "每日 8:00 执行系统健康检查（CPU/内存/磁盘/服务/网络/Cron）+ 自动修复",
+      "retry": 2,
+      "enabled": true,
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      },
+      "notify_on": [
+        "error",
+        "timeout"
+      ],
+      "script": "bash /home/admin/.openclaw/workspace/05-scripts/health_check.sh",
+      "steps": [
+        "1. 检查 CPU 使用率 (>80% 告警)",
+        "2. 检查内存使用率 (>80% 告警)",
+        "3. 检查磁盘使用率 (>85% 告警，>90% 自动清理)",
+        "4. 检查 OpenClaw Gateway 状态 (异常自动重启)",
+        "5. 检查系统负载",
+        "6. 检查网络连接",
+        "7. 检查 Cron 任务状态",
+        "8. 检查关键进程",
+        "9. 异常时自动修复 + 飞书推送 ✅"
+      ],
+      "state": {
+        "lastRunAtMs": 1775174400000,
+        "lastStatus": "idle",
+        "nextRunAtMs": 1775865600000,
+        "consecutiveErrors": 0,
+        "lastRunStatus": null,
+        "lastDeliveryStatus": "not-requested",
+        "lastError": null
+      },
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "id": "cron:system-health-check:auto",
+      "agentId": "worker-agent",
+      "payload": {
+        "kind": "systemEvent"
+      },
+      "updatedAtMs": 1775809110000
+    },
+    {
+      "name": "fund-daily-review",
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 22 * * 1-5"
+      },
+      "task": "基金日终复盘（整合版）",
+      "description": "每日 22:00 执行：数据校验 + 自动备份 + 自动复盘",
+      "retry": 2,
+      "enabled": true,
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      },
+      "notify_on": [
+        "error",
+        "timeout"
+      ],
+      "script": "bash /home/admin/.openclaw/workspace/05-scripts/fund-daily-review.sh",
+      "state": {
+        "lastStatus": "idle",
+        "consecutiveErrors": 0,
+        "lastDeliveryStatus": "not-requested",
+        "nextRunAtMs": 1775831400000,
+        "lastRunStatus": null,
+        "lastError": null
+      },
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "id": "cron:fund-daily-review:review",
+      "agentId": "worker-agent",
+      "payload": {
+        "kind": "systemEvent"
+      },
+      "updatedAtMs": 1775809110000
+    },
+    {
+      "name": "fund-pnl-monitor",
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 15 * * 1-5"
+      },
+      "task": "基金止盈止损监控",
+      "description": "交易日 15:30 检查持仓盈亏，止盈/止损阈值告警",
+      "retry": 1,
+      "enabled": true,
+      "delivery": {
+        "mode": "none",
+        "channel": "feishu"
+      },
+      "notify_on": [
+        "high_pnl"
+      ],
+      "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/fund-pnl-monitor.py",
+      "steps": [
+        "1. 加载持仓数据",
+        "2. 分析盈亏状态",
+        "3. 识别止盈/止损机会",
+        "4. 飞书推送告警"
+      ],
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "payload": {
+        "kind": "systemEvent",
+        "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/fund-pnl-monitor.py",
+        "description": "止盈止损监控",
+        "retry": 1,
+        "delivery": {
+          "mode": "none",
+          "channel": "feishu"
+        }
+      },
+      "agentId": "worker-agent",
+      "state": {
+        "nextRunAtMs": 1776065400000,
+        "lastRunAtMs": 1775808869584,
+        "lastRunStatus": null,
+        "lastStatus": "idle",
+        "lastDurationMs": 1,
+        "lastError": null,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      },
+      "updatedAtMs": 1775808869585,
+      "id": "cron:fund-pnl-monitor:¾ÍÆ¼ÈÆÄ"
+    },
+    {
+      "name": "fund-valuation-monitor",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * 1"
+      },
+      "task": "基金估值分位监控",
+      "description": "周一 08:00 检查主要指数估值分位，识别低估/高估机会",
+      "retry": 1,
+      "enabled": true,
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      },
+      "notify_on": [
+        "always"
+      ],
+      "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/fund-valuation-monitor.py",
+      "steps": [
+        "1. 获取指数 PE 数据",
+        "2. 计算历史分位",
+        "3. 分析估值水平",
+        "4. 飞书推送报告"
+      ],
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "payload": {
+        "kind": "systemEvent",
+        "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/fund-valuation-monitor.py",
+        "description": "估值分位监控",
+        "retry": 1,
+        "delivery": {
+          "mode": "announce",
+          "channel": "feishu"
+        }
+      },
+      "agentId": "worker-agent",
+      "state": {
+        "nextRunAtMs": 1776038400000
+      },
+      "id": "cron:fund-valuation-monitor:¾ÍÆ¼Î¹Ä",
+      "updatedAtMs": 1775809110000
+    },
+    {
+      "name": "fund-announcement-monitor",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * 1-5"
+      },
+      "task": "基金公告监控",
+      "description": "交易日 09:00 检查持仓基金重要公告（经理变更/清盘/暂停申购等）",
+      "retry": 1,
+      "enabled": true,
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      },
+      "notify_on": [
+        "important"
+      ],
+      "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/fund-announcement-monitor.py",
+      "steps": [
+        "1. 加载持仓",
+        "2. 获取基金公告",
+        "3. 筛选重要公告",
+        "4. 飞书推送告警"
+      ],
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "payload": {
+        "kind": "systemEvent",
+        "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/fund-announcement-monitor.py",
+        "description": "公告监控",
+        "retry": 1,
+        "delivery": {
+          "mode": "announce",
+          "channel": "feishu"
+        }
+      },
+      "agentId": "worker-agent",
+      "state": {
+        "nextRunAtMs": 1776042000000
+      },
+      "id": "cron:fund-announcement-monitor:¾ÍÆ¼¹ÆÆ",
+      "updatedAtMs": 1775809110000
+    },
+    {
+      "name": "fund-risk-monitor",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 16 * * 1-5"
+      },
+      "task": "基金风险监控",
+      "description": "交易日 16:00 监控组合风险（回撤/仓位/集中度），提前预警",
+      "retry": 1,
+      "enabled": true,
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      },
+      "notify_on": [
+        "risk"
+      ],
+      "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/risk-monitor.py",
+      "steps": [
+        "1. 计算组合风险指标",
+        "2. 检查回撤/仓位/集中度",
+        "3. 识别风险项",
+        "4. 飞书推送告警"
+      ],
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "payload": {
+        "kind": "systemEvent",
+        "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/risk-monitor.py",
+        "description": "风险监控",
+        "retry": 1,
+        "delivery": {
+          "mode": "announce",
+          "channel": "feishu"
+        }
+      },
+      "agentId": "worker-agent",
+      "state": {
+        "nextRunAtMs": 1776067200000
+      },
+      "id": "cron:fund-risk-monitor:¾ÍÆ¼ÊÁË",
+      "updatedAtMs": 1775809110000
+    },
+    {
+      "name": "knowledge-builder",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 23 * * *"
+      },
+      "task": "知识库构建",
+      "description": "每日 23:00 从决策日志中提取经验教训，构建知识库",
+      "retry": 1,
+      "enabled": true,
+      "delivery": {
+        "mode": "none",
+        "channel": "feishu"
+      },
+      "notify_on": null,
+      "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/knowledge-builder.py",
+      "steps": [
+        "1. 加载决策日志",
+        "2. 提取经验教训",
+        "3. 更新知识库"
+      ],
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "payload": {
+        "kind": "systemEvent",
+        "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/knowledge-builder.py",
+        "description": "知识库构建",
+        "retry": 1,
+        "delivery": {
+          "mode": "none",
+          "channel": "feishu"
+        }
+      },
+      "agentId": "worker-agent",
+      "state": {
+        "nextRunAtMs": 1775833200000
+      },
+      "id": "cron:knowledge-builder:ÃÆÇÏÄ½¼¿",
+      "updatedAtMs": 1775809110000
+    },
+    {
+      "name": "performance-tracker",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 22 * * *"
+      },
+      "task": "性能追踪",
+      "description": "每日 22:00 记录系统性能指标（响应时间/错误率/资源使用）",
+      "retry": 1,
+      "enabled": true,
+      "delivery": {
+        "mode": "none",
+        "channel": "feishu"
+      },
+      "notify_on": null,
+      "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/performance-tracker.py",
+      "steps": [
+        "1. 收集性能数据",
+        "2. 分析趋势",
+        "3. 保存记录"
+      ],
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "payload": {
+        "kind": "systemEvent",
+        "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/performance-tracker.py",
+        "description": "性能追踪",
+        "retry": 1,
+        "delivery": {
+          "mode": "none",
+          "channel": "feishu"
+        }
+      },
+      "agentId": "worker-agent",
+      "state": {
+        "lastStatus": "idle",
+        "consecutiveErrors": 0,
+        "lastRunStatus": null,
+        "lastDurationMs": 0,
+        "lastDeliveryStatus": "not-requested",
+        "nextRunAtMs": 1775829600000,
+        "lastRunAtMs": 0
+      },
+      "id": "cron:performance-tracker:È½Ê¾ÇÊÅ¹",
+      "updatedAtMs": 1775809110000
+    },
+    {
+      "name": "gateway-startup-notify",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "staggerMs": 300000
+      },
+      "task": "Gateway 启动通知",
+      "description": "每小时检查 Gateway 状态，重启后推送通知",
+      "retry": 0,
+      "enabled": false,
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      },
+      "notify_on": [
+        "startup"
+      ],
+      "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/gateway_startup_notify.py",
+      "steps": [
+        "1. 检查 Gateway 启动时间",
+        "2. 对比上次记录",
+        "3. 重启时推送通知"
+      ],
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "payload": {
+        "kind": "systemEvent",
+        "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/gateway_startup_notify.py",
+        "description": "Gateway 启动通知",
+        "retry": 0,
+        "delivery": {
+          "mode": "announce",
+          "channel": "feishu"
+        }
+      },
+      "agentId": "worker-agent",
+      "state": {
+        "lastStatus": "idle",
+        "consecutiveErrors": 0,
+        "lastRunStatus": null,
+        "lastDurationMs": 0,
+        "lastDeliveryStatus": "not-requested",
+        "lastRunAtMs": 0,
+        "scheduleErrorCount": 3,
+        "lastError": "schedule error: TypeError [ERR_INVALID_ARG_TYPE]: The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined"
+      },
+      "id": "cron:gateway-startup-notify:¿¹Ì½Ï¹Ñ",
+      "updatedAtMs": 1775809110000
+    },
+    {
+      "name": "fund-investment-reminder",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * 1-5"
+      },
+      "task": "投资提醒",
+      "description": "交易日 10:00 检查定投/加仓机会，推送提醒",
+      "retry": 1,
+      "enabled": true,
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu"
+      },
+      "notify_on": [
+        "opportunity"
+      ],
+      "script": "bash /home/admin/.openclaw/workspace/05-scripts/fund-investment-reminder.sh",
+      "steps": [
+        "1. 检查市场状态",
+        "2. 分析估值机会",
+        "3. 推送定投/加仓提醒"
+      ],
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "payload": {
+        "kind": "systemEvent",
+        "script": "bash /home/admin/.openclaw/workspace/05-scripts/fund-investment-reminder.sh",
+        "description": "投资提醒",
+        "retry": 1,
+        "delivery": {
+          "mode": "announce",
+          "channel": "feishu"
+        }
+      },
+      "agentId": "worker-agent",
+      "state": {
+        "lastStatus": "idle",
+        "consecutiveErrors": 0,
+        "lastRunStatus": null,
+        "lastDurationMs": 0,
+        "lastDeliveryStatus": "not-requested",
+        "nextRunAtMs": 1776045600000,
+        "lastRunAtMs": 0
+      },
+      "id": "cron:fund-investment-reminder:¾ÍÆ¼ÁÆÎ",
+      "updatedAtMs": 1775809110000
+    }
+  ]
+}
