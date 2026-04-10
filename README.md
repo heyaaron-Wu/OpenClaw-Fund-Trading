@@ -190,7 +190,6 @@ workspace/
 | `fund-challenge-instrument-rules` | 交易规则管理（T+、截止时间等） | 每日 5 次 |
 | `fund-challenge-ledger-postmortem` | 交易流水追溯与复盘 | 每周 1 次 |
 
-### 通用技能（19+ 个）
 
 <!-- AUTO:skill_list -->
 ### 通用技能（29 个）
