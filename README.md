@@ -193,9 +193,11 @@ workspace/
 
 ### 通用技能（29 个）
 
-📖 **详细说明：** [查看完整技能说明 →](03-system-docs/GENERAL_SKILLS.md)
+📖 **详细说明：** [03-system-docs/GENERAL_SKILLS.md](03-system-docs/GENERAL_SKILLS.md)
 
-包含：财经数据（5 个）、搜索工具（4 个）、新闻资讯（2 个）、AI 增强（5 个）、交易工具（3 个）、工具（10 个）
+<!-- AUTO:skill_list -->
+<!-- 技能列表已移动到 GENERAL_SKILLS.md，此处保留占位 -->
+<!-- END AUTO -->
 | `fund-challenge-instrument-rules` | 技能模块 |
 | `fund-challenge-ledger-postmortem` | 技能模块 |
 | `fund-challenge-orchestrator` | 技能模块 |
