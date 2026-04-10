@@ -195,25 +195,14 @@ workspace/
 
 📖 **详细说明：** [查看完整技能说明 →](03-system-docs/GENERAL_SKILLS.md)
 
-包含：财经数据（5 个）、搜索工具（4 个）、新闻资讯（2 个）、AI 增强（5 个）、交易工具（3 个）、工具（10 个）
-| `fund-challenge-instrument-rules` | 技能模块 |
-| `fund-challenge-ledger-postmortem` | 技能模块 |
-| `fund-challenge-orchestrator` | 技能模块 |
-| `mx-data` | --- |
-| `mx-search` | --- |
-| `mx-select-stock` | 本 Skill 支持基于股票选股条件，如行情**指标、财务指标等**，筛选满足条件的股票；可查询** |
-| `mx-selfselect` | --- |
-| `mx-stock-simulator` | --- |
-| `news-summary` | --- |
-| `obsidian-ontology-sync` | --- |
-| `openclaw-tavily-search` | --- |
-| `proactive-agent` | --- |
-| `proactive-agent-lite` | --- |
-| `searxng` | --- |
-| `self-improving-agent` | --- |
-| `skill-vetter` | --- |
-| `stock-watcher` | --- |
-<!-- END AUTO -->
+| 分类 | 数量 | 代表技能 |
+|------|------|---------|
+| 📊 财经数据 | 5 个 | akshare-finance, etf-assistant, stock-watcher |
+| 🔍 搜索工具 | 4 个 | searxng, mx-search, find-skills |
+| 📰 新闻资讯 | 2 个 | news-summary, mx-data |
+| 🧠 AI 增强 | 5 个 | proactive-agent, self-improving-agent |
+| 📈 交易工具 | 3 个 | mx-selfselect, mx-stock-simulator |
+| 🛠️ 工具 | 10 个 | agent-browser, charts, skill-vetter |
 
 ---
 
