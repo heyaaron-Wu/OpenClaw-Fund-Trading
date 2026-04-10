@@ -377,33 +377,32 @@ workspace/
 
 ### 定时任务列表
 
-**共 18 个任务**：核心交易链路 (6) + 监控链路 (5) + 系统链路 (6) + 周报 (1)
+**共 17 个任务**：核心交易链路 (6) + 监控链路 (5) + 系统链路 (5) + 周报 (1)
 
 <!-- START CRON TASKS -->
 
 | 任务名 | 时间 | 作用 | 推送策略 |
 |------|------|------|----------|
-| **核心交易链路** |
+| **核心交易链路 (6 个)** |
 | fund-daily-check | 0 9 * * 1-5 | 交易日 9:00 执行预检管线（含自动修复），系统状态检查 | none |
 | fund-1335-universe | 35 13 * * 1-5 | 交易日 13:35 刷新候选基金池（自动重试 + 多数据源），评分识别高评分机会 | high_score |
 | fund-1400-decision | 0 14 * * 1-5 | 交易日 14:00 生成交易决策（智能 fallback+ 自动重试），获取实时行情并生成持仓建议 | always |
 | fund-1448-exec-gate | 48 14 * * 1-5 | 交易日 14:48 执行门控确认，决策缺失时自动触发重新决策 | low_score |
 | fund-daily-review | 30 22 * * 1-5 | 每日 22:30 执行：数据校验 + 自动备份 + 自动复盘 + GitHub 归档 | error, timeout |
 | knowledge-builder | 0 23 * * * | 每日 23:00 从决策日志中提取经验教训，构建知识库 | none |
-| **监控链路** |
+| **监控链路 (5 个)** |
 | fund-announcement-monitor | 0 9 * * 1-5 | 交易日 09:00 检查持仓基金重要公告（经理变更/清盘/暂停申购等） | always |
 | fund-investment-reminder | 0 10 * * 1-5 | 交易日 10:00 检查定投/加仓机会，推送提醒 | opportunity |
 | fund-pnl-monitor | 30 15 * * 1-5 | 交易日 15:30 检查持仓盈亏，止盈/止损阈值告警 | high_pnl |
 | fund-valuation-monitor | 0 8 * * 1 | 周一 08:00 检查主要指数估值分位，识别低估/高估机会 | always |
 | fund-risk-monitor | 0 16 * * 1-5 | 交易日 16:00 监控组合风险（回撤/仓位/集中度），提前预警 | risk |
-| **系统链路** |
+| **系统链路 (5 个)** |
 | system-daily-optimize | 0 1 * * * | 每日凌晨 1 点执行系统清理（智能清理 + 自动修复），磁盘>85% 自动清理，Gateway 异常自动重启 | error, timeout |
 | system-health-check | 0 8 * * * | 每日 8:00 执行系统健康检查（CPU/内存/磁盘/服务/网络/Cron）+ 自动修复 | error, timeout |
 | performance-tracker | 0 22 * * * | 每日 22:00 记录系统性能指标（响应时间/错误率/资源使用） | none |
 | system-version-update | 30 23 * * * | 每日 23:30 检查系统当日提交，如有更新则更新 CHANGELOG.md 并推送到 GitHub 归档 | always |
-| gateway-startup-notify | 0 * * * * | 每小时检查 Gateway 状态，重启后推送通知 | startup |
 | system-weekly-report | 0 9 * * 1 | 周一 09:00 执行系统健康检查 + 自动修复 + 性能趋势分析 + 智能优化建议 + GitHub 归档 | always, error |
-| **周报复盘** |
+| **周报复盘 (1 个)** |
 | fund-weekly-report | 0 23 * * 5 | 周五 23:00 生成周度总结和复盘报告 + GitHub 归档 | always |
 
 <!-- END CRON TASKS -->

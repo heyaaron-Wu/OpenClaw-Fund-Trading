@@ -834,56 +834,6 @@
       "updatedAtMs": 1775809110000
     },
     {
-      "name": "gateway-startup-notify",
-      "schedule": {
-        "kind": "cron",
-        "expr": "0 * * * *",
-        "staggerMs": 300000
-      },
-      "task": "Gateway 启动通知",
-      "description": "每小时检查 Gateway 状态，重启后推送通知",
-      "retry": 0,
-      "enabled": false,
-      "delivery": {
-        "mode": "announce",
-        "channel": "feishu"
-      },
-      "notify_on": [
-        "startup"
-      ],
-      "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/gateway_startup_notify.py",
-      "steps": [
-        "1. 检查 Gateway 启动时间",
-        "2. 对比上次记录",
-        "3. 重启时推送通知"
-      ],
-      "wakeMode": "now",
-      "sessionTarget": "main",
-      "payload": {
-        "kind": "systemEvent",
-        "script": "/usr/bin/python3.11 /home/admin/.openclaw/workspace/05-scripts/gateway_startup_notify.py",
-        "description": "Gateway 启动通知",
-        "retry": 0,
-        "delivery": {
-          "mode": "announce",
-          "channel": "feishu"
-        }
-      },
-      "agentId": "worker-agent",
-      "state": {
-        "lastStatus": "idle",
-        "consecutiveErrors": 0,
-        "lastRunStatus": null,
-        "lastDurationMs": 0,
-        "lastDeliveryStatus": "not-requested",
-        "lastRunAtMs": 0,
-        "scheduleErrorCount": 3,
-        "lastError": "schedule error: TypeError [ERR_INVALID_ARG_TYPE]: The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined"
-      },
-      "id": "cron:gateway-startup-notify:¿¹Ì½Ï¹Ñ",
-      "updatedAtMs": 1775809110000
-    },
-    {
       "name": "fund-investment-reminder",
       "schedule": {
         "kind": "cron",
