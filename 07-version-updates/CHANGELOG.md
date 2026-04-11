@@ -72,9 +72,6 @@ v主版本。次版本。修订号
 #### 🔒 其他
 - .gitignore 添加备份文件过滤（*.backup*）
 
-#### 📊 统计
-- 提交数：13 个
-- 主要文件：README.md, check_daily_updates.sh, .gitignore
 
 ## v1.2.1 - 2026-04-10
 
