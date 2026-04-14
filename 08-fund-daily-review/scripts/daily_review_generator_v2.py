@@ -28,8 +28,11 @@ def load_ledger(ledger_path):
     transactions = []
     with open(ledger_path, 'r', encoding='utf-8') as f:
         for line in f:
-            if line.strip():
-                transactions.append(json.loads(line))
+            line = line.strip()
+            # 跳过空行和注释行
+            if not line or line.startswith('#'):
+                continue
+            transactions.append(json.loads(line))
     return transactions
 
 
