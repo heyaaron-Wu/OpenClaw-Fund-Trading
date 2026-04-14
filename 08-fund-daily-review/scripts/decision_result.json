@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-04-14T14:02:37.725247",
+  "preflight_status": "not_run",
+  "market_data": {
+    "科创 50": {
+      "percent": 1.2,
+      "current": 1391.79,
+      "yesterday": 1375.29,
+      "source": "tencent"
+    },
+    "半导体": {
+      "percent": 1.79,
+      "current": 1.594,
+      "yesterday": 1.566,
+      "source": "tencent"
+    },
+    "新能源车": {
+      "percent": 0.63,
+      "current": 1.427,
+      "yesterday": 1.418,
+      "source": "tencent"
+    }
+  },
+  "decisions": [
+    {
+      "code": "011612",
+      "name": "华夏科创 50ETF 联接 A",
+      "action": "HOLD",
+      "reason": "科创 50 震荡，持仓观望",
+      "risk_level": "low",
+      "suggestion": "未进入高分候选池，关注是否有更优选择"
+    },
+    {
+      "code": "013180",
+      "name": "广发新能源车电池 ETF 联接 C",
+      "action": "HOLD",
+      "reason": "新能源车相对抗跌，作为防御性配置",
+      "risk_level": "low",
+      "suggestion": "未进入高分候选池，关注是否有更优选择"
+    },
+    {
+      "code": "014320",
+      "name": "德邦半导体产业混合 C",
+      "action": "HOLD",
+      "reason": "半导体1.79%，继续持有",
+      "risk_level": "low",
+      "suggestion": "未进入高分候选池，关注是否有更优选择"
+    }
+  ],
+  "buy_suggestions": [],
+  "alerts": []
+}

@@ -30,5 +30,35 @@
     "半导体": 0.85,
     "新能源车": 1.41,
     "医药": -0.78
+  },
+  "verified": true,
+  "verification": {
+    "date": "2026-04-13",
+    "total": 3,
+    "correct": 3,
+    "wrong": 0,
+    "details": [
+      {
+        "code": "011612",
+        "name": "华夏科创 50ETF 联接 A",
+        "action": "HOLD",
+        "daily_pnl_rate": 1.46,
+        "correct": true
+      },
+      {
+        "code": "013180",
+        "name": "广发新能源车电池 ETF 联接 C",
+        "action": "HOLD",
+        "daily_pnl_rate": 4.65,
+        "correct": true
+      },
+      {
+        "code": "014320",
+        "name": "德邦半导体产业混合 C",
+        "action": "HOLD",
+        "daily_pnl_rate": 1.5,
+        "correct": true
+      }
+    ]
   }
 }
