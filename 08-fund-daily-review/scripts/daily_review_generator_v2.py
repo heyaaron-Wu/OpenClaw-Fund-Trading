@@ -310,18 +310,26 @@ def generate_review(state, ledger, date, market_data, news_list):
         # 生成详细点评（行情 + 情绪 + 建议）
         comments = []
         
-        # 1. 行情描述
+        # 1. 行情描述 + 相对强弱
         if sector_pnl is not None:
             if sector_pnl > 2:
-                comments.append(f"{sector_desc}大涨{sector_pnl:.2f}%")
+                sector_comment = f"{sector_desc}大涨{sector_pnl:.2f}%"
             elif sector_pnl > 0.5:
-                comments.append(f"{sector_desc}上涨{sector_pnl:.2f}%")
+                sector_comment = f"{sector_desc}上涨{sector_pnl:.2f}%"
             elif sector_pnl > -0.5:
-                comments.append(f"{sector_desc}震荡整理")
+                sector_comment = f"{sector_desc}震荡整理"
             elif sector_pnl > -2:
-                comments.append(f"{sector_desc}小幅回调{sector_pnl:.2f}%")
+                sector_comment = f"{sector_desc}小幅回调{sector_pnl:.2f}%"
             else:
-                comments.append(f"{sector_desc}大跌{sector_pnl:.2f}%")
+                sector_comment = f"{sector_desc}大跌{sector_pnl:.2f}%"
+            
+            # 判断相对强弱（板块涨但基金跌 = 跑输）
+            if sector_pnl > 0.5 and daily_pnl < 0:
+                sector_comment += "，**跑输板块**"
+            elif sector_pnl < -0.5 and daily_pnl > 0:
+                sector_comment += "，**逆势上涨**"
+            
+            comments.append(sector_comment)
         else:
             if daily_pnl > 5:
                 comments.append("逆势大涨")
