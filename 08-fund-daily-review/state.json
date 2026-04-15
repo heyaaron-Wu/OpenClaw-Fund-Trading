@@ -14,14 +14,14 @@
       "daily_pnl_rate": 1.46,
       "unrealized_pnl": 19.47,
       "pnl_rate": 1.56,
-      "last_updated": "2026-04-14T22:30:00.000000",
+      "last_updated": "2026-04-15T22:32:22.124110",
       "confirmed_nav": 0.97255,
       "daily_growth": 5.61,
-      "last_pnl_date": "2026-04-14",
+      "last_pnl_date": "2026-04-15",
       "market_value": 421.93999999999994,
       "last_update_time": "2026-04-13T22:30:00.000000",
       "last_pnl": 22.42,
-      "nav_date": "2026-04-14"
+      "nav_date": "2026-04-15"
     },
     {
       "code": "013180",
@@ -32,14 +32,14 @@
       "daily_pnl_rate": 4.65,
       "unrealized_pnl": 9.14,
       "pnl_rate": 0.56,
-      "last_updated": "2026-04-14T22:30:00.000000",
+      "last_updated": "2026-04-15T22:32:22.124110",
       "confirmed_nav": 0.922,
       "daily_growth": 3.59,
-      "last_pnl_date": "2026-04-14",
+      "last_pnl_date": "2026-04-15",
       "market_value": 314.84,
       "last_update_time": "2026-04-13T22:30:00.000000",
       "last_pnl": 14.84,
-      "nav_date": "2026-04-14"
+      "nav_date": "2026-04-15"
     },
     {
       "code": "014320",
@@ -50,26 +50,26 @@
       "daily_pnl_rate": 1.5,
       "unrealized_pnl": 27.479999999999997,
       "pnl_rate": 4.47,
-      "last_updated": "2026-04-14T22:30:00.000000",
+      "last_updated": "2026-04-15T22:32:22.124110",
       "confirmed_nav": 1.00003,
       "daily_growth": 6.28,
-      "last_pnl_date": "2026-04-14",
+      "last_pnl_date": "2026-04-15",
       "market_value": 328.71999999999997,
       "last_update_time": "2026-04-13T22:30:00.000000",
       "last_pnl": 28.72,
-      "nav_date": "2026-04-14"
+      "nav_date": "2026-04-15"
     }
   ],
   "total_fees": 0.48,
-  "portfolio_value": 1043.18,
-  "last_updated": "2026-04-14T22:30:00.000000",
-  "total_pnl": 43.67,
-  "total_pnl_rate": 4.37,
-  "total_market_value": 1043.18,
+  "portfolio_value": 1065.5,
+  "last_updated": "2026-04-15T22:32:22.124110",
+  "total_pnl": 56.09,
+  "total_pnl_rate": 5.61,
+  "total_market_value": 1065.5,
   "manual_update": true,
-  "last_manual_date": "2026-04-14",
-  "last_manual_note": "根据 4 月 14 日截图手动更新数据",
-  "cumulative_pnl": 43.67,
+  "last_manual_date": "2026-04-15",
+  "last_manual_note": "根据 2026-04-15 数据自动更新",
+  "cumulative_pnl": 56.09,
   "principal": 999.52,
-  "last_update_time": "2026-04-13T22:30:00.000000"
+  "last_update_time": "2026-04-15T22:32:22.124110"
 }
