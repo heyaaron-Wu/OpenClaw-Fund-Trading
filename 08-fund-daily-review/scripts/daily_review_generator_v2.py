@@ -279,49 +279,13 @@ def generate_review(state, ledger, date, market_data, news_list):
             news_lines.append(f"{i}. **{title}**")
     news_text = '\n\n'.join(news_lines) if news_lines else '- 暂无新闻数据'
     
-    # 生成持仓分析（增强版：包含盈亏分析）
+    # 生成持仓分析（简洁版）
     position_analysis = []
-    
-    # 1. 各基金表现
     for pos in positions_data:
         status = '✅' if pos['daily_pnl'] >= 0 else '❌'
         analysis = f"{status} **{pos['name']}**：{pos['daily_pnl']:+.2f} 元\n   - 累计盈亏：{pos['unrealized_pnl']:+.2f} 元 ({pos['pnl_rate']:+.2f}%)"
         position_analysis.append(analysis)
-    
-    # 2. 盈亏分析总结
-    profitable_count = sum(1 for pos in positions_data if pos['daily_pnl'] > 0)
-    losing_count = sum(1 for pos in positions_data if pos['daily_pnl'] < 0)
-    total_count = len(positions_data)
-    
-    analysis_summary = []
-    analysis_summary.append(f"\n### 💰 盈亏分析")
-    
-    if daily_pnl > 0:
-        analysis_summary.append(f"**今日盈利 {daily_pnl:.2f} 元**，{profitable_count}/{total_count} 持仓上涨")
-        if profitable_count == total_count:
-            analysis_summary.append("- ✅ 持仓全线上涨，表现优秀！")
-        else:
-            best = max(positions_data, key=lambda x: x['daily_pnl'])
-            analysis_summary.append(f"- 🏆 最佳表现：{best['name']}（{best['daily_pnl']:+.2f} 元）")
-    elif daily_pnl < 0:
-        analysis_summary.append(f"**今日亏损 {abs(daily_pnl):.2f} 元**，{losing_count}/{total_count} 持仓下跌")
-        if losing_count == total_count:
-            analysis_summary.append("- ❌ 持仓全线下跌，注意风险控制")
-        else:
-            worst = min(positions_data, key=lambda x: x['daily_pnl'])
-            analysis_summary.append(f"- 📉 拖累最大：{worst['name']}（{worst['daily_pnl']:+.2f} 元）")
-    else:
-        analysis_summary.append(f"**今日持平**，市场震荡整理")
-    
-    # 累计表现分析
-    if total_pnl > 50:
-        analysis_summary.append(f"\n**累计表现优秀**：+{total_pnl:.2f} 元，收益率 +{pnl_rate:.2f}%，领先目标进度")
-    elif total_pnl > 0:
-        analysis_summary.append(f"\n**累计表现稳健**：+{total_pnl:.2f} 元，收益率 +{pnl_rate:.2f}%，继续持有优质资产")
-    else:
-        analysis_summary.append(f"\n**累计承压**：{total_pnl:.2f} 元，需关注持仓结构优化")
-    
-    position_text = '\n\n'.join(position_analysis) + '\n\n' + '\n'.join(analysis_summary)
+    position_text = '\n\n'.join(position_analysis)
     
     # 生成明日计划（动态）
     tomorrow_plan = generate_tomorrow_plan(positions_data, market_data, daily_pnl)
