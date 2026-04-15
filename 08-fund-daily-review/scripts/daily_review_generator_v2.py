@@ -279,12 +279,32 @@ def generate_review(state, ledger, date, market_data, news_list):
             news_lines.append(f"{i}. **{title}**")
     news_text = '\n\n'.join(news_lines) if news_lines else '- 暂无新闻数据'
     
-    # 生成持仓分析（简洁版）
+    # 生成持仓分析（每只基金盈亏分析）
     position_analysis = []
     for pos in positions_data:
         status = '✅' if pos['daily_pnl'] >= 0 else '❌'
-        analysis = f"{status} **{pos['name']}**：{pos['daily_pnl']:+.2f} 元\n   - 累计盈亏：{pos['unrealized_pnl']:+.2f} 元 ({pos['pnl_rate']:+.2f}%)"
+        
+        # 根据当日表现生成分析
+        if pos['daily_pnl'] > 5:
+            comment = "🔥 大幅上涨，表现强势"
+        elif pos['daily_pnl'] > 0:
+            comment = "📈 小幅上涨，走势稳健"
+        elif pos['daily_pnl'] > -5:
+            comment = "📉 小幅回调，正常波动"
+        else:
+            comment = "⚠️ 跌幅较大，关注企稳信号"
+        
+        # 根据累计表现生成评价
+        if pos['unrealized_pnl'] > 20:
+            cumulative_comment = "累计表现优秀"
+        elif pos['unrealized_pnl'] > 0:
+            cumulative_comment = "累计盈利，继续持有"
+        else:
+            cumulative_comment = "累计亏损，等待反弹"
+        
+        analysis = f"{status} **{pos['name']}**：{pos['daily_pnl']:+.2f} 元\n   - 累计盈亏：{pos['unrealized_pnl']:+.2f} 元 ({pos['pnl_rate']:+.2f}%)\n   - {comment}，{cumulative_comment}"
         position_analysis.append(analysis)
+    
     position_text = '\n\n'.join(position_analysis)
     
     # 生成明日计划（动态）
