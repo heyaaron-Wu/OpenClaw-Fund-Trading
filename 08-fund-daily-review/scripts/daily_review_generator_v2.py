@@ -279,30 +279,51 @@ def generate_review(state, ledger, date, market_data, news_list):
             news_lines.append(f"{i}. **{title}**")
     news_text = '\n\n'.join(news_lines) if news_lines else '- 暂无新闻数据'
     
-    # 生成持仓分析（每只基金盈亏分析）
+    # 生成持仓分析（参考 2026-04-03.md 格式：结合市场行情的点评）
     position_analysis = []
+    
+    # 基金代码对应的板块/指数
+    fund_to_sector = {
+        '011612': ('科创 50', '科创 50 指数'),
+        '013180': ('新能源车', '新能源车电池板块'),
+        '014320': ('半导体', '半导体板块'),
+    }
+    
     for pos in positions_data:
         status = '✅' if pos['daily_pnl'] >= 0 else '❌'
+        code = pos.get('code', '')
         
-        # 根据当日表现生成分析
-        if pos['daily_pnl'] > 5:
-            comment = "🔥 大幅上涨，表现强势"
-        elif pos['daily_pnl'] > 0:
-            comment = "📈 小幅上涨，走势稳健"
-        elif pos['daily_pnl'] > -5:
-            comment = "📉 小幅回调，正常波动"
+        # 获取对应的板块信息
+        sector_name, sector_desc = fund_to_sector.get(code, ('', ''))
+        
+        # 获取板块当日表现
+        sector_pnl = None
+        if sector_name and market_data:
+            for market_name, pct in market_data.items():
+                if sector_name in market_name:
+                    sector_pnl = pct
+                    break
+        
+        # 生成行情点评
+        if sector_pnl is not None:
+            if sector_pnl > 1:
+                market_comment = f"{sector_desc}强势上涨"
+            elif sector_pnl > 0:
+                market_comment = f"{sector_desc}小幅上涨"
+            elif sector_pnl > -1:
+                market_comment = f"{sector_desc}震荡整理"
+            else:
+                market_comment = f"{sector_desc}继续调整"
         else:
-            comment = "⚠️ 跌幅较大，关注企稳信号"
+            # 根据基金当日盈亏生成点评
+            if pos['daily_pnl'] > 0:
+                market_comment = "板块表现强势"
+            elif pos['daily_pnl'] > -3:
+                market_comment = "板块震荡整理"
+            else:
+                market_comment = "板块继续调整"
         
-        # 根据累计表现生成评价
-        if pos['unrealized_pnl'] > 20:
-            cumulative_comment = "累计表现优秀"
-        elif pos['unrealized_pnl'] > 0:
-            cumulative_comment = "累计盈利，继续持有"
-        else:
-            cumulative_comment = "累计亏损，等待反弹"
-        
-        analysis = f"{status} **{pos['name']}**：{pos['daily_pnl']:+.2f} 元\n   - 累计盈亏：{pos['unrealized_pnl']:+.2f} 元 ({pos['pnl_rate']:+.2f}%)\n   - {comment}，{cumulative_comment}"
+        analysis = f"{status} **{pos['name']}**：{pos['daily_pnl']:+.2f} 元\n   - 累计盈亏：{pos['unrealized_pnl']:+.2f} 元 ({pos['pnl_rate']:+.2f}%)\n   - {market_comment}"
         position_analysis.append(analysis)
     
     position_text = '\n\n'.join(position_analysis)
