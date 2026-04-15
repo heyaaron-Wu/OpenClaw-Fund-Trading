@@ -37,38 +37,58 @@ def load_ledger(ledger_path):
 
 
 def get_market_data():
-    """获取市场数据（AKShare）"""
+    """获取市场数据（腾讯财经 API - 更稳定）"""
+    import urllib.request
+    
+    indices = {
+        '上证指数': 'sh000001',
+        '创业板指': 'sz399006',
+        '科创 50': 'sh000688',
+        '沪深 300': 'sh000300'
+    }
+    
+    market_data = {}
+    for name, code in indices.items():
+        try:
+            url = f"http://qt.gtimg.cn/q={code}"
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            response = urllib.request.urlopen(req, timeout=5)
+            data = response.read().decode('gbk')
+            
+            # 解析：v_sh000001="51~3089.80~3093.15~3088.55~...
+            parts = data.split('~')
+            if len(parts) > 49:
+                pct_change = float(parts[49])  # 涨跌幅百分比
+                market_data[name] = pct_change
+        except Exception as e:
+            print(f"⚠️  {name} 获取失败：{e}")
+            pass
+    
+    return market_data
+
+
+def translate_en_to_zh(text):
+    """英文新闻标题翻译（Google Translate - 简单方案）"""
+    import urllib.request
+    import urllib.parse
+    
     try:
-        import akshare as ak
-        
-        # 获取主要指数
-        indices = {
-            '上证指数': 'sh000001',
-            '创业板指': 'sz399006',
-            '科创 50': 'sh000688',
-            '沪深 300': 'sh000300'
-        }
-        
-        market_data = {}
-        for name, code in indices.items():
-            try:
-                # 获取实时行情
-                df = ak.stock_zh_index_spot()
-                row = df[df['code'] == code]
-                if not row.empty:
-                    pct_change = float(row['percent'].values[0])
-                    market_data[name] = pct_change
-            except:
-                pass
-        
-        return market_data
+        # 使用 Google Translate 的简单接口（无需 API key）
+        url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=zh-CN&dt=t&q=" + urllib.parse.quote(text)
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, timeout=5) as response:
+            result = json.loads(response.read().decode('utf-8'))
+            # 返回结构：[[["译文", "原文", ...]], ...]
+            if result and result[0]:
+                translated = ''.join([item[0] for item in result[0] if item[0]])
+                return translated if translated else text
     except Exception as e:
-        print(f"⚠️  AKShare 获取失败：{e}")
-        return {}
+        print(f"   ⚠️  翻译失败：{e}")
+        return text  # 翻译失败返回原文
 
 
 def get_finance_news(api_key=None):
-    """获取财经新闻（多源聚合）"""
+    """获取财经新闻（多源聚合 + 英文翻译）"""
     # 尝试导入多源新闻聚合脚本
     try:
         sys.path.insert(0, '/home/admin/.openclaw/workspace/skills/fund-challenge/fund_challenge/scripts')
@@ -90,8 +110,18 @@ def get_finance_news(api_key=None):
             if time_str and len(time_str) > 16:
                 time_str = time_str[:16]
             
+            title = news.get('title', '')
+            
+            # 检测并翻译英文标题
+            if title and any(ord(c) > 127 for c in title) == False and len(title) > 10:
+                # 可能是英文，尝试翻译
+                print(f"   🌐 翻译英文新闻：{title[:50]}...")
+                title_zh = translate_en_to_zh(title)
+                if title_zh != title:
+                    title = f"{title_zh} （原文：{title}）"
+            
             formatted_news.append({
-                'title': news.get('title', ''),
+                'title': title,
                 'url': news.get('url', ''),
                 'time': time_str,
                 'source': source
@@ -249,13 +279,49 @@ def generate_review(state, ledger, date, market_data, news_list):
             news_lines.append(f"{i}. **{title}**")
     news_text = '\n\n'.join(news_lines) if news_lines else '- 暂无新闻数据'
     
-    # 生成持仓分析
+    # 生成持仓分析（增强版：包含盈亏分析）
     position_analysis = []
+    
+    # 1. 各基金表现
     for pos in positions_data:
         status = '✅' if pos['daily_pnl'] >= 0 else '❌'
         analysis = f"{status} **{pos['name']}**：{pos['daily_pnl']:+.2f} 元\n   - 累计盈亏：{pos['unrealized_pnl']:+.2f} 元 ({pos['pnl_rate']:+.2f}%)"
         position_analysis.append(analysis)
-    position_text = '\n\n'.join(position_analysis)
+    
+    # 2. 盈亏分析总结
+    profitable_count = sum(1 for pos in positions_data if pos['daily_pnl'] > 0)
+    losing_count = sum(1 for pos in positions_data if pos['daily_pnl'] < 0)
+    total_count = len(positions_data)
+    
+    analysis_summary = []
+    analysis_summary.append(f"\n### 💰 盈亏分析")
+    
+    if daily_pnl > 0:
+        analysis_summary.append(f"**今日盈利 {daily_pnl:.2f} 元**，{profitable_count}/{total_count} 持仓上涨")
+        if profitable_count == total_count:
+            analysis_summary.append("- ✅ 持仓全线上涨，表现优秀！")
+        else:
+            best = max(positions_data, key=lambda x: x['daily_pnl'])
+            analysis_summary.append(f"- 🏆 最佳表现：{best['name']}（{best['daily_pnl']:+.2f} 元）")
+    elif daily_pnl < 0:
+        analysis_summary.append(f"**今日亏损 {abs(daily_pnl):.2f} 元**，{losing_count}/{total_count} 持仓下跌")
+        if losing_count == total_count:
+            analysis_summary.append("- ❌ 持仓全线下跌，注意风险控制")
+        else:
+            worst = min(positions_data, key=lambda x: x['daily_pnl'])
+            analysis_summary.append(f"- 📉 拖累最大：{worst['name']}（{worst['daily_pnl']:+.2f} 元）")
+    else:
+        analysis_summary.append(f"**今日持平**，市场震荡整理")
+    
+    # 累计表现分析
+    if total_pnl > 50:
+        analysis_summary.append(f"\n**累计表现优秀**：+{total_pnl:.2f} 元，收益率 +{pnl_rate:.2f}%，领先目标进度")
+    elif total_pnl > 0:
+        analysis_summary.append(f"\n**累计表现稳健**：+{total_pnl:.2f} 元，收益率 +{pnl_rate:.2f}%，继续持有优质资产")
+    else:
+        analysis_summary.append(f"\n**累计承压**：{total_pnl:.2f} 元，需关注持仓结构优化")
+    
+    position_text = '\n\n'.join(position_analysis) + '\n\n' + '\n'.join(analysis_summary)
     
     # 生成明日计划（动态）
     tomorrow_plan = generate_tomorrow_plan(positions_data, market_data, daily_pnl)
