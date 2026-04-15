@@ -279,19 +279,22 @@ def generate_review(state, ledger, date, market_data, news_list):
             news_lines.append(f"{i}. **{title}**")
     news_text = '\n\n'.join(news_lines) if news_lines else '- 暂无新闻数据'
     
-    # 生成持仓分析（参考 2026-04-03.md 格式：结合市场行情的点评）
+    # 生成持仓分析（详细版：结合行情 + 情绪 + 建议）
     position_analysis = []
     
     # 基金代码对应的板块/指数
     fund_to_sector = {
         '011612': ('科创 50', '科创 50 指数'),
-        '013180': ('新能源车', '新能源车电池板块'),
-        '014320': ('半导体', '半导体板块'),
+        '013180': ('创业板指', '新能源车板块'),
+        '014320': ('科创 50', '半导体板块'),
     }
     
     for pos in positions_data:
         status = '✅' if pos['daily_pnl'] >= 0 else '❌'
         code = pos.get('code', '')
+        daily_pnl = pos['daily_pnl']
+        unrealized_pnl = pos['unrealized_pnl']
+        pnl_rate = pos['pnl_rate']
         
         # 获取对应的板块信息
         sector_name, sector_desc = fund_to_sector.get(code, ('', ''))
@@ -304,26 +307,57 @@ def generate_review(state, ledger, date, market_data, news_list):
                     sector_pnl = pct
                     break
         
-        # 生成行情点评
-        if sector_pnl is not None:
-            if sector_pnl > 1:
-                market_comment = f"{sector_desc}强势上涨"
-            elif sector_pnl > 0:
-                market_comment = f"{sector_desc}小幅上涨"
-            elif sector_pnl > -1:
-                market_comment = f"{sector_desc}震荡整理"
-            else:
-                market_comment = f"{sector_desc}继续调整"
-        else:
-            # 根据基金当日盈亏生成点评
-            if pos['daily_pnl'] > 0:
-                market_comment = "板块表现强势"
-            elif pos['daily_pnl'] > -3:
-                market_comment = "板块震荡整理"
-            else:
-                market_comment = "板块继续调整"
+        # 生成详细点评（行情 + 情绪 + 建议）
+        comments = []
         
-        analysis = f"{status} **{pos['name']}**：{pos['daily_pnl']:+.2f} 元\n   - 累计盈亏：{pos['unrealized_pnl']:+.2f} 元 ({pos['pnl_rate']:+.2f}%)\n   - {market_comment}"
+        # 1. 行情描述
+        if sector_pnl is not None:
+            if sector_pnl > 2:
+                comments.append(f"{sector_desc}大涨{sector_pnl:.2f}%")
+            elif sector_pnl > 0.5:
+                comments.append(f"{sector_desc}上涨{sector_pnl:.2f}%")
+            elif sector_pnl > -0.5:
+                comments.append(f"{sector_desc}震荡整理")
+            elif sector_pnl > -2:
+                comments.append(f"{sector_desc}小幅回调{sector_pnl:.2f}%")
+            else:
+                comments.append(f"{sector_desc}大跌{sector_pnl:.2f}%")
+        else:
+            if daily_pnl > 5:
+                comments.append("逆势大涨")
+            elif daily_pnl > 0:
+                comments.append("小幅上涨")
+            elif daily_pnl > -3:
+                comments.append("窄幅震荡")
+            else:
+                comments.append("继续调整")
+        
+        # 2. 情绪/趋势判断
+        if daily_pnl > 0 and unrealized_pnl > 0:
+            comments.append("延续上涨趋势")
+        elif daily_pnl > 0 and unrealized_pnl < 0:
+            comments.append("超跌反弹")
+        elif daily_pnl < 0 and unrealized_pnl > 0:
+            comments.append("盈利回吐")
+        elif daily_pnl < 0 and unrealized_pnl < 0:
+            comments.append("延续调整")
+        
+        # 3. 操作建议（根据累计盈亏）
+        if unrealized_pnl > 30:
+            comments.append("可考虑止盈部分仓位")
+        elif unrealized_pnl > 10:
+            comments.append("继续持有")
+        elif unrealized_pnl > 0:
+            comments.append("持仓观望")
+        elif unrealized_pnl > -20:
+            comments.append("耐心等待反弹")
+        else:
+            comments.append("关注企稳信号")
+        
+        # 组合点评
+        comment_text = "，".join(comments[:3])  # 最多 3 条
+        
+        analysis = f"{status} **{pos['name']}**：{pos['daily_pnl']:+.2f} 元\n   - 累计盈亏：{pos['unrealized_pnl']:+.2f} 元 ({pos['pnl_rate']:+.2f}%)\n   - {comment_text}"
         position_analysis.append(analysis)
     
     position_text = '\n\n'.join(position_analysis)
