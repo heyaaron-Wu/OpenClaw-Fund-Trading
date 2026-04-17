@@ -2,21 +2,90 @@
   "challenge": {
     "name": "1000 元翻倍挑战",
     "startDate": "2026-03-09",
-    "initialCapital": 1000.0,
+    "initialCapital": 999.52,
     "targetCapital": 2000.0,
     "targetReturn": 1.0
   },
   "current": {
     "date": "2026-04-17",
-    "totalPnl": 71.61,
-    "totalPnlPercent": 0.0716,
-    "currentCapital": 1071.13,
+    "totalPnl": 71.62,
+    "totalPnlPercent": 0.0717,
+    "currentCapital": 1071.14,
     "tradingDays": 28
   },
-  "milestones": {
-    "3month": { "target": 1150.0, "current": 1071.13, "progress": 0.474 },
-    "6month": { "target": 1300.0, "current": 1071.13, "progress": 0.237 },
-    "12month": { "target": 1500.0, "current": 1071.13, "progress": 0.142 },
-    "double": { "target": 2000.0, "current": 1071.13, "progress": 0.071 }
-  }
+  "last_manual_date": "2026-04-17",
+  "positions": [
+    {
+      "code": "011612",
+      "name": "华夏科创 50ETF 联接 A",
+      "confirmed_amount": 199.90,
+      "market_value": 208.35,
+      "last_pnl": 8.45,
+      "unrealized_pnl": 8.45,
+      "daily_pnl": 0.32,
+      "pnl_rate": 4.23,
+      "last_pnl_date": "2026-04-17",
+      "last_updated": "2026-04-17T22:30:00.000000",
+      "nav_date": "2026-04-17"
+    },
+    {
+      "code": "013180",
+      "name": "广发新能源车电池 ETF 联接 C",
+      "confirmed_amount": 199.90,
+      "market_value": 229.89,
+      "last_pnl": 29.99,
+      "unrealized_pnl": 29.99,
+      "daily_pnl": -1.09,
+      "pnl_rate": 15.00,
+      "last_pnl_date": "2026-04-17",
+      "last_updated": "2026-04-17T22:30:00.000000",
+      "nav_date": "2026-04-17"
+    },
+    {
+      "code": "014320",
+      "name": "德邦半导体产业混合 C",
+      "confirmed_amount": 199.90,
+      "market_value": 220.48,
+      "last_pnl": 20.58,
+      "unrealized_pnl": 20.58,
+      "daily_pnl": 2.57,
+      "pnl_rate": 10.30,
+      "last_pnl_date": "2026-04-17",
+      "last_updated": "2026-04-17T22:30:00.000000",
+      "nav_date": "2026-04-17"
+    },
+    {
+      "code": "",
+      "name": "永赢科技智选混合 A",
+      "confirmed_amount": 199.91,
+      "market_value": 210.90,
+      "last_pnl": 10.99,
+      "unrealized_pnl": 10.99,
+      "daily_pnl": 10.99,
+      "pnl_rate": 5.50,
+      "last_pnl_date": "2026-04-17",
+      "last_updated": "2026-04-17T22:30:00.000000",
+      "nav_date": "2026-04-17"
+    },
+    {
+      "code": "",
+      "name": "广发纳斯达克 100ETF 联接 (QDII)C",
+      "confirmed_amount": 199.91,
+      "market_value": 201.52,
+      "last_pnl": 1.61,
+      "unrealized_pnl": 1.61,
+      "daily_pnl": 1.61,
+      "pnl_rate": 0.81,
+      "last_pnl_date": "2026-04-17",
+      "last_updated": "2026-04-17T22:30:00.000000",
+      "nav_date": "2026-04-17"
+    }
+  ],
+  "total_invested": 999.52,
+  "portfolio_value": 1071.14,
+  "total_market_value": 1071.14,
+  "total_pnl": 71.62,
+  "total_pnl_rate": 7.17,
+  "cumulative_pnl": 71.62,
+  "last_updated": "2026-04-17T22:30:00.000000"
 }
