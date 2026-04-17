@@ -1,75 +1,22 @@
 {
-  "challenge_start": "2026-03-09",
-  "initial_capital": 1000.0,
-  "current_cash": 0.0,
-  "total_invested": 999.52,
-  "dividend_mode": "reinvest",
-  "positions": [
-    {
-      "code": "011612",
-      "name": "华夏科创 50ETF 联接 A",
-      "type": "off_exchange",
-      "confirmed_amount": 399.52,
-      "daily_pnl": 4.44,
-      "daily_pnl_rate": 1.46,
-      "unrealized_pnl": 8.13,
-      "pnl_rate": 2.03,
-      "last_updated": "2026-04-16T22:30:00.000000",
-      "confirmed_nav": 1.1352,
-      "daily_growth": 5.61,
-      "last_pnl_date": "2026-04-16",
-      "market_value": 407.65,
-      "last_update_time": "2026-04-13T22:30:00.000000",
-      "last_pnl": 8.13,
-      "nav_date": "2026-04-16"
-    },
-    {
-      "code": "013180",
-      "name": "广发新能源车电池 ETF 联接 C",
-      "type": "off_exchange",
-      "confirmed_amount": 300.0,
-      "daily_pnl": 9.86,
-      "daily_pnl_rate": 4.65,
-      "unrealized_pnl": 31.08,
-      "pnl_rate": 10.36,
-      "last_updated": "2026-04-16T22:30:00.000000",
-      "confirmed_nav": 0.9405,
-      "daily_growth": 3.59,
-      "last_pnl_date": "2026-04-16",
-      "market_value": 331.08,
-      "last_update_time": "2026-04-13T22:30:00.000000",
-      "last_pnl": 31.08,
-      "nav_date": "2026-04-16"
-    },
-    {
-      "code": "014320",
-      "name": "德邦半导体产业混合 C",
-      "type": "off_exchange",
-      "confirmed_amount": 300.0,
-      "daily_pnl": 7.0,
-      "daily_pnl_rate": 1.5,
-      "unrealized_pnl": 18.01,
-      "pnl_rate": 6.0,
-      "last_updated": "2026-04-16T22:30:00.000000",
-      "confirmed_nav": 2.2522,
-      "daily_growth": 6.28,
-      "last_pnl_date": "2026-04-16",
-      "market_value": 318.01,
-      "last_update_time": "2026-04-13T22:30:00.000000",
-      "last_pnl": 18.01,
-      "nav_date": "2026-04-16"
-    }
-  ],
-  "total_fees": 0.48,
-  "portfolio_value": 1056.73,
-  "last_updated": "2026-04-16T22:30:00.000000",
-  "total_pnl": 57.21,
-  "total_pnl_rate": 5.7237,
-  "total_market_value": 1056.73,
-  "manual_update": true,
-  "last_manual_date": "2026-04-16",
-  "last_manual_note": "根据 2026-04-16 数据自动更新",
-  "cumulative_pnl": 57.21,
-  "principal": 999.52,
-  "last_update_time": "2026-04-15T22:30:00.000000"
+  "challenge": {
+    "name": "1000 元翻倍挑战",
+    "startDate": "2026-03-09",
+    "initialCapital": 1000.0,
+    "targetCapital": 2000.0,
+    "targetReturn": 1.0
+  },
+  "current": {
+    "date": "2026-04-17",
+    "totalPnl": 71.61,
+    "totalPnlPercent": 0.0716,
+    "currentCapital": 1071.13,
+    "tradingDays": 28
+  },
+  "milestones": {
+    "3month": { "target": 1150.0, "current": 1071.13, "progress": 0.474 },
+    "6month": { "target": 1300.0, "current": 1071.13, "progress": 0.237 },
+    "12month": { "target": 1500.0, "current": 1071.13, "progress": 0.142 },
+    "double": { "target": 2000.0, "current": 1071.13, "progress": 0.071 }
+  }
 }
