@@ -24,8 +24,8 @@
   "total_pnl": 59.01,
   "total_pnl_rate": 5.90,
   "positions": [
-    {"code": "011612", "name": "华夏科创 50ETF 联接 A", "market_value": 353.00, "unrealized_pnl": 19.67},
-    {"code": "013180", "name": "广发新能源车电池 ETF 联接 C", "market_value": 353.00, "unrealized_pnl": 19.67},
-    {"code": "014320", "name": "德邦半导体产业混合 C", "market_value": 353.01, "unrealized_pnl": 19.67}
+    {"code": "011612", "name": "华夏科创 50ETF 联接 A", "market_value": 408.00, "unrealized_pnl": 8.45},
+    {"code": "013180", "name": "广发新能源车电池 ETF 联接 C", "market_value": 330.00, "unrealized_pnl": 29.99},
+    {"code": "014320", "name": "德邦半导体产业混合 C", "market_value": 321.01, "unrealized_pnl": 20.58}
   ]
 }
