@@ -10,13 +10,13 @@
     "date": "2026-04-17",
     "totalPnl": 59.01,
     "totalPnlPercent": 0.0590,
-    "currentCapital": 1058.53,
+    "currentCapital": 1059.01,
     "tradingDays": 28
   },
   "milestones": {
-    "3month": { "target": 1150.0, "current": 1058.53, "progress": 0.390 },
-    "6month": { "target": 1300.0, "current": 1058.53, "progress": 0.195 },
-    "12month": { "target": 1500.0, "current": 1058.53, "progress": 0.118 },
-    "double": { "target": 2000.0, "current": 1058.53, "progress": 0.059 }
+    "3month": { "target": 1150.0, "current": 1059.01, "progress": 0.390 },
+    "6month": { "target": 1300.0, "current": 1059.01, "progress": 0.195 },
+    "12month": { "target": 1500.0, "current": 1059.01, "progress": 0.118 },
+    "final": { "target": 2000.0, "current": 1059.01, "progress": 0.059 }
   }
 }
