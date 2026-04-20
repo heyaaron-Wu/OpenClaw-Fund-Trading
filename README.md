@@ -4,7 +4,7 @@
 
 **基于 OpenClaw 的智能化场外基金量化交易系统**
 
-**当前版本：vv1.1.10** | **最后更新：2026-04-14**
+
 
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-2026.3.3-blue)](https://openclaw.ai)
 [![Python](https://img.shields.io/badge/Python-3.6+-green)](https://python.org)
