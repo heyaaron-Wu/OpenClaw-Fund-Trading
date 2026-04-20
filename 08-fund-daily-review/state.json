@@ -7,25 +7,63 @@
     "targetReturn": 1.0
   },
   "current": {
-    "date": "2026-04-17",
+    "date": "2026-04-20",
     "totalPnl": 59.01,
     "totalPnlPercent": 0.0590,
     "currentCapital": 1059.01,
     "tradingDays": 28
   },
   "milestones": {
-    "3month": { "target": 1150.0, "current": 1059.01, "progress": 0.390 },
-    "6month": { "target": 1300.0, "current": 1059.01, "progress": 0.195 },
-    "12month": { "target": 1500.0, "current": 1059.01, "progress": 0.118 },
-    "final": { "target": 2000.0, "current": 1059.01, "progress": 0.059 }
+    "3month": {
+      "target": 1150.0,
+      "current": 1059.01,
+      "progress": 0.390
+    },
+    "6month": {
+      "target": 1300.0,
+      "current": 1059.01,
+      "progress": 0.195
+    },
+    "12month": {
+      "target": 1500.0,
+      "current": 1059.01,
+      "progress": 0.118
+    },
+    "final": {
+      "target": 2000.0,
+      "current": 1059.01,
+      "progress": 0.059
+    }
   },
   "portfolio_value": 1059.01,
   "total_invested": 1000.0,
   "total_pnl": 59.01,
   "total_pnl_rate": 5.90,
+  "last_updated": "2026-04-20 09:10:00",
   "positions": [
-    {"code": "011612", "name": "华夏科创 50ETF 联接 A", "market_value": 408.00, "unrealized_pnl": 8.45},
-    {"code": "013180", "name": "广发新能源车电池 ETF 联接 C", "market_value": 330.00, "unrealized_pnl": 29.99},
-    {"code": "014320", "name": "德邦半导体产业混合 C", "market_value": 321.01, "unrealized_pnl": 20.58}
+    {
+      "code": "011612",
+      "name": "华夏科创 50ETF 联接 A",
+      "market_value": 408.00,
+      "unrealized_pnl": 8.45,
+      "confirmed_shares": 408.00,
+      "confirmed_amount": 408.00
+    },
+    {
+      "code": "013180",
+      "name": "广发新能源车电池 ETF 联接 C",
+      "market_value": 330.00,
+      "unrealized_pnl": 29.99,
+      "confirmed_shares": 330.00,
+      "confirmed_amount": 330.00
+    },
+    {
+      "code": "014320",
+      "name": "德邦半导体产业混合 C",
+      "market_value": 321.01,
+      "unrealized_pnl": 20.58,
+      "confirmed_shares": 321.01,
+      "confirmed_amount": 321.01
+    }
   ]
 }
