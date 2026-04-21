@@ -8,36 +8,36 @@
   },
   "current": {
     "date": "2026-04-21",
-    "totalPnl": 56.04,
-    "totalPnlPercent": 0.056,
-    "currentCapital": 1059.01,
+    "totalPnl": 59.02,
+    "totalPnlPercent": 0.059,
+    "currentCapital": 1059.02,
     "tradingDays": 29
   },
   "milestones": {
     "3month": {
       "target": 1150.0,
-      "current": 1059.01,
-      "progress": 0.391
+      "current": 1059.02,
+      "progress": 0.392
     },
     "6month": {
       "target": 1300.0,
-      "current": 1059.01,
+      "current": 1059.02,
       "progress": 0.199
     },
     "12month": {
       "target": 1500.0,
-      "current": 1059.01,
-      "progress": 0.118
+      "current": 1059.02,
+      "progress": 0.119
     },
     "final": {
       "target": 2000.0,
-      "current": 1059.01,
+      "current": 1059.02,
       "progress": 0.059
     }
   },
-  "portfolio_value": 1059.01,
+  "portfolio_value": 1059.02,
   "total_invested": 1000.0,
-  "total_pnl": 59.01,
+  "total_pnl": 59.02,
   "total_pnl_rate": 5.9,
   "last_updated": "2026-04-21 22:30:00",
   "positions": [
@@ -68,14 +68,14 @@
     {
       "code": "014320",
       "name": "德邦半导体产业混合 C",
-      "market_value": 321.01,
-      "unrealized_pnl": 20.58,
-      "confirmed_shares": 321.01,
+      "market_value": 321.02,
+      "unrealized_pnl": 20.59,
+      "confirmed_shares": 321.02,
       "confirmed_amount": 300.43,
       "pnl_rate": 6.85,
       "cost": 300.43,
       "daily_pnl": -1.75,
-      "last_pnl": 20.58
+      "last_pnl": 20.59
     }
   ],
   "last_manual_date": "2026-04-21"
