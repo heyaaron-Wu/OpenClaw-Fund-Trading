@@ -10,72 +10,72 @@
     "date": "2026-04-21",
     "totalPnl": 56.04,
     "totalPnlPercent": 0.056,
-    "currentCapital": 1056.04,
+    "currentCapital": 1059.01,
     "tradingDays": 29
   },
   "milestones": {
     "3month": {
       "target": 1150.0,
-      "current": 1056.04,
-      "progress": 0.374
+      "current": 1059.01,
+      "progress": 0.391
     },
     "6month": {
       "target": 1300.0,
-      "current": 1056.04,
-      "progress": 0.186
+      "current": 1059.01,
+      "progress": 0.199
     },
     "12month": {
       "target": 1500.0,
-      "current": 1056.04,
-      "progress": 0.112
+      "current": 1059.01,
+      "progress": 0.118
     },
     "final": {
       "target": 2000.0,
-      "current": 1056.04,
-      "progress": 0.056
+      "current": 1059.01,
+      "progress": 0.059
     }
   },
-  "portfolio_value": 1056.04,
+  "portfolio_value": 1059.01,
   "total_invested": 1000.0,
-  "total_pnl": 56.04,
-  "total_pnl_rate": 5.6,
+  "total_pnl": 59.01,
+  "total_pnl_rate": 5.9,
   "last_updated": "2026-04-21 22:30:00",
   "positions": [
     {
       "code": "011612",
       "name": "华夏科创 50ETF 联接 A",
       "market_value": 408.0,
-      "unrealized_pnl": 2.12,
+      "unrealized_pnl": 8.45,
       "confirmed_shares": 408.0,
       "confirmed_amount": 399.55,
-      "pnl_rate": 0.53,
+      "pnl_rate": 2.11,
       "cost": 399.55,
       "daily_pnl": -6.33,
-      "last_pnl": 2.12
+      "last_pnl": 8.45
     },
     {
       "code": "013180",
       "name": "广发新能源车电池 ETF 联接 C",
       "market_value": 330.0,
-      "unrealized_pnl": 35.09,
+      "unrealized_pnl": 29.99,
       "confirmed_shares": 330.0,
       "confirmed_amount": 300.01,
-      "pnl_rate": 11.7,
+      "pnl_rate": 10.0,
       "cost": 300.01,
       "daily_pnl": 5.10,
-      "last_pnl": 35.09
+      "last_pnl": 29.99
     },
     {
       "code": "014320",
       "name": "德邦半导体产业混合 C",
       "market_value": 321.01,
-      "unrealized_pnl": 18.83,
+      "unrealized_pnl": 20.58,
       "confirmed_shares": 321.01,
       "confirmed_amount": 300.43,
-      "pnl_rate": 6.27,
+      "pnl_rate": 6.85,
       "cost": 300.43,
       "daily_pnl": -1.75,
-      "last_pnl": 18.83
+      "last_pnl": 20.58
     }
   ],
   "last_manual_date": "2026-04-21"
