@@ -1,0 +1,64 @@
+{
+  "date": "2026-04-20",
+  "timestamp": "2026-04-20T14:00:11.802836",
+  "decisions": [
+    {
+      "code": "011612",
+      "name": "华夏科创 50ETF 联接 A",
+      "action": "HOLD",
+      "reason": "科创 50 上涨+1.43%，大盘震荡，继续持有"
+    },
+    {
+      "code": "013180",
+      "name": "广发新能源车电池 ETF 联接 C",
+      "action": "HOLD",
+      "reason": "新能源车 -0.07%，调整中，继续持有"
+    },
+    {
+      "code": "014320",
+      "name": "德邦半导体产业混合 C",
+      "action": "HOLD",
+      "reason": "半导体 +1.00%，表现稳健，持有"
+    }
+  ],
+  "market_data": {
+    "科创 50": 1.43,
+    "沪深 300": 0.36,
+    "中证 500": 0.67,
+    "上证 50": 0.56,
+    "上证指数": 0.51,
+    "半导体": 1.0,
+    "新能源车": -0.07,
+    "医药": 0.01
+  },
+  "verified": true,
+  "verification": {
+    "date": "2026-04-20",
+    "total": 3,
+    "correct": 3,
+    "wrong": 0,
+    "details": [
+      {
+        "code": "011612",
+        "name": "华夏科创 50ETF 联接 A",
+        "action": "HOLD",
+        "daily_pnl_rate": 0.05,
+        "correct": true
+      },
+      {
+        "code": "013180",
+        "name": "广发新能源车电池 ETF 联接 C",
+        "action": "HOLD",
+        "daily_pnl_rate": 0.05,
+        "correct": true
+      },
+      {
+        "code": "014320",
+        "name": "德邦半导体产业混合 C",
+        "action": "HOLD",
+        "daily_pnl_rate": 0.04,
+        "correct": true
+      }
+    ]
+  }
+}

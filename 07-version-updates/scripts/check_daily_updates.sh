@@ -93,22 +93,23 @@ echo "📝 今日提交详情:"
 git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --oneline
 echo ""
 
-# 分类统计
-echo "📊 提交分类统计:"
+# 分类统计（排除业务数据提交 📊，只统计系统改进）
+echo "📊 提交分类统计（排除业务数据）:"
 
-NEW_FEATURES=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="✨\|feat\|新增\|添加" --oneline | wc -l)
+# 使用 --grep 搜索提交消息，并排除 📊 开头的业务数据提交
+NEW_FEATURES=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="✨\|feat\|新增\|添加" --oneline | grep -v "📊" | wc -l)
 echo "  ✨ 新增功能：$NEW_FEATURES 个"
 
-OPTIMIZATIONS=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🚀\|perf\|优化\|改进" --oneline | wc -l)
+OPTIMIZATIONS=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🚀\|perf\|优化\|改进" --oneline | grep -v "📊" | wc -l)
 echo "  🚀 性能优化：$OPTIMIZATIONS 个"
 
-BUG_FIXES=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🐛\|fix\|修复\|bug" --oneline | wc -l)
+BUG_FIXES=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🐛\|fix\|修复\|bug" --oneline | grep -v "📊" | wc -l)
 echo "  🐛 Bug 修复：$BUG_FIXES 个"
 
-SECURITY=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🔒\|security\|安全" --oneline | wc -l)
+SECURITY=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="🔒\|security\|安全" --oneline | grep -v "📊" | wc -l)
 echo "  🔒 安全修复：$SECURITY 个"
 
-DOCS=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="📝\|docs\|文档" --oneline | wc -l)
+DOCS=$(git log --since="$TODAY 00:00:00" --until="$TODAY 23:59:59" --grep="📝\|docs\|文档" --oneline | grep -v "📊" | wc -l)
 echo "  📝 文档更新：$DOCS 个"
 
 # 检查是否有复盘文档（跳过不记录）
