@@ -7,82 +7,57 @@
     "targetReturn": 1.0
   },
   "current": {
-    "date": "2026-04-21",
-    "totalPnl": 64.37,
-    "totalPnlPercent": 0.0644,
-    "currentCapital": 1064.37,
-    "tradingDays": 29
+    "date": "2026-04-24",
+    "totalPnl": 75.24,
+    "totalPnlPercent": 0.0752,
+    "currentCapital": 1075.24,
+    "tradingDays": 30
   },
   "milestones": {
-    "3month": {
-      "target": 1150.0,
-      "current": 1064.37,
-      "progress": 0.429
-    },
-    "6month": {
-      "target": 1300.0,
-      "current": 1064.37,
-      "progress": 0.215
-    },
-    "12month": {
-      "target": 1500.0,
-      "current": 1064.37,
-      "progress": 0.129
-    },
-    "final": {
-      "target": 2000.0,
-      "current": 1064.37,
-      "progress": 0.064
-    }
+    "3month": { "target": 1150.0, "current": 1075.24, "progress": 0.502 },
+    "6month": { "target": 1300.0, "current": 1075.24, "progress": 0.250 },
+    "12month": { "target": 1500.0, "current": 1075.24, "progress": 0.150 },
+    "final": { "target": 2000.0, "current": 1075.24, "progress": 0.075 }
   },
-  "portfolio_value": 1064.37,
+  "portfolio_value": 1075.24,
   "total_invested": 1000.0,
-  "total_pnl": 64.37,
-  "total_pnl_rate": 6.44,
-  "last_updated": "2026-04-21 23:00:00",
+  "total_pnl": 75.24,
+  "total_pnl_rate": 7.52,
+  "last_updated": "2026-04-24 14:00:00",
   "positions": [
     {
       "code": "011612",
       "name": "华夏科创 50ETF 联接 A",
-      "market_value": 409.02,
-      "unrealized_pnl": 9.47,
+      "market_value": 415.44,
+      "unrealized_pnl": 15.89,
       "confirmed_shares": 409.02,
       "confirmed_amount": 399.55,
-      "pnl_rate": 2.37,
+      "pnl_rate": 3.98,
       "cost": 399.55,
-      "daily_pnl": -6.33,
-      "last_pnl": 9.47
+      "daily_pnl": 6.42
     },
     {
       "code": "013180",
       "name": "广发新能源车电池 ETF 联接 C",
-      "market_value": 333.27,
-      "unrealized_pnl": 33.26,
+      "market_value": 331.47,
+      "unrealized_pnl": 31.46,
       "confirmed_shares": 333.27,
       "confirmed_amount": 300.01,
-      "pnl_rate": 11.09,
+      "pnl_rate": 10.49,
       "cost": 300.01,
-      "daily_pnl": 5.1,
-      "last_pnl": 33.26
+      "daily_pnl": -1.80
     },
     {
       "code": "014320",
       "name": "德邦半导体产业混合 C",
-      "market_value": 322.07,
-      "unrealized_pnl": 21.64,
+      "market_value": 328.32,
+      "unrealized_pnl": 27.89,
       "confirmed_shares": 322.07,
       "confirmed_amount": 300.43,
-      "pnl_rate": 7.2,
+      "pnl_rate": 9.28,
       "cost": 300.43,
-      "daily_pnl": -1.75,
-      "last_pnl": 21.64
+      "daily_pnl": 6.25
     }
   ],
-  "last_manual_date": "2026-04-21",
-  "last_pnl_monitor": "2026-04-24 15:30:00",
-  "last_daily_pnl": {
-    "date": "2026-04-24",
-    "est_pnl": -19.57,
-    "note": "基于4/23净值变动估算，实际以4/24净值公布为准"
-  }
+  "last_manual_date": "2026-04-21"
 }

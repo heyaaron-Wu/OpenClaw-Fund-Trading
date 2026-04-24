@@ -1062,7 +1062,7 @@ def main():
             
             # 使用富文本卡片格式推送（包含资讯板块）
             print("\n📱 推送飞书卡片通知...")
-            send_feishu_decision_card(args.webhook, result, preflight, news_summary)
+            send_feishu_decision_card(args.webhook, decision_result, preflight, news_summary)
         
         if args.save:
             print(f"\n✅ 决策结果已保存：decision_result.json")
