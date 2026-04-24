@@ -62,7 +62,7 @@
       "confirmed_amount": 300.01,
       "pnl_rate": 11.09,
       "cost": 300.01,
-      "daily_pnl": 5.10,
+      "daily_pnl": 5.1,
       "last_pnl": 33.26
     },
     {
@@ -72,11 +72,17 @@
       "unrealized_pnl": 21.64,
       "confirmed_shares": 322.07,
       "confirmed_amount": 300.43,
-      "pnl_rate": 7.20,
+      "pnl_rate": 7.2,
       "cost": 300.43,
       "daily_pnl": -1.75,
       "last_pnl": 21.64
     }
   ],
-  "last_manual_date": "2026-04-21"
+  "last_manual_date": "2026-04-21",
+  "last_pnl_monitor": "2026-04-24 15:30:00",
+  "last_daily_pnl": {
+    "date": "2026-04-24",
+    "est_pnl": -19.57,
+    "note": "基于4/23净值变动估算，实际以4/24净值公布为准"
+  }
 }
