@@ -92,19 +92,7 @@ v主版本。次版本。修订号
 - 修复 AKShare API 参数 (fund → symbol)
 - 修复 Cron 任务脚本路径
 - 修复 system-version-update.sh 缺失问题
-- 修复 mx-morning-brief.sh 路径配置
-
-#### 📝 文档更新
-- 创建复盘报告模板 (TEMPLATE.md)
-- 创建 Iwencai 技能集成报告
-- 创建美股系统总览文档
-- 创建 Cron 任务审计文档
-- 创建 v1.4.0 更新日志
-
-#### 📊 数据更新
-- 候选池扩容至 24 只 (基础 9 只 + 智能挖掘 15 只)
-- 新增 4 只高分基金 (财通集成电路、富国互联科技等)
-- 累计盈亏：+84.31 元 (+8.43%)
+- 修复 mx-morning-brief.sh 路径
 
 ---
 
