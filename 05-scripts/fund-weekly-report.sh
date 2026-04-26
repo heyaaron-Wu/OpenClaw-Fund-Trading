@@ -75,4 +75,30 @@ else
     echo "$LOG_PREFIX 周报目录不存在，跳过"
 fi
 
+# 4. 提交周报到 GitHub
+echo "$LOG_PREFIX 步骤4: 提交周报到 GitHub"
+cd "$WORKSPACE"
+
+# 检查是否有变更需要提交
+if git status --porcelain | grep -qE "(08-fund-daily-review/weekly/|06-miao-xiang/weekly/)"; then
+    echo "$LOG_PREFIX 检测到周报变更，准备提交"
+    git add 08-fund-daily-review/weekly/ 06-miao-xiang/weekly/
+    git commit -m "chore: 第${WEEK_NUM}周周报 (${DATE})\n\n- 基金挑战周报：weekly_report_${DATE}.md\n- 妙想使用周报：miao_xiang_weekly_${DATE}.md" 2>&1 || {
+        echo "$LOG_PREFIX 提交失败"
+    }
+    
+    # 推送到 GitHub
+    echo "$LOG_PREFIX 推送到 GitHub"
+    git push origin OpenClaw-Fund-Trading 2>&1 || {
+        echo "$LOG_PREFIX 推送失败，尝试 rebase 后重试"
+        git pull --rebase origin OpenClaw-Fund-Trading 2>&1
+        git push origin OpenClaw-Fund-Trading 2>&1 || {
+            echo "$LOG_PREFIX 推送仍然失败，请手动检查"
+        }
+    }
+    echo "$LOG_PREFIX GitHub 提交完成"
+else
+    echo "$LOG_PREFIX 无周报变更，跳过提交"
+fi
+
 echo "$LOG_PREFIX 周度复盘完成"
