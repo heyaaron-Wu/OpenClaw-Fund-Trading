@@ -66,8 +66,36 @@ else
     echo "$LOG_PREFIX 妙想目录不存在，跳过"
 fi
 
-# 3. 知识库更新提醒
-echo "$LOG_PREFIX 步骤3: 检查知识库状态"
+# 3. 同花顺市场数据获取
+echo "$LOG_PREFIX 步骤3: 获取同花顺市场数据"
+python3.11 -c "
+import sys
+sys.path.insert(0, '$WORKSPACE/05-scripts')
+try:
+    from iwencai_skill_integration import IwencaiSkillIntegration
+    integration = IwencaiSkillIntegration()
+    
+    # 获取本周市场回顾
+    print('   获取市场指数...')
+    market_data = integration._api_call('主要指数 本周行情', limit=10)
+    
+    # 获取板块表现
+    print('   获取板块表现...')
+    sector_data = integration._api_call('半导体 新能源 人工智能 板块 本周涨跌幅', limit=10)
+    
+    # 获取北向资金
+    print('   获取北向资金...')
+    northbound = integration._api_call('北向资金 本周净流入', limit=5)
+    
+    print('   ✅ 同花顺数据获取完成')
+except Exception as e:
+    print(f'   ⚠️  同花顺数据获取失败: {e}')
+" 2>&1 || {
+    echo "$LOG_PREFIX 警告: 同花顺数据获取失败"
+}
+
+# 4. 知识库更新提醒
+echo "$LOG_PREFIX 步骤4: 检查知识库状态"
 if [ -d "$WORKSPACE/09-system-weekly" ]; then
     LATEST=$(ls -t "$WORKSPACE/09-system-weekly/" 2>/dev/null | head -1)
     echo "$LOG_PREFIX 最新周报: $LATEST"
@@ -75,7 +103,7 @@ else
     echo "$LOG_PREFIX 周报目录不存在，跳过"
 fi
 
-# 4. 提交周报到 GitHub
+# 5. 提交周报到 GitHub
 echo "$LOG_PREFIX 步骤4: 提交周报到 GitHub"
 cd "$WORKSPACE"
 
