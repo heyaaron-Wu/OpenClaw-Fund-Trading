@@ -1,0 +1,55 @@
+{
+  "timestamp": "20260424_102448",
+  "datetime": "2026-04-24T10:24:48.752754",
+  "decisions": [],
+  "alerts": [],
+  "enhanced_decision": {
+    "timestamp": "2026-04-24T10:24:48.752327",
+    "final_decision": "hold",
+    "final_confidence": 0.3,
+    "normalized_score": 0.0,
+    "vote_result": {
+      "iwencai": {
+        "timestamp": "2026-04-24T10:24:42.967250",
+        "source": "iwencai_enhanced",
+        "decision": "hold",
+        "confidence": 0.5,
+        "market_sentiment": "neutral",
+        "market_risk": "normal",
+        "key_news": [],
+        "factors": []
+      },
+      "research": {
+        "rating": "neutral",
+        "confidence": 0.5,
+        "summary": "",
+        "sources": []
+      },
+      "ml": {
+        "prediction": "neutral",
+        "confidence": 0.5,
+        "signal": "hold",
+        "indicators": {
+          "指数代码": "000001.SH",
+          "指数简称": "上证指数",
+          "最新价": 4072.19,
+          "最新涨跌幅:前复权": -0.5145000000000001,
+          "macd[20260424]": 33.285,
+          "kdj[20260424]": 71.286
+        }
+      }
+    },
+    "reasoning": "Iwencai: HOLD (0.50) | 研报：NEUTRAL (0.50) | ML: HOLD (0.50)",
+    "weights": {
+      "iwencai": 0.4,
+      "research": 0.3,
+      "ml": 0.3
+    }
+  },
+  "summary": {
+    "total": 0,
+    "buy": 0,
+    "sell": 0,
+    "hold": 0
+  }
+}
