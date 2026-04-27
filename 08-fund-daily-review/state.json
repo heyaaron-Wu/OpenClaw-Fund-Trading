@@ -1,6 +1,6 @@
 {
   "challenge": {
-    "name": "1000 元翻倍挑战",
+    "name": "1000元翻倍挑战",
     "startDate": "2026-03-09",
     "initialCapital": 1000.0,
     "targetCapital": 2000.0,
@@ -8,71 +8,61 @@
   },
   "current": {
     "date": "2026-04-27",
-    "totalPnl": 107.38,
-    "totalPnlPercent": 0.1074,
-    "currentCapital": 1107.38,
-    "tradingDays": 30
+    "totalPnl": 586.87,
+    "totalPnlPercent": 0.5869,
+    "currentCapital": 1586.87,
+    "tradingDays": 36
   },
   "milestones": {
-    "3month": {
-      "target": 1150.0,
-      "current": 1075.24,
-      "progress": 0.502
-    },
-    "6month": {
-      "target": 1300.0,
-      "current": 1075.24,
-      "progress": 0.25
-    },
-    "12month": {
-      "target": 1500.0,
-      "current": 1075.24,
-      "progress": 0.15
-    },
-    "final": {
-      "target": 2000.0,
-      "current": 1075.24,
-      "progress": 0.075
-    }
+    "3month": { "target": 1150.0, "current": 1586.87, "progress": 1.0, "achieved": true },
+    "6month": { "target": 1300.0, "current": 1586.87, "progress": 1.0, "achieved": true },
+    "12month": { "target": 1500.0, "current": 1586.87, "progress": 1.0, "achieved": true },
+    "final": { "target": 2000.0, "current": 1586.87, "progress": 0.793 }
   },
-  "portfolio_value": 1107.38,
+  "portfolio_value": 1586.87,
   "total_invested": 1000.0,
-  "total_pnl": 107.38,
-  "total_pnl_rate": 10.74,
-  "last_updated": "2026-04-27 22:09:15",
+  "total_pnl": 586.87,
+  "total_pnl_rate": 58.69,
+  "last_updated": "2026-04-27 22:47:00",
   "positions": [
     {
       "code": "011612",
-      "name": "华夏科创 50ETF 联接 A",
-      "market_value": 415.44,
-      "unrealized_pnl": 30.77,
+      "name": "华夏科创50ETF联接A",
+      "market_value": 492.13,
+      "unrealized_pnl": 92.58,
       "confirmed_shares": 409.02,
       "confirmed_amount": 399.55,
-      "pnl_rate": 3.98,
+      "pnl_rate": 23.17,
       "cost": 399.55,
-      "daily_pnl": 14.88
+      "daily_pnl": 17.83,
+      "nav": 1.2032,
+      "nav_change": 3.76
     },
     {
       "code": "013180",
-      "name": "广发新能源车电池 ETF 联接 C",
-      "market_value": 331.47,
-      "unrealized_pnl": 33.57,
+      "name": "广发新能源车电池ETF联接C",
+      "market_value": 317.54,
+      "unrealized_pnl": 17.53,
       "confirmed_shares": 333.27,
       "confirmed_amount": 300.01,
-      "pnl_rate": 10.49,
+      "pnl_rate": 5.84,
       "cost": 300.01,
-      "daily_pnl": 2.11
+      "daily_pnl": 2.13,
+      "nav": 0.9528,
+      "nav_change": 0.68
     },
     {
       "code": "014320",
-      "name": "德邦半导体产业混合 C",
-      "market_value": 328.32,
-      "unrealized_pnl": 43.04,
+      "name": "德邦半导体产业混合C",
+      "market_value": 777.19,
+      "unrealized_pnl": 476.76,
       "confirmed_shares": 322.07,
       "confirmed_amount": 300.43,
-      "pnl_rate": 9.28,
+      "pnl_rate": 158.69,
       "cost": 300.43,
-      "daily_pnl": 15.15
+      "daily_pnl": 27.41,
+      "nav": 2.4131,
+      "nav_change": 3.66
     }
   ],
   "last_manual_date": "2026-04-21"
