@@ -17,7 +17,7 @@ from pathlib import Path
 
 # 配置
 WORKSPACE = Path('/home/admin/.openclaw/workspace')
-DECISION_PATH = WORKSPACE / 'skills/fund-challenge/fund_challenge/scripts/decision_result_enhanced.json'
+DECISION_PATH = WORKSPACE / 'skills/decision_result_enhanced.json'
 STATE_PATH = WORKSPACE / '08-fund-daily-review' / 'state.json'
 LEDGER_PATH = WORKSPACE / '08-fund-daily-review' / 'ledger.jsonl'
 KNOWLEDGE_DIR = WORKSPACE / '06-data' / 'knowledge-base'

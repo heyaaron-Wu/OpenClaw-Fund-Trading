@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-04-27T22:36:00.000000",
+  "trading_day": "2026-04-27",
+  "market_status": "in-session",
+  "last_close": {
+    "date": "2026-04-24",
+    "dow": -0.16,
+    "sp500": 0.80,
+    "nasdaq": 1.63,
+    "russell2000": 0.43,
+    "vix": 18.71,
+    "vix_change": -3.11
+  },
+  "oil_prices": {
+    "brent": 106.37,
+    "brent_change": 0.9,
+    "wti": 95.07,
+    "wti_change": 0.7
+  },
+  "european_markets": {
+    "stoxx600": -0.1,
+    "note": "Morning gains erased, mixed picture"
+  },
+  "overnight_news": [
+    "伊朗向美国提出新方案：重开霍尔木兹海峡，核谈判延后（Axios）",
+    "特朗普取消派特使赴巴会谈计划，称'浪费时间'",
+    "中国叫停Meta 20亿美元收购AI公司Manus，NDRC要求撤销交易",
+    "Shell 164亿美元收购加拿大ARC Resources",
+    "本周关注：美联储周三决议（鲍威尔可能最后一次主持会议）/ ECB&BOE周四决议",
+    "华盛顿白宫记者晚宴枪击事件后续"
+  ],
+  "key_events_this_week": [
+    "美联储FOMC决议（周三）- 鲍威尔可能最后一次主持",
+    "ECB利率决议（周四）- 预计按兵不动",
+    "BOE利率决议（周四）- 预计按兵不动",
+    "欧洲银行财报季：Barclays, UBS, Deutsche Bank, BNP Paribas"
+  ],
+  "market_sentiment": "cautious",
+  "sentiment_reason": "地缘政治（伊朗提案+霍尔木兹海峡）+ 央行政策周 + 油价高企",
+  "futures": [],
+  "premarket_movers": [],
+  "earnings_calendar": [],
+  "data_sources": ["CNBC", "Axios"],
+  "note": "Iwencai API 401不可用，数据来自网页抓取。当前美东时间10:34，市场已在交易中。"
+}

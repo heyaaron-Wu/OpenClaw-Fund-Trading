@@ -1,327 +1,50 @@
 {
-  "timestamp": "2026-04-24T21:42:07.836504",
-  "market_status": "opening",
-  "signals": [
-    {
-      "name": "生物技术临床试验指数",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "Cyber Hornet S&P 500 and Bitcoin 75/25 Strategy ETF",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "Twist Bioscience",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "MVIS美国上市生物技术",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "iShares短期债券",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "Funko",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "贝莱德应税市政债券",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "生物技术产品指数",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "AB超短收益ETF",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "Beacon Financial",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "Build-A-Bear",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "百思买",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "ZEGA买入对冲ETF",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "哈特福特总收益债券",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "第一万通金控",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "双线短期总回报战术",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "三个月远期指数ETF",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "Boise Cascade",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "加拿大贝尔",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "智利银行",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "Andersen",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "美国先锋",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "加州市政指数ETF",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "Ladder Capital",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "现金支付高收益受限",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "纽约梅隆市政机会ETF",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "网络安全指数ETF",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "Indxx全球云计算指数",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "Bitcoin策略加大收益",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "2倍做多PLTR每日ETF",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "搜诺思",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "纳斯达克100三倍做空",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "Biodexa",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "SuperX AI",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    },
-    {
-      "name": "Tandy Leather",
-      "signals": [
-        "neutral"
-      ],
-      "score": 0,
-      "action": "HOLD",
-      "confidence": 0.5
-    }
+  "timestamp": "2026-04-27T22:38:00+08:00",
+  "scan_time_et": "2026-04-27 10:38 EDT",
+  "market_status": "in-session",
+  "indices": {
+    "DJI": {"price": 49194.53, "change_pct": -0.07, "high": 49353.69, "low": 49112.20},
+    "IXIC": {"price": 24774.78, "change_pct": -0.25, "high": 24802.72, "low": 24694.82},
+    "RUT": {"price": 2790.41, "change_pct": 0.12, "high": 2796.74, "low": 2781.50},
+    "VIX": {"price": 18.80, "change_pct": 0.48, "high": 19.27, "low": 18.77}
+  },
+  "stock_signals": [
+    {"symbol": "CRM", "name": "Salesforce", "price": 182.89, "change_pct": 2.65, "volume": 3763998, "signal": "BUY", "reason": "放量上涨，突破近期区间"},
+    {"symbol": "GOOG", "name": "Alphabet", "price": 348.91, "change_pct": 1.93, "volume": 6157516, "signal": "BUY", "reason": "涨幅领先，成交量放大"},
+    {"symbol": "BAC", "name": "Bank of America", "price": 52.67, "change_pct": 1.19, "volume": 6349476, "signal": "BUY", "reason": "金融板块走强，量比正常"},
+    {"symbol": "JPM", "name": "JP Morgan", "price": 311.10, "change_pct": 0.91, "volume": 1732995, "signal": "HOLD", "reason": "温和上涨，关注周三FOMC"},
+    {"symbol": "NVDA", "name": "NVIDIA", "price": 209.03, "change_pct": 0.37, "volume": 53370810, "signal": "HOLD", "reason": "横盘震荡，成交量巨大但方向不明"},
+    {"symbol": "META", "name": "Meta", "price": 676.57, "change_pct": 0.23, "volume": 3651447, "signal": "HOLD", "reason": "窄幅震荡，等待财报催化"},
+    {"symbol": "DIS", "name": "Disney", "price": 103.53, "change_pct": 0.91, "volume": 1029397, "signal": "HOLD", "reason": "温和上涨"},
+    {"symbol": "NFLX", "name": "Netflix", "price": 92.44, "change_pct": 0.09, "volume": 7748752, "signal": "HOLD", "reason": "几乎平盘"},
+    {"symbol": "AMZN", "name": "Amazon", "price": 262.30, "change_pct": -0.64, "volume": 14705646, "signal": "HOLD", "reason": "小幅回调，关注支撑位"},
+    {"symbol": "MSFT", "name": "Microsoft", "price": 423.25, "change_pct": -0.32, "volume": 9484812, "signal": "HOLD", "reason": "小幅回调"},
+    {"symbol": "WMT", "name": "Walmart", "price": 128.69, "change_pct": -0.95, "volume": 4861142, "signal": "HOLD", "reason": "防御性板块回调"},
+    {"symbol": "ORCL", "name": "Oracle", "price": 171.31, "change_pct": -1.13, "volume": 8539427, "signal": "WATCH", "reason": "回调幅度较大，关注支撑"},
+    {"symbol": "AAPL", "name": "Apple", "price": 267.14, "change_pct": -1.45, "volume": 11064155, "signal": "WATCH", "reason": "连续回调，关注265支撑"},
+    {"symbol": "TSLA", "name": "Tesla", "price": 368.33, "change_pct": -2.12, "volume": 18754609, "signal": "SELL", "reason": "跌超2%，放量下行"},
+    {"symbol": "AMD", "name": "AMD", "price": 335.53, "change_pct": -3.53, "volume": 21810850, "signal": "SELL", "reason": "跌超3%，放量破位，半导体板块承压"}
   ],
   "summary": {
-    "total": 35,
-    "buy": 0,
-    "sell": 0,
-    "hold": 35
-  }
+    "total_scanned": 15,
+    "buy": 3,
+    "sell": 2,
+    "watch": 2,
+    "hold": 8
+  },
+  "market_sentiment": "cautious",
+  "key_themes": [
+    "金融板块相对强势（BAC +1.19%, JPM +0.91%）",
+    "半导体承压（AMD -3.53%领跌）",
+    "科技巨头分化（GOOG/CRM涨，AAPL/TSLA/AMD跌）",
+    "VIX小幅回升至18.80，恐慌情绪略有升温",
+    "本周FOMC/ECB/BOE三连决议，市场谨慎观望"
+  ],
+  "risk_events": [
+    "美联储FOMC决议（周三）- 鲍威尔可能最后一次主持",
+    "伊朗霍尔木兹海峡提案",
+    "油价高企（Brent $106+, WTI $95+）"
+  ],
+  "data_source": "Yahoo Finance API (Iwencai API 401不可用)",
+  "note": "Iwencai API凭证失效，本次扫描改用Yahoo Finance API获取实时数据"
 }

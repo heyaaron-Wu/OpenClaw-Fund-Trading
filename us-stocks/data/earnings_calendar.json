@@ -1,0 +1,15 @@
+{
+  "date": "2026-04-28",
+  "timestamp": "2026-04-28T10:08:21",
+  "total_earnings": 0,
+  "relevant_earnings": 0,
+  "earnings_list": [],
+  "relevant_list": [],
+  "high_importance": [],
+  "notes": {
+    "iwencai_status": "401 Unauthorized - API credentials expired",
+    "web_sources": "Yahoo Finance / NASDAQ / WSJ - no structured data available via web_fetch",
+    "positions": "0 (empty portfolio)",
+    "action_needed": "Iwencai API credentials need refresh; external earnings calendar sources require browser automation"
+  }
+}
