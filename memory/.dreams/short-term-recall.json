@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-28T14:30:15.329Z",
+  "updatedAt": "2026-04-28T15:30:13.233Z",
   "entries": {
     "memory:memory/2026-04-24.md:64:96": {
       "key": "memory:memory/2026-04-24.md:64:96",
@@ -42,13 +42,13 @@
       "endLine": 72,
       "source": "memory",
       "snippet": "- 版本更新：23:30（每天）- system-version-update.sh ### CHANGELOG.md 修复 - 问题：定时任务覆盖整个文件而不是追加 - 修复：修改 system-version-update.sh，在\"更新历史\"后追加新版本 - 逻辑：读取 header + 新版本 + 原有 body = 新文件 ### 文件位置 ``` /home/admin/.openclaw/workspace/skills/fund-challenge/ ├── fund_challenge/ │ ├── data_fetcher/__init__.py │ ├── analyzer/__init__.py │ ├── report_generator/ │ │ ├── __init__.py │ │ └── charts.py │ └── scripts/ │ ├── integrated_engine.py │ ├── auto_review_automation_v2.py │ ├── risk_monitor.py │ ├── fund_scorer.py │ └── universe_refresh.py └── 08-fund-daily-review/ ├── state.json ├── ledger.jsonl ├── charts/ └── reviews/ ``` ### 重要教训 1. 回滚操作会丢失回滚点之后的所",
-      "recallCount": 25,
+      "recallCount": 27,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 11.155873786377208,
+      "totalScore": 12.38918229094284,
       "maxScore": 0.7009660201616416,
       "firstRecalledAt": "2026-04-25T11:27:46.096Z",
-      "lastRecalledAt": "2026-04-28T14:30:15.329Z",
+      "lastRecalledAt": "2026-04-28T15:30:13.233Z",
       "queryHashes": [
         "7d4326842171",
         "56cb8fe749ce",
@@ -72,7 +72,8 @@
         "1b0333214890",
         "9d8abe92b0c4",
         "f517f3af4a11",
-        "76f0f7f8bbe4"
+        "76f0f7f8bbe4",
+        "d1028ac84284"
       ],
       "recallDays": [
         "2026-04-25",
@@ -98,17 +99,14 @@
       "endLine": 178,
       "source": "memory",
       "snippet": "## ⚠️ Cron 任务审计 (19:30) ### 总计 25 个任务 - ✅ 脚本存在: 15 个 - ❌ 脚本缺失: 10 个 ### 缺失脚本清单 | 任务 | 脚本 | 优先级 | |------|------|--------| | system-daily-optimize | system_cleanup.sh | ⭐⭐⭐ | | system-weekly-report | system_weekly_cleanup.sh | ⭐⭐ | | fund-weekly-report | weekly_report.py | ⭐⭐⭐ | | system-version-update | system-version-update.sh | ⭐⭐ | | system-health-check | health_check.sh | ⭐⭐⭐ | | fund-valuation-monitor | fund-valuation-monitor.py | ⭐⭐ | | fund-announcement-monitor | fund-announcement-monitor.py | ⭐⭐ | | knowledge-builder | knowledge-builder.py | ⭐⭐⭐ | | mx-morning-brief | *(空)* | ⭐ | | us-signal-scan | signal_scan.py (已禁用) | ⭐ | ### 知识库构建 (knowledge-builder) - Cron 配置存在 (23:00 每日) - 脚",
-      "recallCount": 48,
+      "recallCount": 51,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 26.310828830981958,
+      "totalScore": 28.329735242162762,
       "maxScore": 0.8669090097623369,
       "firstRecalledAt": "2026-04-25T11:27:46.096Z",
-      "lastRecalledAt": "2026-04-28T13:30:11.190Z",
+      "lastRecalledAt": "2026-04-28T15:30:13.233Z",
       "queryHashes": [
-        "7877d8474dd1",
-        "56cb8fe749ce",
-        "239c340c5a0d",
         "fe6bdb4ab74c",
         "9a461c8a4f24",
         "e0ee0a427859",
@@ -137,7 +135,10 @@
         "f6705c113f15",
         "131bb45fe439",
         "8de9704ef7a9",
-        "452f602458c3"
+        "452f602458c3",
+        "e6ad7ddf2ae5",
+        "d2d2f18bab3a",
+        "56cb8fe749ce"
       ],
       "recallDays": [
         "2026-04-25",
@@ -282,13 +283,13 @@
       "endLine": 33,
       "source": "memory",
       "snippet": "# 2026-04-24 记忆 ## 🎯 基金挑战系统 v2 完成 ### 核心功能 - ✅ 模块化架构（data_fetcher + analyzer + report_generator） - ✅ 可视化图表（收益曲线、持仓饼图、盈亏柱状） - ✅ v2 增强版报告格式（市场概览、业绩归因、风险指标、同业对比） - ✅ 今日要闻板块（5 条市场新闻） - ✅ 主动基金量化评分系统（业绩 50% + 经理 15% + 风险 20% + 规模 15%） - ✅ 候选池扩展：ETF + 主动基金（31 只） ### 数据修复 - 累计盈亏校准：59.02 元 → 59.42 元（基金净值精度差异） - 收益率修正：5.90% → 5.94% - 使用 AKShare 获取真实板块数据（半导体 -0.27%、新能源 -1.03%、AI -1.38%） ### 配置信息 - MX_APIKEY: mkt_Xg7DpYQnNvdb96dGvULmrwVdMCzxYM-QWdM1IkkSEoc - GitHub: heyaaron-Wu/Semi-automatic-artificial-intelligence-system (OpenClaw-Fund-Trading 分支) - 飞书 Webhook: f1286a3e-4e41-4809-a0bc-fd2bbbbc3f10 ### 定时任务配置 - 日终复盘：22:30（交易日）- auto_review_automation_v2.py - 风险监控：23:00（交易日）- risk_monitor.py - 周报生",
-      "recallCount": 14,
+      "recallCount": 15,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 6.250120135797042,
+      "totalScore": 6.787659397345088,
       "maxScore": 0.7120848808514603,
       "firstRecalledAt": "2026-04-25T15:30:09.974Z",
-      "lastRecalledAt": "2026-04-27T15:30:17.076Z",
+      "lastRecalledAt": "2026-04-28T15:30:13.233Z",
       "queryHashes": [
         "56cb8fe749ce",
         "9a461c8a4f24",
@@ -306,7 +307,8 @@
       ],
       "recallDays": [
         "2026-04-25",
-        "2026-04-27"
+        "2026-04-27",
+        "2026-04-28"
       ],
       "conceptTags": [
         "data-fetcher",
@@ -326,13 +328,13 @@
       "endLine": 56,
       "source": "memory",
       "snippet": "- Gateway: 运行中 ✅ - Cron Jobs: 25 启用，72% 成功率 - 首次运行，无历史趋势数据 - 数据保存：06-data/performance/metrics-2026-04-25.json ## 19:31 基金每日健康检查 (fund-daily-check) - 周六非交易日，生成预检报告 - 市场情绪：neutral，风险等级：normal - Iwencai API 网络不可达（网络问题），地缘政治/新闻模块返回默认值 - 监管合规：3 项规则均合规 - 综合评估：normal — 无异常信号 - 结果保存：skills/fund-challenge/fund_challenge/scripts/preflight_result.json ## 22:00 性能追踪 (performance-tracker) - 内存: 68.61% (1283MB / 1870MB) — 较 19:27 上升 4.97% - 磁盘: 58% (22G / 38G) — 稳定 - 负载: 0.02 (1m), 0.03 (5m), 0.00 (15m) — 极低 - Gateway: 运行中 (pid 446361) ✅ - Cron Jobs: 25 启用，76% 成功率 (19 ok / 2 error) - 数据保存：06-data/performance/metrics-2026-04-25-2200.json ## Cron 误触发 (19:33) - `us-signal-scan` 在周六误触发（排程为工作日 21:30） - 脚本存",
-      "recallCount": 17,
+      "recallCount": 18,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 7.248113594337974,
+      "totalScore": 7.897614663077251,
       "maxScore": 0.7445811548545493,
       "firstRecalledAt": "2026-04-26T14:00:11.328Z",
-      "lastRecalledAt": "2026-04-28T14:00:34.448Z",
+      "lastRecalledAt": "2026-04-28T15:30:13.223Z",
       "queryHashes": [
         "7d4326842171",
         "cd2b0cb38633",
@@ -344,7 +346,8 @@
         "452f602458c3",
         "9581cec27a43",
         "d3ac1ad7f005",
-        "58767aad3e57"
+        "58767aad3e57",
+        "d2d2f18bab3a"
       ],
       "recallDays": [
         "2026-04-26",
@@ -666,18 +669,19 @@
       "endLine": 32,
       "source": "memory",
       "snippet": "# 2026-04-26 (Sunday) ## 01:00 每日清理优化 (system-daily-optimize) - 磁盘使用率: 58% ✅ - 浏览器缓存: 已清理 - 旧日志: 已清理 (>14天) - 临时文件: 已清理 (>3天) - __pycache__: 484K (偏大，正常) - Gateway: 运行中 (pid 446361, systemd active) ✅ - 会话记录: 已清理 (>30天) ## 22:00 性能追踪 (performance-tracker) - 内存: 59.46% (1112MB / 1870MB) — 较昨日 22:00 下降 9.15% (1283→1112MB) ✅ - 磁盘: 58% (22G / 40G) — 稳定 - 负载: 0.64 (1m), 0.66 (5m), 0.28 (15m) — 较昨日上升（gateway 刚重启，CPU 48.4%） - Gateway: 运行中 (pid 480428, 刚于 22:00 重启) ✅ - Cron Jobs: 4 启用，100% 成功率 (3 ok, 0 error) — 较昨日 25 个减少（部分 cron 已清理） - 数据保存：06-data/performance/metrics-2026-04-26-2200.json ## 23:00 知识库构建 (knowledge-builder) - 决策结果文件：未找到（今日基金决策流程未执行） - 持仓状态：已加载 - 交易账本：30条记录 - 新增学习：0 条（无决策数据） - 知识库已",
-      "recallCount": 6,
+      "recallCount": 7,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 3.5726870886975273,
+      "totalScore": 4.198343344880008,
       "maxScore": 0.7548376224959475,
       "firstRecalledAt": "2026-04-27T14:32:31.385Z",
-      "lastRecalledAt": "2026-04-28T14:00:34.448Z",
+      "lastRecalledAt": "2026-04-28T15:04:06.411Z",
       "queryHashes": [
         "cd2b0cb38633",
         "7877d8474dd1",
         "239c340c5a0d",
-        "58767aad3e57"
+        "58767aad3e57",
+        "e6ad7ddf2ae5"
       ],
       "recallDays": [
         "2026-04-27",
@@ -894,18 +898,20 @@
       "endLine": 166,
       "source": "memory",
       "snippet": "- 卖出信号：AMD -3.53%（半导体承压）, TSLA -2.12% - 市场情绪：cautious（FOMC周+伊朗+油价高企） - 结果已保存：us-stocks/data/signal_scan.json ## 22:34 美股盘前检查 (cron us-premarket-check) - ⚠️ Iwencai API 401，数据源不可用 - 改用 CNBC 网页抓取获取数据 - 上周五收盘: Dow -0.16% / S&P +0.80% / Nasdaq +1.63% / Russell +0.43% - VIX: 18.71 (-3.11%)，恐慌缓解 - 油价: Brent $106.37 (+0.9%) / WTI $95.07 (+0.7%) - 欧洲: Stoxx 600 -0.1%（早盘涨幅回吐） - 核心事件: 伊朗提案重开霍尔木兹海峡 / 中国叫停Meta收购Manus / 本周美联储ECBBOE三连决议 - 市场情绪: cautious（地缘政治+央行政策周+油价高企） - 当前美东10:34，市场已在交易中（非真正盘前） - 结果保存：us-stocks/data/premarket_check.json ## 23:00 知识库构建 (cron knowledge-builder) - 决策结果：已加载（全局 HOLD，无具体买卖决策） - 持仓状态：已加载 - 交易账本：31条记录 - 新增学习：0 条（无具体决策数据） - 修复：决策文件路径从 skills/fund-challenge/.../scripts/ 改为 skil",
-      "recallCount": 4,
+      "recallCount": 6,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.8806241810807203,
+      "totalScore": 3.197425900872747,
       "maxScore": 0.7592556154286983,
       "firstRecalledAt": "2026-04-28T01:01:42.082Z",
-      "lastRecalledAt": "2026-04-28T13:30:11.190Z",
+      "lastRecalledAt": "2026-04-28T15:04:06.411Z",
       "queryHashes": [
         "4c3464778754",
         "d3ac1ad7f005",
         "8de9704ef7a9",
-        "452f602458c3"
+        "452f602458c3",
+        "d1028ac84284",
+        "e6ad7ddf2ae5"
       ],
       "recallDays": [
         "2026-04-28"
@@ -1169,15 +1175,16 @@
       "endLine": 169,
       "source": "memory",
       "snippet": "- 修复：决策文件路径从 skills/fund-challenge/.../scripts/ 改为 skills/ - 知识库已更新 ## 23:00 基金风险监控 (cron fund-risk-monitor) - 持仓: 3 只 (华夏科创50 / 广发新能源车 / 德邦半导体) - 最大回撤: 0.00%（累计盈利中）✅ - 单日亏损: +2.99%（盈利日）✅ - 波动率: 8.98%（阈值 30%）✅ - 集中度: 38.64%（阈值 60%）✅ - 飞书报告已推送 ✅",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.4819777270856536,
-      "maxScore": 0.4819777270856536,
+      "totalScore": 1.2378692477541517,
+      "maxScore": 0.7558915206684982,
       "firstRecalledAt": "2026-04-28T07:30:23.645Z",
-      "lastRecalledAt": "2026-04-28T07:30:23.645Z",
+      "lastRecalledAt": "2026-04-28T15:00:21.513Z",
       "queryHashes": [
-        "21e3887e97b5"
+        "21e3887e97b5",
+        "d1028ac84284"
       ],
       "recallDays": [
         "2026-04-28"
