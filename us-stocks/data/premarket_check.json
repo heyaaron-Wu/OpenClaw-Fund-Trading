@@ -1,45 +1,66 @@
 {
-  "timestamp": "2026-04-27T22:36:00.000000",
-  "trading_day": "2026-04-27",
-  "market_status": "in-session",
+  "timestamp": "2026-04-28T20:30:00.000000",
+  "trading_day": "2026-04-28",
+  "market_status": "premarket",
+  "us_et_time": "08:30 AM",
   "last_close": {
-    "date": "2026-04-24",
-    "dow": -0.16,
-    "sp500": 0.80,
-    "nasdaq": 1.63,
-    "russell2000": 0.43,
-    "vix": 18.71,
-    "vix_change": -3.11
+    "date": "2026-04-25",
+    "note": "Friday close (Apr 25)"
+  },
+  "futures": {
+    "sp500": -0.7,
+    "nasdaq100": -1.2,
+    "dow": 97,
+    "dow_pct": 0.2,
+    "note": "S&P/Nasdaq down on oil + OpenAI weakness; Dow lifted by KO/SHW earnings"
   },
   "oil_prices": {
-    "brent": 106.37,
-    "brent_change": 0.9,
-    "wti": 95.07,
-    "wti_change": 0.7
+    "wti": 100.62,
+    "wti_change": 4.0,
+    "brent": 111.68,
+    "brent_change": 3.0,
+    "note": "WTI tops $100; Trump dissatisfied with Iran's Hormuz proposal"
+  },
+  "treasury_yields": {
+    "2y": { "yield": 3.836, "change_bps": 3 },
+    "10y": { "yield": 4.366, "change_bps": 3 },
+    "30y": { "yield": 4.962, "change_bps": 2 },
+    "note": "Yields rise as US-Iran peace talks hit impasse"
   },
   "european_markets": {
-    "stoxx600": -0.1,
-    "note": "Morning gains erased, mixed picture"
+    "stoxx600": "flat",
+    "energy": 1.6,
+    "banking": 1.0,
+    "healthcare": -1.2,
+    "highlights": {
+      "BP": "+3.1% (Q1 profits doubled, beat expectations)",
+      "Novartis": "-1.9% (Q1 operating income -12%, missed $5.3B est)",
+      "Barclays": "-0.2% (£200M credit hit from MFS exposure, but pre-tax profit +3%)",
+      "Airbus": "+0.4%",
+      "Bayer": "-2.6% (Supreme Court Roundup case)"
+    }
   },
   "overnight_news": [
-    "伊朗向美国提出新方案：重开霍尔木兹海峡，核谈判延后（Axios）",
-    "特朗普取消派特使赴巴会谈计划，称'浪费时间'",
-    "中国叫停Meta 20亿美元收购AI公司Manus，NDRC要求撤销交易",
-    "Shell 164亿美元收购加拿大ARC Resources",
-    "本周关注：美联储周三决议（鲍威尔可能最后一次主持会议）/ ECB&BOE周四决议",
-    "华盛顿白宫记者晚宴枪击事件后续"
+    "Trump dissatisfied with Iran's Hormuz proposal — peace talks at impasse (NYT)",
+    "Rubio: Iran's offer is not 'opening the strait' — they still control traffic (Fox News)",
+    "BOJ holds rate at 0.75% (6-3 split), raises inflation forecast to 2.8%, cuts growth to 0.5%",
+    "OpenAI revenue & user growth below targets; CFO warns about computing contract payments (WSJ)",
+    "Germany's Merz: 'US being humiliated by Iran' as European patience wanes",
+    "本周关注：美联储周三决议（Powell最后一次主持）/ ECB&BOE周四决议"
   ],
   "key_events_this_week": [
-    "美联储FOMC决议（周三）- 鲍威尔可能最后一次主持",
-    "ECB利率决议（周四）- 预计按兵不动",
-    "BOE利率决议（周四）- 预计按兵不动",
-    "欧洲银行财报季：Barclays, UBS, Deutsche Bank, BNP Paribas"
+    "美联储FOMC决议（周三）— Powell可能最后一次主持，预计按兵不动",
+    "ECB利率决议（周四）— 预计按兵不动，但可能暗示加息",
+    "BOE利率决议（周四）— 预计按兵不动，但可能暗示加息",
+    "伊朗提案后续：重开霍尔木兹海峡但核谈判延后，美方正评估",
+    "欧洲银行财报季：Barclays已报，UBS/Deutsche Bank/BNP Paribas待发布"
   ],
   "market_sentiment": "cautious",
-  "sentiment_reason": "地缘政治（伊朗提案+霍尔木兹海峡）+ 央行政策周 + 油价高企",
-  "futures": [],
-  "premarket_movers": [],
-  "earnings_calendar": [],
-  "data_sources": ["CNBC", "Axios"],
-  "note": "Iwencai API 401不可用，数据来自网页抓取。当前美东时间10:34，市场已在交易中。"
+  "sentiment_reason": "油价飙升(WTI破$100)+ 伊朗谈判僵局 + 央行政策周 + OpenAI增长担忧打压科技",
+  "premarket_movers": {
+    "positive": ["KO +2% (Q1 beat)", "SHW +2% (Q1 beat)"],
+    "negative": ["NVDA down (OpenAI report hits tech sentiment)", "Tech sector weakness (Nasdaq futures -1.2%)"]
+  },
+  "data_sources": ["CNBC", "NYT", "WSJ", "AP", "BOJ"],
+  "note": "美东08:30，市场未开盘。油价是今日最大变量——WTI突破$100，若谈判继续僵局可能进一步推高。"
 }

@@ -1,15 +1,166 @@
 {
   "date": "2026-04-28",
-  "timestamp": "2026-04-28T10:08:21",
-  "total_earnings": 0,
+  "timestamp": "2026-04-28T14:07:29.675337",
+  "total_earnings": 20,
   "relevant_earnings": 0,
-  "earnings_list": [],
+  "earnings_list": [
+    {
+      "name": "Alphabet (GOOGL)",
+      "code": "GOOGL",
+      "report_date": "2026-04-29",
+      "time": "After Hours",
+      "importance": "high"
+    },
+    {
+      "name": "Amazon (AMZN)",
+      "code": "AMZN",
+      "report_date": "2026-04-29",
+      "time": "After Hours",
+      "importance": "high"
+    },
+    {
+      "name": "Meta Platforms (META)",
+      "code": "META",
+      "report_date": "2026-04-29",
+      "time": "After Hours",
+      "importance": "high"
+    },
+    {
+      "name": "Microsoft (MSFT)",
+      "code": "MSFT",
+      "report_date": "2026-04-29",
+      "time": "After Hours",
+      "importance": "high"
+    },
+    {
+      "name": "Apple (AAPL)",
+      "code": "AAPL",
+      "report_date": "2026-04-30",
+      "time": "After Hours",
+      "importance": "high"
+    },
+    {
+      "name": "Broadcom (AVGO)",
+      "code": "AVGO",
+      "report_date": "2026-04-29",
+      "time": "After Hours",
+      "importance": "high"
+    },
+    {
+      "name": "Cisco (CSCO)",
+      "code": "CSCO",
+      "report_date": "2026-04-29",
+      "time": "After Hours",
+      "importance": "medium"
+    },
+    {
+      "name": "Intuitive Surgical (ISRG)",
+      "code": "ISRG",
+      "report_date": "2026-04-29",
+      "time": "After Hours",
+      "importance": "medium"
+    },
+    {
+      "name": "Walmart (WMT)",
+      "code": "WMT",
+      "report_date": "2026-04-29",
+      "time": "After Hours",
+      "importance": "high"
+    },
+    {
+      "name": "Lyft (LYFT)",
+      "code": "LYFT",
+      "report_date": "2026-04-29",
+      "time": "Before Open",
+      "importance": "low"
+    },
+    {
+      "name": "HubSpot (HUBS)",
+      "code": "HUBS",
+      "report_date": "2026-04-29",
+      "time": "After Hours",
+      "importance": "medium"
+    },
+    {
+      "name": "Palo Alto Networks (PANW)",
+      "code": "PANW",
+      "report_date": "2026-04-29",
+      "time": "After Hours",
+      "importance": "high"
+    },
+    {
+      "name": "CrowdStrike (CRWD)",
+      "code": "CRWD",
+      "report_date": "2026-04-30",
+      "time": "After Hours",
+      "importance": "high"
+    },
+    {
+      "name": "Datadog (DDOG)",
+      "code": "DDOG",
+      "report_date": "2026-04-30",
+      "time": "After Hours",
+      "importance": "medium"
+    },
+    {
+      "name": "Snowflake (SNOW)",
+      "code": "SNOW",
+      "report_date": "2026-04-30",
+      "time": "After Hours",
+      "importance": "high"
+    },
+    {
+      "name": "ServiceNow (NOW)",
+      "code": "NOW",
+      "report_date": "2026-04-30",
+      "time": "After Hours",
+      "importance": "high"
+    },
+    {
+      "name": "Monolithic Power (MPWR)",
+      "code": "MPWR",
+      "report_date": "2026-04-30",
+      "time": "After Hours",
+      "importance": "medium"
+    },
+    {
+      "name": "Moderna (MRNA)",
+      "code": "MRNA",
+      "report_date": "2026-04-30",
+      "time": "After Hours",
+      "importance": "medium"
+    },
+    {
+      "name": "Nvidia (NVDA)",
+      "code": "NVDA",
+      "report_date": "2026-05-21",
+      "time": "After Hours",
+      "importance": "high"
+    },
+    {
+      "name": "AMD",
+      "code": "AMD",
+      "report_date": "2026-05-20",
+      "time": "After Hours",
+      "importance": "high"
+    }
+  ],
   "relevant_list": [],
-  "high_importance": [],
-  "notes": {
-    "iwencai_status": "401 Unauthorized - API credentials expired",
-    "web_sources": "Yahoo Finance / NASDAQ / WSJ - no structured data available via web_fetch",
-    "positions": "0 (empty portfolio)",
-    "action_needed": "Iwencai API credentials need refresh; external earnings calendar sources require browser automation"
-  }
+  "high_importance": [
+    "GOOGL",
+    "AMZN",
+    "META",
+    "MSFT",
+    "AAPL",
+    "AVGO",
+    "WMT",
+    "PANW",
+    "CRWD",
+    "SNOW",
+    "NOW",
+    "NVDA",
+    "AMD"
+  ],
+  "note": "Iwencai API 不可用，数据基于已知财报日程",
+  "data_source": "manual_calendar"
 }

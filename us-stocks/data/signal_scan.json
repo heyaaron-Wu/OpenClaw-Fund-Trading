@@ -1,49 +1,191 @@
 {
-  "timestamp": "2026-04-27T22:38:00+08:00",
-  "scan_time_et": "2026-04-27 10:38 EDT",
+  "timestamp": "2026-04-28T21:33:18+08:00",
+  "scan_time_et": "2026-04-28 09:31 EDT",
   "market_status": "in-session",
   "indices": {
-    "DJI": {"price": 49194.53, "change_pct": -0.07, "high": 49353.69, "low": 49112.20},
-    "IXIC": {"price": 24774.78, "change_pct": -0.25, "high": 24802.72, "low": 24694.82},
-    "RUT": {"price": 2790.41, "change_pct": 0.12, "high": 2796.74, "low": 2781.50},
-    "VIX": {"price": 18.80, "change_pct": 0.48, "high": 19.27, "low": 18.77}
+    "DJI": {
+      "price": 49273.81,
+      "change_pct": 0.22,
+      "high": 49381.33,
+      "low": 49273.81
+    },
+    "SPX": {
+      "price": 7135.64,
+      "change_pct": -0.53,
+      "high": 7140.17,
+      "low": 7129.36
+    },
+    "RUT": {
+      "price": 2788.19,
+      "change_pct": 0.04,
+      "high": 2796.74,
+      "low": 2781.5
+    },
+    "VIX": {
+      "price": 19.11,
+      "change_pct": 6.05,
+      "high": 19.43,
+      "low": 18.2
+    }
   },
   "stock_signals": [
-    {"symbol": "CRM", "name": "Salesforce", "price": 182.89, "change_pct": 2.65, "volume": 3763998, "signal": "BUY", "reason": "放量上涨，突破近期区间"},
-    {"symbol": "GOOG", "name": "Alphabet", "price": 348.91, "change_pct": 1.93, "volume": 6157516, "signal": "BUY", "reason": "涨幅领先，成交量放大"},
-    {"symbol": "BAC", "name": "Bank of America", "price": 52.67, "change_pct": 1.19, "volume": 6349476, "signal": "BUY", "reason": "金融板块走强，量比正常"},
-    {"symbol": "JPM", "name": "JP Morgan", "price": 311.10, "change_pct": 0.91, "volume": 1732995, "signal": "HOLD", "reason": "温和上涨，关注周三FOMC"},
-    {"symbol": "NVDA", "name": "NVIDIA", "price": 209.03, "change_pct": 0.37, "volume": 53370810, "signal": "HOLD", "reason": "横盘震荡，成交量巨大但方向不明"},
-    {"symbol": "META", "name": "Meta", "price": 676.57, "change_pct": 0.23, "volume": 3651447, "signal": "HOLD", "reason": "窄幅震荡，等待财报催化"},
-    {"symbol": "DIS", "name": "Disney", "price": 103.53, "change_pct": 0.91, "volume": 1029397, "signal": "HOLD", "reason": "温和上涨"},
-    {"symbol": "NFLX", "name": "Netflix", "price": 92.44, "change_pct": 0.09, "volume": 7748752, "signal": "HOLD", "reason": "几乎平盘"},
-    {"symbol": "AMZN", "name": "Amazon", "price": 262.30, "change_pct": -0.64, "volume": 14705646, "signal": "HOLD", "reason": "小幅回调，关注支撑位"},
-    {"symbol": "MSFT", "name": "Microsoft", "price": 423.25, "change_pct": -0.32, "volume": 9484812, "signal": "HOLD", "reason": "小幅回调"},
-    {"symbol": "WMT", "name": "Walmart", "price": 128.69, "change_pct": -0.95, "volume": 4861142, "signal": "HOLD", "reason": "防御性板块回调"},
-    {"symbol": "ORCL", "name": "Oracle", "price": 171.31, "change_pct": -1.13, "volume": 8539427, "signal": "WATCH", "reason": "回调幅度较大，关注支撑"},
-    {"symbol": "AAPL", "name": "Apple", "price": 267.14, "change_pct": -1.45, "volume": 11064155, "signal": "WATCH", "reason": "连续回调，关注265支撑"},
-    {"symbol": "TSLA", "name": "Tesla", "price": 368.33, "change_pct": -2.12, "volume": 18754609, "signal": "SELL", "reason": "跌超2%，放量下行"},
-    {"symbol": "AMD", "name": "AMD", "price": 335.53, "change_pct": -3.53, "volume": 21810850, "signal": "SELL", "reason": "跌超3%，放量破位，半导体板块承压"}
+    {
+      "symbol": "CRM",
+      "name": "Salesforce",
+      "price": 183.74,
+      "change_pct": 1.98,
+      "signal": "BUY",
+      "reason": "逆势上涨，CRM受益于企业软件需求"
+    },
+    {
+      "symbol": "BAC",
+      "name": "Bank of America",
+      "price": 53.26,
+      "change_pct": 1.2,
+      "signal": "BUY",
+      "reason": "金融板块走强，FOMC前银行股相对强势"
+    },
+    {
+      "symbol": "WMT",
+      "name": "Walmart",
+      "price": 129.04,
+      "change_pct": 1.14,
+      "signal": "BUY",
+      "reason": "防御性板块走强，避险资金流入"
+    },
+    {
+      "symbol": "JPM",
+      "name": "JP Morgan",
+      "price": 314.67,
+      "change_pct": 0.97,
+      "signal": "HOLD",
+      "reason": "温和上涨，关注周三FOMC决议"
+    },
+    {
+      "symbol": "DIS",
+      "name": "Disney",
+      "price": 103.2,
+      "change_pct": 0.83,
+      "signal": "HOLD",
+      "reason": "温和上涨"
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple",
+      "price": 269.41,
+      "change_pct": 0.67,
+      "signal": "HOLD",
+      "reason": "周四财报前窄幅震荡"
+    },
+    {
+      "symbol": "DJI",
+      "name": "Dow Jones",
+      "price": 49273.81,
+      "change_pct": 0.22,
+      "signal": "HOLD",
+      "reason": "道指微涨，市场观望FOMC"
+    },
+    {
+      "symbol": "RUT",
+      "name": "Russell 2000",
+      "price": 2788.19,
+      "change_pct": 0.04,
+      "signal": "HOLD",
+      "reason": "小盘股几乎平盘"
+    },
+    {
+      "symbol": "NFLX",
+      "name": "Netflix",
+      "price": 91.07,
+      "change_pct": -0.33,
+      "signal": "HOLD",
+      "reason": "窄幅震荡"
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft",
+      "price": 422.92,
+      "change_pct": -0.45,
+      "signal": "HOLD",
+      "reason": "周三财报前小幅回调"
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla",
+      "price": 376.44,
+      "change_pct": -0.59,
+      "signal": "HOLD",
+      "reason": "小幅回调，关注支撑"
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet",
+      "price": 345.61,
+      "change_pct": -0.83,
+      "signal": "HOLD",
+      "reason": "周三财报前承压"
+    },
+    {
+      "symbol": "META",
+      "name": "Meta",
+      "price": 670.77,
+      "change_pct": -1.16,
+      "signal": "WATCH",
+      "reason": "财报前回调，关注支撑"
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon",
+      "price": 256.87,
+      "change_pct": -1.63,
+      "signal": "WATCH",
+      "reason": "财报前回调幅度较大"
+    },
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA",
+      "price": 209.17,
+      "change_pct": -3.44,
+      "signal": "SELL",
+      "reason": "跌超3%，半导体板块承压"
+    },
+    {
+      "symbol": "AMD",
+      "name": "AMD",
+      "price": 317.0,
+      "change_pct": -5.27,
+      "signal": "SELL",
+      "reason": "跌超5%，半导体板块领跌"
+    },
+    {
+      "symbol": "ORCL",
+      "name": "Oracle",
+      "price": 163.29,
+      "change_pct": -5.59,
+      "signal": "SELL",
+      "reason": "跌超5%，获利了结"
+    }
   ],
   "summary": {
     "total_scanned": 15,
     "buy": 3,
-    "sell": 2,
+    "sell": 3,
     "watch": 2,
-    "hold": 8
+    "hold": 7
   },
   "market_sentiment": "cautious",
   "key_themes": [
-    "金融板块相对强势（BAC +1.19%, JPM +0.91%）",
-    "半导体承压（AMD -3.53%领跌）",
-    "科技巨头分化（GOOG/CRM涨，AAPL/TSLA/AMD跌）",
-    "VIX小幅回升至18.80，恐慌情绪略有升温",
+    "VIX飙升6%至19.11，恐慌情绪显著升温",
+    "科技巨头财报前集体回调（NVDA -3.44%, ORCL -5.59%, AMD -5.27%）",
+    "金融+防御板块相对强势（BAC +1.20%, WMT +1.14%）",
+    "道指微涨0.22% vs 标普跌0.53%，风格分化",
     "本周FOMC/ECB/BOE三连决议，市场谨慎观望"
   ],
   "risk_events": [
-    "美联储FOMC决议（周三）- 鲍威尔可能最后一次主持",
-    "伊朗霍尔木兹海峡提案",
-    "油价高企（Brent $106+, WTI $95+）"
+    "美联储FOMC利率决议（周三）- 鲍威尔最后一次主持可能性",
+    "科技巨头财报密集发布：MSFT/META/GOOG/AMZN周三，AAPL周四",
+    "VIX突破19，恐慌指数回升",
+    "半导体板块集体承压（NVDA/AMD/ORCL同步大跌）"
   ],
   "data_source": "Yahoo Finance API (Iwencai API 401不可用)",
   "note": "Iwencai API凭证失效，本次扫描改用Yahoo Finance API获取实时数据"
