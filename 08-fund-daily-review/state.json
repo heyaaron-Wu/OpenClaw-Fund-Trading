@@ -7,72 +7,64 @@
     "targetReturn": 1.0
   },
   "current": {
-    "date": "2026-04-27",
-    "totalPnl": 110.88,
-    "totalPnlPercent": 0.1109,
-    "currentCapital": 1110.88,
+    "date": "2026-04-28",
+    "totalPnl": 88.96,
+    "totalPnlPercent": 0.089,
+    "currentCapital": 1088.96,
     "tradingDays": 31
   },
   "milestones": {
     "3month": {
       "target": 1150.0,
-      "current": 1110.88,
-      "progress": 0.739
+      "current": 1088.96,
+      "progress": 0.593
     },
     "6month": {
       "target": 1300.0,
-      "current": 1110.88,
-      "progress": 0.37
+      "current": 1088.96,
+      "progress": 0.297
     },
     "12month": {
       "target": 1500.0,
-      "current": 1110.88,
-      "progress": 0.222
+      "current": 1088.96,
+      "progress": 0.178
     },
     "final": {
       "target": 2000.0,
-      "current": 1110.88,
-      "progress": 0.111
+      "current": 1088.96,
+      "progress": 0.089
     }
   },
-  "portfolio_value": 1110.88,
+  "portfolio_value": 1088.96,
   "total_invested": 1000.0,
-  "total_pnl": 110.88,
-  "total_pnl_rate": 11.09,
+  "total_pnl": 88.96,
+  "total_pnl_rate": 8.9,
   "last_updated": "2026-04-27 22:09:15",
   "positions": [
     {
-      "code": "011612",
-      "name": "华夏科创50ETF联接A",
-      "market_value": 448.15,
-      "unrealized_pnl": 48.6,
-      "confirmed_shares": 409.02,
-      "confirmed_amount": 399.55,
-      "pnl_rate": 12.16,
-      "cost": 399.55,
-      "daily_pnl": 17.83
-    },
-    {
       "code": "013180",
-      "name": "广发新能源车电池ETF联接C",
-      "market_value": 335.71,
-      "unrealized_pnl": 35.7,
-      "confirmed_shares": 333.27,
-      "confirmed_amount": 300.01,
-      "pnl_rate": 11.9,
-      "cost": 300.01,
-      "daily_pnl": 2.13
+      "name": "广发新能源车电池 ETF 联接 C",
+      "daily_pnl": -5.84
     },
     {
       "code": "014320",
-      "name": "德邦半导体产业混合C",
-      "market_value": 370.88,
-      "unrealized_pnl": 70.45,
-      "confirmed_shares": 322.07,
-      "confirmed_amount": 300.43,
-      "pnl_rate": 23.45,
-      "cost": 300.43,
-      "daily_pnl": 27.41
+      "name": "德邦半导体产业混合 C",
+      "daily_pnl": -3.12
+    },
+    {
+      "code": "011612",
+      "name": "华夏科创 50ETF 联接 A",
+      "daily_pnl": -5.32
+    },
+    {
+      "code": "017664",
+      "name": "永赢科技智选混合 A",
+      "daily_pnl": -3.61
+    },
+    {
+      "code": "006479",
+      "name": "广发纳斯达克 100ETF 联接 (QDII)C",
+      "daily_pnl": -0.53
     }
   ],
   "last_manual_date": "2026-04-21"
