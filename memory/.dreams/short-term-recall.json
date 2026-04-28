@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-28T14:00:34.448Z",
+  "updatedAt": "2026-04-28T14:30:15.329Z",
   "entries": {
     "memory:memory/2026-04-24.md:64:96": {
       "key": "memory:memory/2026-04-24.md:64:96",
@@ -42,13 +42,13 @@
       "endLine": 72,
       "source": "memory",
       "snippet": "- 版本更新：23:30（每天）- system-version-update.sh ### CHANGELOG.md 修复 - 问题：定时任务覆盖整个文件而不是追加 - 修复：修改 system-version-update.sh，在\"更新历史\"后追加新版本 - 逻辑：读取 header + 新版本 + 原有 body = 新文件 ### 文件位置 ``` /home/admin/.openclaw/workspace/skills/fund-challenge/ ├── fund_challenge/ │ ├── data_fetcher/__init__.py │ ├── analyzer/__init__.py │ ├── report_generator/ │ │ ├── __init__.py │ │ └── charts.py │ └── scripts/ │ ├── integrated_engine.py │ ├── auto_review_automation_v2.py │ ├── risk_monitor.py │ ├── fund_scorer.py │ └── universe_refresh.py └── 08-fund-daily-review/ ├── state.json ├── ledger.jsonl ├── charts/ └── reviews/ ``` ### 重要教训 1. 回滚操作会丢失回滚点之后的所",
-      "recallCount": 24,
+      "recallCount": 25,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 10.69565749742138,
+      "totalScore": 11.155873786377208,
       "maxScore": 0.7009660201616416,
       "firstRecalledAt": "2026-04-25T11:27:46.096Z",
-      "lastRecalledAt": "2026-04-28T05:35:08.458Z",
+      "lastRecalledAt": "2026-04-28T14:30:15.329Z",
       "queryHashes": [
         "7d4326842171",
         "56cb8fe749ce",
@@ -71,7 +71,8 @@
         "ca10cee69438",
         "1b0333214890",
         "9d8abe92b0c4",
-        "f517f3af4a11"
+        "f517f3af4a11",
+        "76f0f7f8bbe4"
       ],
       "recallDays": [
         "2026-04-25",
@@ -232,13 +233,13 @@
       "endLine": 32,
       "source": "memory",
       "snippet": "## 01:00 每日清理优化 (system-daily-optimize) - 磁盘使用率: 58% ✅ - 浏览器缓存: 已清理 - Cron 记录: 已清理 (>7天) - 临时文件: 已清理 - 旧日志: 已清理 (>14天) - Gateway: 运行中 (pid 410587) ✅ - __pycache__: 44K (正常) ## 04:30 基金日终复盘 (fund-daily-review) - 周六非交易日，基于上周五状态生成快照报告 - 累计收益 +75.24 元 (+7.52%)，挑战第 47 天 - 市场数据：上证 +1.02% / 创业板 +1.07% / 科创50 +1.10% / 沪深300 +0.93% - 新闻获取失败（多源模块缺失 + 妙想 API 未配置） - ⚠️ 模板 bug：累计收益率被持仓收益率覆盖（显示 9.28% 实际 7.52%） - 报告已保存：08-fund-daily-review/reviews/2026-04-25.md ## 19:27 性能追踪 (performance-tracker) - ⚠️ Python 3.6 兼容性修复：`capture_output=True` → `stdout/stderr=subprocess.PIPE` - CPU: 解析失败（top 输出格式不匹配） - 内存: 63.64% (1190MB / 1870MB) - 磁盘: 58% (22G / 38G) - 负载: 0.48 (1m), 0.41 (5m), 0.17 (15m) - Gateway: 运行中",
-      "recallCount": 20,
+      "recallCount": 21,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 10.180494282271463,
+      "totalScore": 10.632551000576008,
       "maxScore": 0.7545062861984333,
       "firstRecalledAt": "2026-04-25T14:00:15.532Z",
-      "lastRecalledAt": "2026-04-28T14:00:34.448Z",
+      "lastRecalledAt": "2026-04-28T14:30:15.329Z",
       "queryHashes": [
         "7d4326842171",
         "239c340c5a0d",
@@ -254,7 +255,8 @@
         "9d8abe92b0c4",
         "f517f3af4a11",
         "e8572439889e",
-        "58767aad3e57"
+        "58767aad3e57",
+        "76f0f7f8bbe4"
       ],
       "recallDays": [
         "2026-04-25",
@@ -564,20 +566,21 @@
       "endLine": 34,
       "source": "memory",
       "snippet": "# 2026-04-27 (Monday) ## 23:30 系统版本更新 (cron system-version-update) - 生成 v1.4.3 - 2026-04-27 - Git 推送成功 (rebase + push) - 附带同步基金复盘数据 (ledger.jsonl, state.json, 2026-04-25.md) - 提交: 0a48efd OpenClaw-Fund-Trading ## 22:47 基金日终复盘 (fund-daily-review) - 交易日期: 2026-04-27 (周一) - 市场表现: 上证 +0.16% / 创业板 -0.52% / 科创50 +3.76% 🔥 / 沪深300 +0.03% - 当日收益: +47.37 元 - 累计收益: +110.88 元 (+11.09%) - 持仓: 3 只 (科创50 31% / 新能源车 20% / 半导体 49%) - 亮点: 半导体+科创50双引擎，贡献95.5%收益 - 挑战进度: 第36天，所有中期里程碑已达成，距翻倍目标79.3% - 报告已保存: 08-fund-daily-review/reviews/2026-04-27.md - Git提交: ✅ ## 22:43 性能追踪 (performance-tracker) - 内存: 68.93% (1289MB / 1870MB) — 较昨日 22:00 上升 9.47% (1112→1289MB) ⚠️ - 磁盘: 58% (22G / 40G) — 稳定 ✅ - 负载: 0.02/0.12/0",
-      "recallCount": 8,
+      "recallCount": 9,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.0038516322801994,
+      "totalScore": 2.437641768703469,
       "maxScore": 0.6064998062851549,
       "firstRecalledAt": "2026-04-27T06:48:09.515Z",
-      "lastRecalledAt": "2026-04-28T14:00:34.448Z",
+      "lastRecalledAt": "2026-04-28T14:30:15.329Z",
       "queryHashes": [
         "17311e4ef8b7",
         "9d8abe92b0c4",
         "f517f3af4a11",
         "a494c2a150db",
         "cd2b0cb38633",
-        "58767aad3e57"
+        "58767aad3e57",
+        "76f0f7f8bbe4"
       ],
       "recallDays": [
         "2026-04-27",
@@ -1188,6 +1191,37 @@
         "38.64",
         "修复",
         "决策"
+      ]
+    },
+    "memory:memory/2026-04-28.md:38:62": {
+      "key": "memory:memory/2026-04-28.md:38:62",
+      "path": "memory/2026-04-28.md",
+      "startLine": 38,
+      "endLine": 62,
+      "source": "memory",
+      "snippet": "- A股预判: 中性偏谨慎。美股新高提供情绪支撑，但地缘风险+油价高企压制风险偏好。关注AI/半导体（Meta-Manus事件催化）、能源板块。 - 临时文件: 0 个待清理 ✅ - Cron 记录: 0 个待清理 ✅ - __pycache__: 92K max (正常) ✅ - Gateway: 运行中 (pid 516109, 内存 856MB) ✅ - 会话记录: 0 个待清理 ✅ - workspace 总大小: 47M ## 07:00 美股日终复盘 (us-daily-review) - 交易日期: 2026-04-27 (周一) - 市场表现: 道指 -0.13% / 标普 +0.12% / 纳指 +0.20% / 罗素2000 +0.04% - VIX: 18.02 (-3.69%)，恐慌情绪持续缓解 - 核心事件: 美伊和谈破裂油价飙升、标普&纳指再创新高、科技巨头财报强劲、FOMC会议在即 - 持仓: 0 只 (尚未建仓) - 股票池: 80 只 (数据质量问题持续) - 报告已保存: us-stocks/data/reviews/2026-04-28_review.md ## 09:10 基金公告监控 (cron fund-announcement-monitor) - ⚠️ Iwencai API Key 仍失效（401 Unauthorized），连续第2天无法获取公告 - 监控基金：华夏科创50ETF联接A / 广发新能源车电池ETF联接C / 德邦半导体产业混合C - 公告总数：0条（API不可用） - 待处理：需更新 Iwencai API",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.463879616710325,
+      "maxScore": 0.463879616710325,
+      "firstRecalledAt": "2026-04-28T14:30:15.329Z",
+      "lastRecalledAt": "2026-04-28T14:30:15.329Z",
+      "queryHashes": [
+        "76f0f7f8bbe4"
+      ],
+      "recallDays": [
+        "2026-04-28"
+      ],
+      "conceptTags": [
+        "gateway",
+        "关注ai/半导体",
+        "meta-manus事件催化",
+        "us-daily-review",
+        "0.13",
+        "0.12",
+        "0.20",
+        "0.04"
       ]
     }
   }
