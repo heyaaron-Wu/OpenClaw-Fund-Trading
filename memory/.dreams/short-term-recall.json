@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-29T07:30:31.049Z",
+  "updatedAt": "2026-04-29T11:33:42.914Z",
   "entries": {
     "memory:memory/2026-04-24.md:64:96": {
       "key": "memory:memory/2026-04-24.md:64:96",
@@ -102,15 +102,14 @@
       "endLine": 178,
       "source": "memory",
       "snippet": "## ⚠️ Cron 任务审计 (19:30) ### 总计 25 个任务 - ✅ 脚本存在: 15 个 - ❌ 脚本缺失: 10 个 ### 缺失脚本清单 | 任务 | 脚本 | 优先级 | |------|------|--------| | system-daily-optimize | system_cleanup.sh | ⭐⭐⭐ | | system-weekly-report | system_weekly_cleanup.sh | ⭐⭐ | | fund-weekly-report | weekly_report.py | ⭐⭐⭐ | | system-version-update | system-version-update.sh | ⭐⭐ | | system-health-check | health_check.sh | ⭐⭐⭐ | | fund-valuation-monitor | fund-valuation-monitor.py | ⭐⭐ | | fund-announcement-monitor | fund-announcement-monitor.py | ⭐⭐ | | knowledge-builder | knowledge-builder.py | ⭐⭐⭐ | | mx-morning-brief | *(空)* | ⭐ | | us-signal-scan | signal_scan.py (已禁用) | ⭐ | ### 知识库构建 (knowledge-builder) - Cron 配置存在 (23:00 每日) - 脚",
-      "recallCount": 56,
+      "recallCount": 57,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 31.047713675519034,
+      "totalScore": 31.706949025316643,
       "maxScore": 0.8669090097623369,
       "firstRecalledAt": "2026-04-25T11:27:46.096Z",
-      "lastRecalledAt": "2026-04-29T06:48:10.346Z",
+      "lastRecalledAt": "2026-04-29T11:33:42.914Z",
       "queryHashes": [
-        "b6a260958cd1",
         "4c3464778754",
         "390d531eb723",
         "4484a14e50cd",
@@ -141,7 +140,8 @@
         "4616454287c7",
         "0b87cc08811b",
         "95c403ec0cf0",
-        "0372d4b65926"
+        "0372d4b65926",
+        "6c1c632f6ed0"
       ],
       "recallDays": [
         "2026-04-25",
@@ -873,13 +873,13 @@
       "endLine": 81,
       "source": "memory",
       "snippet": "- Gateway: 运行中 (pid 480428, systemd inactive 但进程存活) ⚠️ - 会话记录: 0 个待清理 ✅ - workspace 总大小: 44M ## 07:00 美股日终复盘 (us-daily-review) - 交易日期: 2026-04-24 (周五) - 市场表现: 道指 -0.16% / 标普 +0.80% / 纳指 +1.63% / 罗素2000 +0.43% - VIX: 18.71 (-3.11%)，恐慌情绪缓解 - 核心事件: 伊朗局势升温、美联储FOMC会议在即、科技股反弹 - 持仓: 0 只 (尚未建仓) - 股票池: 80 只 (数据质量问题 - 财务指标均为0) - 报告已保存: us-stocks/data/reviews/2026-04-27_review.md - 飞书推送: ✅ 成功 ## 08:30 晨间简报 (mx-morning-brief) - 原脚本依赖缺失（is_trading_day.py 不存在），改用直接生成方式 - 数据来源: CNBC RSS + BBC + Al Jazeera - 核心内容： - 上周五美股：S&P +0.8% / Nasdaq +1.63%（双历史新高）/ Dow -0.16% - 亚太盘前：日经+0.53% / KOSPI+1.0%（双历史新高）/ 恒指期货+0.24% - 油价：Brent $107.49 / WTI $96.19（+2%，美伊谈判破裂） - 核心事件：美伊谈判破裂、霍尔木兹海峡紧张、华盛顿枪击案 - A股预判：中性",
-      "recallCount": 9,
+      "recallCount": 10,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 3.638250919151558,
-      "maxScore": 0.5809047267410398,
+      "totalScore": 4.288321856618657,
+      "maxScore": 0.6500709374670981,
       "firstRecalledAt": "2026-04-27T23:00:16.415Z",
-      "lastRecalledAt": "2026-04-28T23:00:20.405Z",
+      "lastRecalledAt": "2026-04-29T11:33:42.914Z",
       "queryHashes": [
         "9d8abe92b0c4",
         "f517f3af4a11",
@@ -888,7 +888,8 @@
         "d3ac1ad7f005",
         "3216c6d85f0d",
         "e4f860426103",
-        "40bc9ba20967"
+        "40bc9ba20967",
+        "6c1c632f6ed0"
       ],
       "recallDays": [
         "2026-04-28",
@@ -1477,16 +1478,18 @@
       "endLine": 29,
       "source": "memory",
       "snippet": "## 15:30 基金止盈止损监控 (cron fund-pnl-monitor) - 交易日期：2026-04-27 - 组合总值：1107.38 元，累计盈亏：+107.38 元 (+10.74%) - ⚠️ 高位预警 2 条：组合整体 +10.74%、广发新能源车电池 ETF 联接 C (013180) +10.49% - 飞书告警已推送 ✅ - 无严重止盈/止损信号 ## 14:03 美股财报日历监控 (cron us-earnings-calendar) - Iwencai API Key 失效（401），改用已知财报日程数据 - 本周重点：科技巨头财报周 🔥 - 周三(4/29)盘后: GOOGL / AMZN / META / MSFT / AVGO / WMT / PANW - 周四(4/30)盘后: AAPL / CRWD / SNOW / NOW - 下周: NVDA(5/21) / AMD(5/20) - 持仓相关: 0 只（尚未建仓） - 重要财报: 13 家（ mega-cap tech 集中发布） - 数据源: 手动日历（API 不可用） - 结果已保存: us-stocks/data/earnings_calendar.json ## 01:00 每日清理优化 (system-daily-optimize) - 磁盘使用率: 58% (22G/40G) ✅ - 浏览器缓存: 2.1M (很小，正常) ✅ - 旧日志: 已清理 2 个文件 (/var/log/app-init.log, kdump.log) ## 08:30 晨",
-      "recallCount": 4,
+      "recallCount": 8,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 3.0423615198791802,
-      "maxScore": 0.8363746749370686,
+      "totalScore": 5.9663462963484335,
+      "maxScore": 0.851592538223167,
       "firstRecalledAt": "2026-04-29T02:04:50.364Z",
-      "lastRecalledAt": "2026-04-29T07:30:31.049Z",
+      "lastRecalledAt": "2026-04-29T11:33:42.914Z",
       "queryHashes": [
         "a494c2a150db",
-        "a37cd87c2428"
+        "a37cd87c2428",
+        "792c9af18d0a",
+        "6c1c632f6ed0"
       ],
       "recallDays": [
         "2026-04-29"
@@ -1541,15 +1544,16 @@
       "endLine": 128,
       "source": "memory",
       "snippet": "- 报告已保存: us-stocks/data/reviews/2026-04-29_review.md ## 09:15 基金公告监控 (cron fund-announcement-monitor) - ⚠️ Iwencai API Key 连续第3天失效（401 Unauthorized） - 监控基金：华夏科创50ETF联接A / 广发新能源车电池ETF联接C / 德邦半导体产业混合C - 公告总数：0条（API不可用） - 待处理：需更新 Iwencai Skill 版本或更换数据源 ## 12:00 美股财报日历监控 (cron us-earnings-calendar) - 🔥 今天是 mega-cap tech 财报超级日！盘后 7 家高重要性公司发布 - 今日(4/29)盘后: GOOGL / AMZN / META / MSFT / AVGO / WMT / PANW + CSCO / ISRG / HUBS / LYFT - 明日(4/30)盘后: AAPL / CRWD / SNOW / NOW + DDOG / MPWR / MRNA - 下周: AMD(5/20) / NVDA(5/21) - 持仓相关: 0 只（尚未建仓） - 数据源: 手动日历（Iwencai API 仍 401） - 结果已保存: us-stocks/data/earnings_calendar.json ## 10:04 美股财报日历监控 (cron us-earnings-calendar) - 本周是 mega-cap tech 财报超级周 🔥🔥🔥 - 今日",
-      "recallCount": 1,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.7917405417583784,
-      "maxScore": 0.7917405417583784,
+      "totalScore": 3.2236146411035325,
+      "maxScore": 0.8830303121822947,
       "firstRecalledAt": "2026-04-29T06:06:19.232Z",
-      "lastRecalledAt": "2026-04-29T06:06:19.232Z",
+      "lastRecalledAt": "2026-04-29T11:33:10.900Z",
       "queryHashes": [
-        "a494c2a150db"
+        "a494c2a150db",
+        "792c9af18d0a"
       ],
       "recallDays": [
         "2026-04-29"
@@ -1581,6 +1585,70 @@
       "lastRecalledAt": "2026-04-29T06:06:19.232Z",
       "queryHashes": [
         "a494c2a150db"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "4/29",
+        "4/30",
+        "5/20",
+        "5/21",
+        "fund-investment-reminder",
+        "fund-daily-review",
+        "fund-1335-universe",
+        "26/26"
+      ]
+    },
+    "memory:memory/2026-04-29.md:139:161": {
+      "key": "memory:memory/2026-04-29.md:139:161",
+      "path": "memory/2026-04-29.md",
+      "startLine": 139,
+      "endLine": 161,
+      "source": "memory",
+      "snippet": "- 挖掘基金：华商高端制造C（1M +13.9%、3M +32.1%、6M +50.6%）、易方达战略新兴产业C（1M +25.9%、3M +27.2%）、汇丰晋信科技先锋（1M +20.4%、3M +29.3%、6M +47.3%）、海富通电子传媒A（1M +25.9%） - 多数基金得分 75.0（v6 评分上限），区分度不足 - 已保存：skills/fund-challenge/fund_challenge/scripts/universe.json ## 14:00 基金交易决策 (cron fund-1400-decision) - 最终决策：HOLD（置信度 0.30，偏低） - Iwencai 信号：HOLD (0.50)，研报：NEUTRAL (0.50)，ML：HOLD (0.50) - Iwencai API 连续多日 401，数据源降级 - 持仓：3 只（0 买 / 0 卖 / 3 持有） - 华夏科创50ETF联接A (011612) - 广发新能源车电池ETF联接C (013180) - 德邦半导体产业混合C (014320) - 累计盈亏：+88.96元 (+8.90%) - 飞书 Webhook 未配置，跳过推送 - 结果保存：skills/fund-challenge/fund_challenge/decision_result_enhanced.json ## 14:06 美股财报日历监控 (cron us-earnings-calendar) - 北京时间 14:06 (美东 02:06)，美股尚未开盘 - 今日(4/29)",
+      "recallCount": 3,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2.119816765361781,
+      "maxScore": 0.8070085234221109,
+      "firstRecalledAt": "2026-04-29T08:06:21.779Z",
+      "lastRecalledAt": "2026-04-29T11:33:10.900Z",
+      "queryHashes": [
+        "a494c2a150db",
+        "792c9af18d0a"
+      ],
+      "recallDays": [
+        "2026-04-29"
+      ],
+      "conceptTags": [
+        "13.9",
+        "32.1",
+        "50.6",
+        "25.9",
+        "27.2",
+        "20.4",
+        "29.3",
+        "47.3"
+      ]
+    },
+    "memory:memory/2026-04-29.md:122:143": {
+      "key": "memory:memory/2026-04-29.md:122:143",
+      "path": "memory/2026-04-29.md",
+      "startLine": 122,
+      "endLine": 143,
+      "source": "memory",
+      "snippet": "- 今日(4/29)盘后: GOOGL / AMZN / META / MSFT / AVGO / WMT / PANW (7 家高重要性) + CSCO / ISRG / HUBS / LYFT - 明日(4/30)盘后: AAPL / CRWD / SNOW / NOW (4 家高重要性) + DDOG / MPWR / MRNA - 下周: AMD(5/20) / NVDA(5/21) - 持仓相关: 0 只（尚未建仓） - 数据源: 手动日历（Iwencai API 仍 401） - 结果已保存: us-stocks/data/earnings_calendar.json ## 10:00 基金定投提醒 (cron fund-investment-reminder) - 周三交易日 10:00 执行 - 市场状态：震荡，正常定投 - 已发送飞书提醒 ✅ - ⚠️ 日志清理：发现 08:07 fund-daily-review 重复触发约 200 次（944 行重复日志），已清理 ## 13:35 候选池刷新 (cron fund-1335-universe) - 候选池 26 只基金，数据来源：AKShare 全量 (26/26) - 基础 13 只 + 智能挖掘 13 只 - TOP 5：财通集成电路 A/C（1M +29%、3M +45%、6M +55%）、德邦半导体 C（1M +12.2%）、广发新能源车电池 C（1M +7.3%、3M +7.2%）、中欧时代先锋 A（1M +6.0%） - 挖掘基金：华商高端制造C（1M +13.9%、3M +32.1%、6",
+      "recallCount": 3,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 2.0990282920200856,
+      "maxScore": 0.801652479650185,
+      "firstRecalledAt": "2026-04-29T08:06:21.779Z",
+      "lastRecalledAt": "2026-04-29T11:33:10.900Z",
+      "queryHashes": [
+        "a494c2a150db",
+        "792c9af18d0a"
       ],
       "recallDays": [
         "2026-04-29"

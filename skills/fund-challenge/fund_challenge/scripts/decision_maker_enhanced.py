@@ -577,25 +577,44 @@ def save_decision(decisions, alerts, enhanced_decision, base_path):
 
 
 def send_feishu_notification(decisions, alerts, enhanced_decision):
-    """飞书推送决策结果"""
+    """飞书推送决策结果 - 仅在有重要变化时推送"""
     webhook = os.environ.get('FEISHU_WEBHOOK', '')
     if not webhook:
         print("\n⚠️  飞书 Webhook 未配置，跳过推送")
         return
     
-    # 构建推送内容
-    summary = enhanced_decision.get('reasoning', '决策分析完成')
-    
     buy_count = sum(1 for d in decisions if d['action'] == 'BUY')
     sell_count = sum(1 for d in decisions if d['action'] == 'SELL')
     hold_count = sum(1 for d in decisions if d['action'] == 'HOLD')
+    
+    # 仅在有买入/卖出信号或有告警时推送
+    if buy_count == 0 and sell_count == 0 and len(alerts) == 0:
+        print("\n🔇 全部 HOLD，跳过飞书通知")
+        return
+    
+    # 构建推送内容
+    summary = enhanced_decision.get('reasoning', '决策分析完成')
+    
+    header_title = "📊 14:00 交易决策"
+    header_color = "blue"
+    if sell_count > 0:
+        header_title = "🔴 卖出信号"
+        header_color = "red"
+    elif buy_count > 0:
+        header_title = "🟢 买入信号"
+        header_color = "green"
+    elif alerts:
+        header_title = "⚠️ 交易告警"
+        header_color = "orange"
+    
+    alert_text = "\n".join([f"- {a}" for a in alerts]) if alerts else "无"
     
     content = {
         "msg_type": "interactive",
         "card": {
             "header": {
-                "title": {"tag": "plain_text", "content": "📊 14:00 交易决策"},
-                "template": "blue"
+                "title": {"tag": "plain_text", "content": header_title},
+                "template": header_color
             },
             "elements": [
                 {
@@ -609,6 +628,9 @@ def send_feishu_notification(decisions, alerts, enhanced_decision):
 - 🟢 买入：{buy_count} 只
 - 🔴 卖出：{sell_count} 只
 - ⚪ 持有：{hold_count} 只
+
+**告警信息**:
+{alert_text}
 
 **决策依据**:
 {summary}"""
