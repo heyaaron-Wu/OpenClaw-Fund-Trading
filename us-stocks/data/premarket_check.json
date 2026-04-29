@@ -1,66 +1,82 @@
 {
-  "timestamp": "2026-04-28T20:30:00.000000",
-  "trading_day": "2026-04-28",
+  "timestamp": "2026-04-29T20:30:00.000000",
+  "trading_day": "2026-04-29",
   "market_status": "premarket",
   "us_et_time": "08:30 AM",
   "last_close": {
-    "date": "2026-04-25",
-    "note": "Friday close (Apr 25)"
+    "date": "2026-04-28",
+    "note": "Tuesday close (Apr 28) — all three major averages logged negative session"
+  },
+  "indices_last_close": {
+    "SPX": { "close": 7138.80, "note": "Prev close Apr 28" },
+    "DJI": { "close": 49141.93, "note": "Prev close Apr 28" },
+    "NDX": { "close": 27029.01, "change": -276.67, "change_pct": -1.01, "note": "Apr 28 close" }
   },
   "futures": {
-    "sp500": -0.7,
-    "nasdaq100": -1.2,
-    "dow": 97,
-    "dow_pct": 0.2,
-    "note": "S&P/Nasdaq down on oil + OpenAI weakness; Dow lifted by KO/SHW earnings"
+    "sp500": "flat",
+    "note": "S&P 500 futures little changed; all three major averages logged negative session yesterday"
+  },
+  "vix": {
+    "value": 18.13,
+    "change": 0.30,
+    "change_pct": 1.68,
+    "prev_close": 17.83,
+    "note": "Intraday 8:31 AM EDT — VIX rising, fear creeping back in"
   },
   "oil_prices": {
-    "wti": 100.62,
-    "wti_change": 4.0,
-    "brent": 111.68,
-    "brent_change": 3.0,
-    "note": "WTI tops $100; Trump dissatisfied with Iran's Hormuz proposal"
+    "brent": 114,
+    "brent_note": "Brent tops $114/barrel, extending multi-day rally",
+    "note": "Oil extends multi-day rally; Trump issues new threat to Iran; Brent tops $114; UAE exits OPEC (3rd-largest producer)"
   },
   "treasury_yields": {
-    "2y": { "yield": 3.836, "change_bps": 3 },
-    "10y": { "yield": 4.366, "change_bps": 3 },
-    "30y": { "yield": 4.962, "change_bps": 2 },
-    "note": "Yields rise as US-Iran peace talks hit impasse"
+    "2y": { "yield": 3.867, "change_bps": 2.3, "prev_close": 3.844 },
+    "10y": { "yield": 4.37, "change_bps": 1.6, "prev_close": 4.354 },
+    "note": "Yields rising slightly; Fed decision today"
   },
   "european_markets": {
-    "stoxx600": "flat",
-    "energy": 1.6,
-    "banking": 1.0,
-    "healthcare": -1.2,
-    "highlights": {
-      "BP": "+3.1% (Q1 profits doubled, beat expectations)",
-      "Novartis": "-1.9% (Q1 operating income -12%, missed $5.3B est)",
-      "Barclays": "-0.2% (£200M credit hit from MFS exposure, but pre-tax profit +3%)",
-      "Airbus": "+0.4%",
-      "Bayer": "-2.6% (Supreme Court Roundup case)"
-    }
+    "ftse100": { "value": 10243.92, "change": -88.87, "change_pct": -0.86 },
+    "note": "European stocks falling; Adidas +6% after earnings beat"
   },
   "overnight_news": [
-    "Trump dissatisfied with Iran's Hormuz proposal — peace talks at impasse (NYT)",
-    "Rubio: Iran's offer is not 'opening the strait' — they still control traffic (Fox News)",
-    "BOJ holds rate at 0.75% (6-3 split), raises inflation forecast to 2.8%, cuts growth to 0.5%",
-    "OpenAI revenue & user growth below targets; CFO warns about computing contract payments (WSJ)",
-    "Germany's Merz: 'US being humiliated by Iran' as European patience wanes",
-    "本周关注：美联储周三决议（Powell最后一次主持）/ ECB&BOE周四决议"
+    "UAE shocks OPEC — announces exit from OPEC and OPEC+ (3rd-largest producer, behind Saudi & Iraq)",
+    "Oil extends rally: Brent tops $114/barrel; Trump issues new threat to Iran with AI-generated gun image",
+    "Fed Day: FOMC decision at 2 PM ET, expected to hold rates at ~4.25-4.50%; Powell's potential final press conference as chair",
+    "Senate Banking Committee to vote on Warsh's confirmation as next Fed chair today",
+    "Supreme Court could rule on Trump's attempted firing of Fed Governor Lisa Cook",
+    "Starbucks +5% premarket: beat Q2 expectations, hiked full-year outlook, CEO Niccol calls it 'the turn in our turnaround'",
+    "Yum Brands beat Q1 estimates, fueled by Taco Bell's 8% same-store sales growth",
+    "Adidas +6% after earnings beat; European stocks fall broadly",
+    "Day 3 of Musk vs OpenAI trial — Musk testified yesterday, returns to stand today",
+    "JPMorgan's Dimon warns: rising US debt could create 'some kind of bond crisis'",
+    "OpenAI looms over earnings from tech hyperscalers this week",
+    "Wednesday's biggest analyst calls: Palantir, CoreWeave, Robinhood"
   ],
-  "key_events_this_week": [
-    "美联储FOMC决议（周三）— Powell可能最后一次主持，预计按兵不动",
-    "ECB利率决议（周四）— 预计按兵不动，但可能暗示加息",
-    "BOE利率决议（周四）— 预计按兵不动，但可能暗示加息",
-    "伊朗提案后续：重开霍尔木兹海峡但核谈判延后，美方正评估",
-    "欧洲银行财报季：Barclays已报，UBS/Deutsche Bank/BNP Paribas待发布"
+  "key_events_today": [
+    "🏦 FOMC rate decision at 2 PM ET — expected HOLD",
+    "🎤 Powell press conference — potential last as Fed chair",
+    "📊 Senate Banking Committee votes on Warsh confirmation",
+    "⚖️ Supreme Court ruling on Trump vs Fed Governor Cook (possible)",
+    "📈 Starbucks (SBUX) earnings — +5% premarket",
+    "📈 Yum Brands (YUM) earnings — beat on Taco Bell strength",
+    "🏛️ UAE exits OPEC — major supply shock concern",
+    "⚔️ Trump-Iran tensions escalating — oil at multi-month highs"
   ],
-  "market_sentiment": "cautious",
-  "sentiment_reason": "油价飙升(WTI破$100)+ 伊朗谈判僵局 + 央行政策周 + OpenAI增长担忧打压科技",
   "premarket_movers": {
-    "positive": ["KO +2% (Q1 beat)", "SHW +2% (Q1 beat)"],
-    "negative": ["NVDA down (OpenAI report hits tech sentiment)", "Tech sector weakness (Nasdaq futures -1.2%)"]
+    "positive": [
+      "SBUX +5% (Q2 beat, raised outlook)",
+      "YUM beat (Taco Bell 8% comp sales growth)",
+      "Adidas +6% (earnings beat)"
+    ],
+    "negative": [
+      "European stocks broadly lower (FTSE -0.86%)",
+      "Oil-driven inflation concerns weighing on sentiment"
+    ],
+    "notable": [
+      "Seagate, Robinhood, Humana, Generac — biggest premarket movers (see CNBC for details)"
+    ]
   },
-  "data_sources": ["CNBC", "NYT", "WSJ", "AP", "BOJ"],
-  "note": "美东08:30，市场未开盘。油价是今日最大变量——WTI突破$100，若谈判继续僵局可能进一步推高。"
+  "market_sentiment": "cautious",
+  "sentiment_reason": "Fed Day + Powell's potential farewell + UAE OPEC exit + oil rally (Brent $114+) + Trump-Iran escalation + all indices negative yesterday",
+  "data_sources": ["CNBC", "CNBC Morning Squawk"],
+  "note": "美东08:30，市场未开盘。今日核心焦点：FOMC决议（2PM ET）+ Powell可能最后一次主持 + UAE退出OPEC + 油价飙升。市场情绪谨慎，三大指数昨日全线收跌。"
 }

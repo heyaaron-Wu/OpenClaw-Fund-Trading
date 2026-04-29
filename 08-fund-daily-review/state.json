@@ -7,11 +7,11 @@
     "targetReturn": 1.0
   },
   "current": {
-    "date": "2026-04-28",
+    "date": "2026-04-29",
     "totalPnl": 88.96,
     "totalPnlPercent": 0.089,
     "currentCapital": 1088.96,
-    "tradingDays": 31
+    "tradingDays": 32
   },
   "milestones": {
     "3month": {
@@ -39,7 +39,7 @@
   "total_invested": 1000.0,
   "total_pnl": 88.96,
   "total_pnl_rate": 8.9,
-  "last_updated": "2026-04-27 22:09:15",
+  "last_updated": "2026-04-29 22:30:00",
   "positions": [
     {
       "code": "013180",

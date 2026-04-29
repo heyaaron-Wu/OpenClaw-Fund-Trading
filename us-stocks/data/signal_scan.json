@@ -1,192 +1,125 @@
 {
-  "timestamp": "2026-04-28T21:33:18+08:00",
-  "scan_time_et": "2026-04-28 09:31 EDT",
-  "market_status": "in-session",
+  "scan_time": "2026-04-29 21:31:40",
+  "timezone": "Asia/Shanghai",
+  "data_source": "Yahoo Finance (Iwencai API 401 fallback)",
   "indices": {
     "DJI": {
-      "price": 49273.81,
-      "change_pct": 0.22,
-      "high": 49381.33,
-      "low": 49273.81
+      "price": 49038.16,
+      "change_pct": -0.26
     },
     "SPX": {
-      "price": 7135.64,
-      "change_pct": -0.53,
-      "high": 7140.17,
-      "low": 7129.36
+      "price": 7128.26,
+      "change_pct": -0.64
+    },
+    "IXIC": {
+      "price": 24575.3,
+      "change_pct": -1.25
     },
     "RUT": {
-      "price": 2788.19,
-      "change_pct": 0.04,
-      "high": 2796.74,
-      "low": 2781.5
+      "price": 2756.05,
+      "change_pct": -1.15
     },
     "VIX": {
-      "price": 19.11,
-      "change_pct": 6.05,
-      "high": 19.43,
-      "low": 18.2
+      "price": 18.06,
+      "change_pct": 1.29
     }
   },
-  "stock_signals": [
+  "buy_signals": [
     {
-      "symbol": "CRM",
-      "name": "Salesforce",
-      "price": 183.74,
-      "change_pct": 1.98,
-      "signal": "BUY",
-      "reason": "逆势上涨，CRM受益于企业软件需求"
-    },
-    {
-      "symbol": "BAC",
-      "name": "Bank of America",
-      "price": 53.26,
-      "change_pct": 1.2,
-      "signal": "BUY",
-      "reason": "金融板块走强，FOMC前银行股相对强势"
-    },
-    {
-      "symbol": "WMT",
-      "name": "Walmart",
-      "price": 129.04,
-      "change_pct": 1.14,
-      "signal": "BUY",
-      "reason": "防御性板块走强，避险资金流入"
-    },
-    {
-      "symbol": "JPM",
-      "name": "JP Morgan",
-      "price": 314.67,
-      "change_pct": 0.97,
-      "signal": "HOLD",
-      "reason": "温和上涨，关注周三FOMC决议"
-    },
-    {
-      "symbol": "DIS",
-      "name": "Disney",
-      "price": 103.2,
-      "change_pct": 0.83,
-      "signal": "HOLD",
-      "reason": "温和上涨"
-    },
-    {
-      "symbol": "AAPL",
-      "name": "Apple",
-      "price": 269.41,
-      "change_pct": 0.67,
-      "signal": "HOLD",
-      "reason": "周四财报前窄幅震荡"
-    },
-    {
-      "symbol": "DJI",
-      "name": "Dow Jones",
-      "price": 49273.81,
-      "change_pct": 0.22,
-      "signal": "HOLD",
-      "reason": "道指微涨，市场观望FOMC"
-    },
-    {
-      "symbol": "RUT",
-      "name": "Russell 2000",
-      "price": 2788.19,
-      "change_pct": 0.04,
-      "signal": "HOLD",
-      "reason": "小盘股几乎平盘"
-    },
-    {
-      "symbol": "NFLX",
-      "name": "Netflix",
-      "price": 91.07,
-      "change_pct": -0.33,
-      "signal": "HOLD",
-      "reason": "窄幅震荡"
-    },
-    {
-      "symbol": "MSFT",
-      "name": "Microsoft",
-      "price": 422.92,
-      "change_pct": -0.45,
-      "signal": "HOLD",
-      "reason": "周三财报前小幅回调"
-    },
-    {
-      "symbol": "TSLA",
-      "name": "Tesla",
-      "price": 376.44,
-      "change_pct": -0.59,
-      "signal": "HOLD",
-      "reason": "小幅回调，关注支撑"
-    },
-    {
-      "symbol": "GOOG",
+      "ticker": "GOOG",
       "name": "Alphabet",
-      "price": 345.61,
-      "change_pct": -0.83,
-      "signal": "HOLD",
-      "reason": "周三财报前承压"
+      "price": 344.03,
+      "change_pct": 1.87
     },
     {
-      "symbol": "META",
-      "name": "Meta",
-      "price": 670.77,
-      "change_pct": -1.16,
-      "signal": "WATCH",
-      "reason": "财报前回调，关注支撑"
-    },
-    {
-      "symbol": "AMZN",
+      "ticker": "AMZN",
       "name": "Amazon",
-      "price": 256.87,
-      "change_pct": -1.63,
-      "signal": "WATCH",
-      "reason": "财报前回调幅度较大"
+      "price": 258.94,
+      "change_pct": 1.4
     },
     {
-      "symbol": "NVDA",
+      "ticker": "NVDA",
       "name": "NVIDIA",
-      "price": 209.17,
-      "change_pct": -3.44,
-      "signal": "SELL",
-      "reason": "跌超3%，半导体板块承压"
+      "price": 211.1,
+      "change_pct": 4.25
     },
     {
-      "symbol": "AMD",
+      "ticker": "AMD",
       "name": "AMD",
-      "price": 317.0,
-      "change_pct": -5.27,
-      "signal": "SELL",
-      "reason": "跌超5%，半导体板块领跌"
+      "price": 322.97,
+      "change_pct": 6.43
     },
     {
-      "symbol": "ORCL",
-      "name": "Oracle",
-      "price": 163.29,
-      "change_pct": -5.59,
-      "signal": "SELL",
-      "reason": "跌超5%，获利了结"
+      "ticker": "INTC",
+      "name": "Intel",
+      "price": 86.6,
+      "change_pct": 32.68
     }
   ],
-  "summary": {
-    "total_scanned": 15,
-    "buy": 3,
-    "sell": 3,
-    "watch": 2,
-    "hold": 7
-  },
-  "market_sentiment": "cautious",
-  "key_themes": [
-    "VIX飙升6%至19.11，恐慌情绪显著升温",
-    "科技巨头财报前集体回调（NVDA -3.44%, ORCL -5.59%, AMD -5.27%）",
-    "金融+防御板块相对强势（BAC +1.20%, WMT +1.14%）",
-    "道指微涨0.22% vs 标普跌0.53%，风格分化",
-    "本周FOMC/ECB/BOE三连决议，市场谨慎观望"
+  "sell_signals": [
+    {
+      "ticker": "AAPL",
+      "name": "Apple",
+      "price": 267.36,
+      "change_pct": -2.13
+    },
+    {
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "price": 424.02,
+      "change_pct": -2.06
+    },
+    {
+      "ticker": "TSLA",
+      "name": "Tesla",
+      "price": 375.71,
+      "change_pct": -3.05
+    },
+    {
+      "ticker": "CRM",
+      "name": "Salesforce",
+      "price": 178.82,
+      "change_pct": -5.78
+    },
+    {
+      "ticker": "ORCL",
+      "name": "Oracle",
+      "price": 162.74,
+      "change_pct": -13.21
+    },
+    {
+      "ticker": "WMT",
+      "name": "Walmart",
+      "price": 126.45,
+      "change_pct": -2.72
+    },
+    {
+      "ticker": "DIS",
+      "name": "Disney",
+      "price": 101.33,
+      "change_pct": -3.33
+    }
   ],
-  "risk_events": [
-    "美联储FOMC利率决议（周三）- 鲍威尔最后一次主持可能性",
-    "科技巨头财报密集发布：MSFT/META/GOOG/AMZN周三，AAPL周四",
-    "VIX突破19，恐慌指数回升",
-    "半导体板块集体承压（NVDA/AMD/ORCL同步大跌）"
+  "hold_signals": [
+    {
+      "ticker": "META",
+      "name": "Meta",
+      "price": 667.09,
+      "change_pct": -1.13
+    },
+    {
+      "ticker": "BAC",
+      "name": "Bank of America",
+      "price": 52.51,
+      "change_pct": -1.16
+    },
+    {
+      "ticker": "JPM",
+      "name": "JPMorgan",
+      "price": 310.56,
+      "change_pct": -0.79
+    }
   ],
-  "data_source": "Yahoo Finance API (Iwencai API 401不可用)",
-  "note": "Iwencai API凭证失效，本次扫描改用Yahoo Finance API获取实时数据"
+  "total_scanned": 15,
+  "market_sentiment": "neutral"
 }
