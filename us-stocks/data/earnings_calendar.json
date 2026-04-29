@@ -1,6 +1,6 @@
 {
-  "date": "2026-04-28",
-  "timestamp": "2026-04-28T14:07:29.675337",
+  "date": "2026-04-29",
+  "timestamp": "2026-04-29T12:00:47.513900",
   "total_earnings": 20,
   "relevant_earnings": 0,
   "earnings_list": [
@@ -161,6 +161,7 @@
     "NVDA",
     "AMD"
   ],
-  "note": "Iwencai API 不可用，数据基于已知财报日程",
-  "data_source": "manual_calendar"
+  "note": "Mega-cap tech earnings super week - today is the biggest day",
+  "data_source": "manual_calendar",
+  "source": "manual calendar (Iwencai API 401)"
 }
