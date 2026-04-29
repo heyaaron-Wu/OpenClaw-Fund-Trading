@@ -1,0 +1,67 @@
+{
+  "date": "2026-04-28",
+  "review_time": "2026-04-29 07:00 CST",
+  "indices": {
+    "DJI": {
+      "close": 49141.93,
+      "change_pct": -0.05
+    },
+    "SPX": {
+      "close": 7138.8,
+      "change_pct": -0.49
+    },
+    "IXIC": {
+      "close": 24663.8,
+      "change_pct": -0.9
+    },
+    "RUT": {
+      "close": 2756.05,
+      "change_pct": -1.15
+    },
+    "VIX": {
+      "close": 17.83,
+      "change_pct": -1.05
+    }
+  },
+  "sectors": {
+    "Energy": 1.66,
+    "Real Estate": 0.97,
+    "Consumer Staples": 0.9,
+    "Healthcare": 0.26,
+    "Utilities": 0.13,
+    "Financial": 0.08,
+    "Communication": -0.05,
+    "Consumer Disc": -0.7,
+    "Materials": -0.73,
+    "Industrial": -0.89,
+    "Technology": -1.69
+  },
+  "mega_cap": {
+    "AAPL": 1.16,
+    "MSFT": 1.04,
+    "GOOGL": -0.16,
+    "AMZN": -0.54,
+    "TSLA": -0.7,
+    "META": -1.07,
+    "NVDA": -1.59
+  },
+  "commodities": {
+    "WTI": 99.64,
+    "WTI_change_pct": 3.39,
+    "Brent": 104.2,
+    "Brent_change_pct": -3.72,
+    "Gold": 4607.9,
+    "Gold_change_pct": -1.44,
+    "10Y_Treasury": 4.35
+  },
+  "positions": 0,
+  "portfolio_value": 0,
+  "sentiment": "cautious",
+  "key_events": [
+    "WTI原油盘中突破$100，美伊谈判僵局持续",
+    "大盘全线回调，纳指领跌-0.90%",
+    "防御板块领涨，科技板块承压-1.69%",
+    "FOMC会议明日召开，科技巨头财报盘后发布",
+    "标普从历史高点回落约40点"
+  ]
+}
